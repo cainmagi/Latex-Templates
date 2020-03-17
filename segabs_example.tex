@@ -1,0 +1,202 @@
+\documentclass[wordlite,texlive,final]{segabs}
+\usepackage{lipsum}
+%\hypersetup{
+%}
+% An example of defining macros
+\newcommand{\rs}[1]{\mathstrut\mbox{\scriptsize\rm #1}}
+\newcommand{\rr}[1]{\mbox{\rm #1}}
+
+\begin{document}
+
+\title{An example SEG expanded nonostract}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+
+\author{Joe Dellinger\footnotemark[1], BP 
+  and Sergey Fomel, University of Texas at Austin\footnotemark[2] and Joe DellingerII\footnotemark[1], BP 
+  and Sergey Fomel, University of Texas at Austin}
+
+\footer{Example}
+\lefthead{Dellinger \& Fomel}
+\righthead{SEG abstract example}
+
+\maketitle
+
+\begin{abstract}
+  This is an example of using the extended version of \textsf{segabs.cls} for writing
+  SEG expanded abstracts. This example requires \texttt{extra} option, it has been enabled in default. Users could try to remove \texttt{wordlite} or \texttt{final}, or add \texttt{nohyref} to see what happens.
+\end{abstract}
+
+\section{Introduction}
+
+This is an introduction. \LaTeX\ is a powerful document typesetting
+system \cite[]{lamport}. An excellent reference is \cite[]{kopka}. The
+new \textsf{segabs.cls} class complies with the \LaTeX2e\ standard.
+
+\section*{Theory}
+
+This is another section. 
+
+\subsection{Equations}
+
+Section headings should be capitalized. Subsection headings should
+only have the first letter of the first word capitalized.
+
+Here are examples of equations involving vectors and tensors:
+\begin{equation}
+\tensor{R} = 
+\begin{pmatrix}
+  R_{\rs{XX}} & R_{\rs{YX}} \cr R_{\rs{XY}} & R_{\rs{YY}}
+\end{pmatrix}
+=
+\tensor{P}_{M\rightarrow R} \; \tensor{D} \; \tensor{P}_{S\rightarrow M}
+\;\;\; \tensor{S} \ \ \  ,
+\label{SVD}
+\end{equation}
+and
+\begin{equation}
+R_{j,m}(\omega) =
+\sum_{n=1}^{N} \, \,
+P_{j}^{(n)}(\mathbf{x}_R) \, \,
+D^{(n)}(\omega) \, \,
+P_{m}^{(n)}(\mathbf{x}_S) \ \ \ .
+\label{SVDray}
+\end{equation}
+
+Note that the macros for the \verb#\tensor# command has been changed
+to force tensors to be bold uppercase, in compliance with current SEG
+submission standards. This is so that documents typeset to the old
+standards will print out according to the new ones: e.g., tensor
+$\tensor{t}$ (note converted to uppercase).
+
+\subsection*{Figures}
+\renewcommand{\figdir}{Fig} % figure directory
+
+\autoref{fig:net_whole} shows what it is about.
+
+\plot{net_whole}{width=\columnwidth}
+{This figure is specified in the document by \texttt{
+    $\backslash$plot\{net\_whole\}\{width=$\backslash$columnwidth\}\{This caption.\}}.
+}
+
+\subsubsection{Multiplot} 
+
+Sometimes it is convenient to put two or
+more figures from different files in an array (see
+\autoref{fig:block_incep,block_incepdec}). Individual plots are
+\autoref{fig:block_incep} and~\autoref{fig:block_incepdec}.
+
+\multiplot{2}{block_incep,block_incepdec}{width=0.8\columnwidth}
+{This figure is specified in the document by \texttt{
+    $\backslash$multiplot\{2\}\{block\_incep,block\_incepdec\}\\\{width=0.8$\backslash$columnwidth\}\{This caption.\}}.
+}
+
+The first argument of the \texttt{multiplot} command specifies the
+number of plots per row.
+
+\subsection{Tables}
+
+The discussion is summarized in \autoref{tbl:example}.
+
+\tabl{example}{This table is specified in the document by \texttt{
+    $\backslash$tabl\{example\}\{This caption.\}\{\ldots\}}.
+}{
+  \begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      \multicolumn{3}{|c|}{Table Example} \\
+      \hline
+      migration\rule[-2ex]{0ex}{5ex} & 
+      $\omega \rightarrow k_z$ & 
+      $k_y^2+k-z^2\cos^2 \psi=4\omega^2/v^2$ \\
+      \hline
+      \parbox{0.55in}{zero-offset\\diffraction}\rule[-4ex]{0ex}{8ex} &
+      $k_z\rightarrow\omega_0$ &
+      $k_y^2+k_z^2=4\omega_0^2/v^2$ \\
+      \hline
+      DMO+NMO\rule[-2ex]{0in}{5ex} & $\omega\rightarrow\omega_0$ & 
+      $\frac{1}{4}
+      v^2k_y^2\sin^2\psi+\omega_0^2\cos^2\psi=\omega^2$ \\
+      \hline
+      radial DMO\rule[-2ex]{0in}{5ex} & $\omega\rightarrow\omega_s$ &
+      $\frac{1}{4}v^2k_y^2\sin^2\psi+\omega_s^2=\omega^2$\\
+      \hline
+      radial NMO\rule[-2ex]{0in}{5ex} & $\omega_s\rightarrow\omega_0$ &
+      $\omega_0\cos\psi=\omega_s$\\
+      \hline
+    \end{tabular}
+  \end{center}
+}
+
+\section{Algorithms}
+
+We show an example of algorithm in \autoref{alg:relu}. Users could use some commands like \texttt{$\backslash$STATE}, \texttt{$\backslash$FOR}, \texttt{$\backslash$FORALL}, \texttt{$\backslash$IF} and \texttt{$\backslash$WHILE} to write algorithms.
+
+\begin{algorithm}[htbp]
+  \caption{ReLU function.}
+  \label{alg:relu}
+  \begin{algorithmic}[1]
+    \REQUIRE Input vector $\mathbf{x}$
+    \ENSURE Output vector $\mathbf{y}$.
+    % if-then-else
+    \STATE $\mathbf{y} = \max(\mathbf{x}, 0)$;
+  \end{algorithmic}
+\end{algorithm}
+
+\section{ACKNOWLEDGMENTS}
+
+\plot*[!b]{ops_seq2patch}{width=0.8\textwidth} 
+{This figure is specified in the
+  document by \texttt{
+    $\backslash$plot*\{ops\_seq2patch\}\{width=0.8$\backslash$textwidth\}\{This caption.\}}.  }
+
+I wish to thank Ivan P\v{s}en\v{c}\'{\i}k and Fr\'ed\'eric Billette
+for having names with non-English letters in them.  I wish to thank
+\cite{Cerveny} for providing an example of how to make a bib file that
+includes an author whose name begins with a non-English character and
+\cite{forgues96} for providing both an example of referencing a Ph.D.
+thesis and yet more non-English characters.
+
+\append{Appendix example}
+
+According to the new SEG standard, appendices come before references.
+
+\begin{equation}
+\frac{\partial U}{\partial z} = 
+\left\{
+  \sqrt{\frac{1}{v^2} - \left[\frac{\partial t}{\partial g}\right]^2} +
+  \sqrt{\frac{1}{v^2} - \left[\frac{\partial t}{\partial s}\right]^2}
+\right\}
+\frac{\partial U}{\partial t}
+\label{eqn:partial}
+\end{equation}
+It is important to get equation~\ref{eqn:partial} right.
+
+\append{Another appendix}
+
+\begin{equation}
+\frac{\partial U}{\partial z} = 
+\left\{
+  \sqrt{\frac{1}{v^2} - \left[\frac{\partial t}{\partial g}\right]^2} +
+  \sqrt{\frac{1}{v^2} - \left[\frac{\partial t}{\partial s}\right]^2}
+\right\}
+\frac{\partial U}{\partial t}
+\label{eqn:partial2}
+\end{equation}
+Too lazy to type a different equation but note the numeration.
+
+The error comparison is provided in \autoref{fig:ops_seq2patch}.
+  
+\lipsum[1-2]
+
+\onecolumn
+
+%\append{The source of the bibliography}
+%\verbatiminput{bib/example.bib}
+
+\twocolumn
+
+\bibliographystyle{seg}  % style file is seg.bst
+\autobibliography{bib/example}
+
+\end{document}

@@ -2,39 +2,42 @@
 
 ## Introduction
 
-This is a collection of LaTeX templates designed by Yuchen Jin (cainmagi). This collection does not include any Beamer templates. People who want to find the templates for slices and posters, should check [this repository][git-beamer]. Since some of them are adapted from other templates, we may apply different licenses to different templates. If anyone who want to use these templates, please pay attension to the licenses.
+This is SEG-abstract template. It is adapted from the [official SEG-abstract template][git-seg]. SEG templates are very stable files and do not change for a long time. We make some adaptions for the templates to support the following new features:
 
-It is OK to place them in your `texmf-local` folder to make it work globally, but personally I suggest users place the files in any folder where your projects are stored. It will work locally for your specific LaTeX projects.
+* **Word-lite**: The official LaTeX template is a little bit different from the word one. It will add a bounding box to all figures and make the produced file like the official word template.
+* **XeLaTeX**: The official template does not work well with XeLaTeX. Our adaption could fix this problem. If you use XeLaTeX, this feature would be enabled automatically.
+* **Hyperref**: This feature is enabled in default. It will introduce the hyperlinks and allows users to use `\autoref` to refer anything with an automatically inferred tag. It would also add pdf tags to the produced files.
+* **Useful packages**: This feature is enabled in default. If enable it, this feature would introduce some useful packages.
+* **TeXLive packages**: Some packages may not work with MikTeX but work with TeXLive. Use `texlive` to enable them.
+* **Final mode**: Support a final mode. In this mode, the reference would disapper. This feature is designed according to the requirement of SEG. If you use our template, you would not need to use an extra `segabs_final` file.
 
-Most of these templates are class files (`.cls`). To make use of them, for example, if the template file name is `anyclass.cls`, just use the following code:
+By the way, this template is totally compatible with the official LaTeX file. But `amsmath` is not compatible with `\pmatrix` command. In our example, we use `noextra` to enter the compatible mode. Users could use `segabs_example_off.tex` to examine it.
 
-```latex
-\documentclass[options]{anyclass}
-```
+## All options
 
-Some of templates are style files (`.sty`), they could be used as a package by any of the following codes:
+| Option | Description | Counter option |
+| -----  |   -----     |      -----     |
+| `times` | Use `Times` font. If not set, pdfLaTeX would use `Computer Modern` while XeLaTeX would use `TeX Gyre Termes`.  | `notimes` | 
+| `wordlite` | Make the template like the word version. It will add a bounding box to all figures. | `nowordlite` |
+| `hyref` | Use the hyperref package. It would add hyper links to all referring tags and support `\autoref`. If you switch from `nohyref` to `hyref`, you may need to compile the file for two times to ensure there are no errors. | `nohyref` |
+| `extra` | Use extra packages, including AMS math packages, `stfloat`, `algorithm`, and `enumerate`. If `hyref` is disabled, `cleveref` would be used for supporting `\autoref`. | `noextra` |
+| `texlive` | Use TeXLive exclusive packages. Now these packages include `siunitx`. | `notexlive` |
+| `final` | Final version flag. If enabled, the reference part would not show, but the cited tags still exist. | `nofinal` |
 
-```latex
-\usepackage[options]{anystyle}
-\RequirePackage[options]{anystyle}
-```
+## Example
 
-Currently this collection includes the following templates. If any template is left blank here, it means I am arranging it. That template would be uploaded in the future:
-
-| Beamer title | Type | Screenshot|
-| ----- | ----- | ----- |
-| SEG-abstract                            | Paper   |  |
-| NRSM-URSI abstract                      | Paper   |  |
-| UH-ECE-Homework                         | Article |  |
-| Revised IEEE Transaction                | Article |  |
-| Assignment                              | Article |  |
-| Elegant Report                          | Article |  |
-| Source Han Chinese support for XeLaTeX  | Style   |  |
+| Example 1 | Example 2 |
+| ----- | ----- |
+| ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
 
-### 1.0 @ 03/16/2020
+### 1.0 @ 03/17/2020
 
-1. Create this project.
+1. Create this sub-project, `SEG-abstract`.
 
+[git-seg]:https://github.com/SEGTeX/texmf/tree/master/tex/latex/seg
 [git-beamer]:https://github.com/cainmagi/UH-beamer-templates
+
+[ex-fig-1]:./display/seg-abs-1.png
+[ex-fig-2]:./display/seg-abs-2.png
