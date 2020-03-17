@@ -15,14 +15,16 @@ By the way, this template is totally compatible with the official LaTeX file. Bu
 
 ## All options
 
-| Option | Description | Counter option |
-| -----  |   -----     |      -----     |
-| `times` | Use `Times` font. If not set, pdfLaTeX would use `Computer Modern` while XeLaTeX would use `TeX Gyre Termes`.  | `notimes` | 
-| `wordlite` | Make the template like the word version. It will add a bounding box to all figures. | `nowordlite` |
-| `hyref` | Use the hyperref package. It would add hyper links to all referring tags and support `\autoref`. If you switch from `nohyref` to `hyref`, you may need to compile the file for two times to ensure there are no errors. | `nohyref` |
-| `extra` | Use extra packages, including AMS math packages, `stfloat`, `algorithm`, and `enumerate`. If `hyref` is disabled, `cleveref` would be used for supporting `\autoref`. | `noextra` |
-| `texlive` | Use TeXLive exclusive packages. Now these packages include `siunitx`. | `notexlive` |
-| `final` | Final version flag. If enabled, the reference part would not show, but the cited tags still exist. | `nofinal` |
+We list all avaliable options here. The deault state means whether a option is enabled in default.
+
+| Option | Description | Counter option | Default state |
+| -----  |   -----     |      -----     |  -----  |
+| `times` | Use `Times` font. If not set, pdfLaTeX would use `Computer Modern` while XeLaTeX would use `TeX Gyre Termes`.  | `notimes` | Enabled |
+| `wordlite` | Make the template like the word version. It will add a bounding box to all figures. | `nowordlite` | Disabled |
+| `hyref` | Use the hyperref package. It would add hyper links to all referring tags and support `\autoref`. If you switch from `nohyref` to `hyref`, you may need to compile the file for two times to ensure there are no errors. | `nohyref` | Enabled |
+| `extra` | Use extra packages, including AMS math packages, `stfloat`, `algorithm`, and `enumerate`. If `hyref` is disabled, `cleveref` would be used for supporting `\autoref`. | `noextra` | Enabled |
+| `texlive` | Use TeXLive exclusive packages. Now these packages include `siunitx`. | `notexlive` | Disabled |
+| `final` | Final version flag. If enabled, the reference part would not show, but the cited tags still exist. | `nofinal` | Disabled |
 
 ## Example
 
