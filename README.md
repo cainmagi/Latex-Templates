@@ -2,39 +2,62 @@
 
 ## Introduction
 
-This is a collection of LaTeX templates designed by Yuchen Jin (cainmagi). This collection does not include any Beamer templates. People who want to find the templates for slices and posters, should check [this repository][git-beamer]. Since some of them are adapted from other templates, we may apply different licenses to different templates. If anyone who want to use these templates, please pay attension to the licenses.
+This template is adapted from the IEEE transaction. URSI 2019 has provided a template for using the IEEE transaction template to write the two-page summary (see [here][ursi]). According to the official example, we design this template for providing more supports.
 
-It is OK to place them in your `texmf-local` folder to make it work globally, but personally I suggest users place the files in any folder where your projects are stored. It will work locally for your specific LaTeX projects.
+The `NRSMRev.cls` is designed based on `IEEEtrans.cls`. This branch would provide both files. We make the following adaptions for supporting more features:
 
-Most of these templates are class files (`.cls`). To make use of them, for example, if the template file name is `anyclass.cls`, just use the following code:
+* **Introduce `hyperref`**: it will add hyperlinks to all referring tags. We provide options to disable this feature.
+* **Support some packages**: we have integrate some useful packages, including AMS math packages, `graphicx`, `dsfont`, `tabularx`, `xcolor`, `subfigure`, `float`, `multicol`, `algorithm`, `listings`, `ntheorem`, `enumitem`, and `placeins`.
+* **Add a pdf password**: This feature only supports XeLaTeX. It will enable you to add an owner password and a viewer password to the produced pdf file. 
+
+## All options
+
+The following options should only be enabled when using the class, like
 
 ```latex
-\documentclass[options]{anyclass}
+\documentclass[option]{NRSMRev}
 ```
 
-Some of templates are style files (`.sty`), they could be used as a package by any of the following codes:
+| Option | Description | Counter option | Default state |
+| -----  |   -----     |      -----     |  -----  |
+| `color` | Add colors to all links. It would not influence the figures. | `gray` | Disabled |
+| `draft` | Use the draft mode of `IEEEtrans`, all figures would be replaced by placeholders, and the codes in the text would be skipped. | `gray` | Disabled |
+| `fleqn` | Make the equations left-aligned. | `cteqn` | Disabled |
+
+The following options could be assigned in both the class options and the following command:
 
 ```latex
-\usepackage[options]{anystyle}
-\RequirePackage[options]{anystyle}
+\NRSMsetup{
+  option1=value1,
+  option2=value2, ...
+}
 ```
 
-Currently this collection includes the following templates. If any template is left blank here, it means I am arranging it. That template would be uploaded in the future:
+| Option | Description | Default value |
+| -----  |   -----     |     -----     |
+| `stitle`    | The title that would be shown in the macros of this file. | `Bare Demo of IEEERev.cls` |
+| `sauthor`   | The author name that would be shown in the macros of this file. | `Yuchen Jin` |
+| `subject`   | The subject that would be shown in the macros of this file. | `USNC-URSI National Radio Science Meeting` |
+| `refNum`    | A bool. Whether to add the section number to the reference section. This option may cause problem if you place appendices before the reference. | false |
+| `nohyper`   | A bool. Whether to disable the links created by `hyperref` package, note that the other features of this package would remain. | true |
+| `codeStyle` | The style of the codes created by `listings`, could be either `box` or `default`. | `default` |
+| `ownerPass` | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | `` |
+| `userPass`  | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | `` |
 
-| Beamer title | Type | Screenshot|
-| ----- | ----- | ----- |
-| SEG-abstract                            | Paper   |  |
-| NRSM-URSI abstract                      | Paper   |  |
-| UH-ECE-Homework                         | Article |  |
-| Revised IEEE Transaction                | Article |  |
-| Assignment                              | Article |  |
-| Elegant Report                          | Article |  |
-| Source Han Chinese support for XeLaTeX  | Style   |  |
+## Example
+
+| Example 1 | Example 2 |
+| ----- | ----- |
+| ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
 
-### 1.0 @ 03/16/2020
+### 1.0 @ 03/19/2020
 
-1. Create this project.
+1. Create this sub-project, `URSI`.
 
+[ursi]:https://nrsmboulder.org/abstract-submissions
 [git-beamer]:https://github.com/cainmagi/UH-beamer-templates
+
+[ex-fig-1]:./display/ursi-1.png
+[ex-fig-2]:./display/ursi-2.png
