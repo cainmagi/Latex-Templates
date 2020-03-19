@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This template is adapted from the IEEE transaction. URSI 2019 has provided a template for using the IEEE transaction template to write the two-page summary (see [here][ursi]). According to the official example, we design this template for providing more supports.
+This template is adapted from the IEEE transaction. It is both compatible with pdfLaTeX and XeLaTeX. URSI 2019 has provided a template for using the IEEE transaction template to write the two-page summary (see [here][ursi]). According to the official example, we design this template for providing more supports.
 
 The `NRSMRev.cls` is designed based on `IEEEtrans.cls`. This branch would provide both files. We make the following adaptions for supporting more features:
 
