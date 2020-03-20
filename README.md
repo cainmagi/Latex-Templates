@@ -43,9 +43,9 @@ Currently this collection includes the following templates. If any template is l
 
 [git-beamer]:https://github.com/cainmagi/UH-beamer-templates
 
-[ex-seg-abstract]:/cainmagi/Latex-Templates/tree/SEG-abstract
-[ex-ursi]:/cainmagi/Latex-Templates/tree/URSI
-[ex-ecehw]:/cainmagi/Latex-Templates/tree/ECE-homework
+[ex-seg-abstract]:../../tree/SEG-abstract
+[ex-ursi]:../../tree/URSI
+[ex-ecehw]:../../tree/ECE-homework
 [fig-seg-abstract]:./display/seg-abs.png
 [fig-ursi]:./display/ursi.png
 [fig-ecehw]:./display/ecehw.png
