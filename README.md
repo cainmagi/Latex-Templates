@@ -45,8 +45,8 @@ The following options could be assigned in both the class options and the follow
 | `repeatframetitle` | A bool. Whether to repeat the frame title if a frame is broken into two pages. | true |
 | `codeStyle`        | The style of the codes created by `listings`, could be either `box` or `default`. | `default` |
 | `mainfont`         | The main font. Could be selected from: `Romande`, `Palatino', 'Times', 'Stix', 'Helvetica`, and `Utopia` | `Romande` |
-| `ownerPass` | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | `` |
-| `userPass`  | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | `` |
+| `ownerPass` | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
+| `userPass`  | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 
 The class also provides two environments, use them as:
 
