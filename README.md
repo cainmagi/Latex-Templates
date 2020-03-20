@@ -23,9 +23,9 @@ Currently this collection includes the following templates. If any template is l
 
 | Beamer title | Type | Screenshot|
 | ----- | ----- | ----- |
-| SEG-abstract                            | Paper   |  |
-| NRSM-URSI abstract                      | Paper   |  |
-| UH-ECE-Homework                         | Article |  |
+| [SEG-abstract][ex-seg-abstract]         | Paper   | [![][fig-seg-abstract]][ex-seg-abstract] |
+| [NRSM-URSI abstract][ex-ursi]           | Paper   | [![][fig-ursi]][ex-ursi]                 |
+| [UH-ECE-Homework][ex-ecehw]             | Article | [![][fig-ecehw]][ex-ecehw]               |
 | Revised IEEE Transaction                | Article |  |
 | Assignment                              | Article |  |
 | Elegant Report                          | Article |  |
@@ -33,8 +33,19 @@ Currently this collection includes the following templates. If any template is l
 
 ## Update report
 
-### 1.0 @ 03/16/2020
+### 0.4 @ 03/19/2020
+
+1. Add 3 templates: [SEG-abstract][ex-seg-abstract], [NRSM-URSI abstract][ex-ursi] and [UH-ECE-Homework][ex-ecehw].
+
+### 0.1 @ 03/16/2020
 
 1. Create this project.
 
 [git-beamer]:https://github.com/cainmagi/UH-beamer-templates
+
+[ex-seg-abstract]:/cainmagi/Latex-Templates/tree/SEG-abstract
+[ex-ursi]:/cainmagi/Latex-Templates/tree/URSI
+[ex-ecehw]:/cainmagi/Latex-Templates/tree/ECE-homework
+[fig-seg-abstract]:./display/seg-abs.png
+[fig-ursi]:./display/ursi.png
+[fig-ecehw]:./display/ecehw.png
