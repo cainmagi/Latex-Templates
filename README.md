@@ -21,7 +21,7 @@ The following options should only be enabled when using the class, like
 | Option | Description | Counter option | Default state |
 | -----  |   -----     |      -----     |  -----  |
 | `color` | Add colors to all links. It would not influence the figures. | `gray` | Disabled |
-| `draft` | Use the draft mode of `IEEEtrans`, all figures would be replaced by placeholders, and the codes in the text would be skipped. | `gray` | Disabled |
+| `draft` | Use the draft mode of `IEEEtrans`, all figures would be replaced by placeholders, and the codes in the text would be skipped. | - | Disabled |
 | `fleqn` | Make the equations left-aligned. | `cteqn` | Disabled |
 
 The following options could be assigned in both the class options and the following command:
@@ -41,8 +41,8 @@ The following options could be assigned in both the class options and the follow
 | `refNum`    | A bool. Whether to add the section number to the reference section. This option may cause problem if you place appendices before the reference. | false |
 | `nohyper`   | A bool. Whether to disable the links created by `hyperref` package, note that the other features of this package would remain. | true |
 | `codeStyle` | The style of the codes created by `listings`, could be either `box` or `default`. | `default` |
-| `ownerPass` | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | `` |
-| `userPass`  | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | `` |
+| `ownerPass` | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
+| `userPass`  | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 
 ## Example
 
@@ -52,9 +52,18 @@ The following options could be assigned in both the class options and the follow
 
 ## Update report
 
-### 1.0 @ 03/19/2020
+### 1.10 @ 03/19/2020
 
-1. Create this sub-project, `URSI`.
+1. Remove useless features.
+2. Adjust the `draft` mode.
+
+### 1.05 @ 09/17/2018
+
+1. Enable users to disable all links by `nohyper` option (enabled as default settings).
+
+### 1.0 @ 09/15/2018
+
+1. Creating this template: `URSI`.
 
 [ursi]:https://nrsmboulder.org/abstract-submissions
 [git-beamer]:https://github.com/cainmagi/UH-beamer-templates

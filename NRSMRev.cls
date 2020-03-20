@@ -4,12 +4,14 @@
 % -----------------------------------
 % % Update statements:
 % -----------------------------------
+% % Version 1.10 (3/19/20)
+%     - Remove useless features.
+%     - Adjust the draft mode.
 % % Version 1.05 (9/17/18)
 %     - Enable users to disable all links by "nohyper" option (enabled as
 %       default settings).
 % % Version 1.0 (9/15/18)
-%     - Creating this template. Only support English now. If need, there 
-%       will be some extensions in the future.
+%     - Creating this template.
 % % 
 %
 % -----------------------------------
