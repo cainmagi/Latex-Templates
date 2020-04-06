@@ -1,4 +1,4 @@
-\documentclass[wordlite,texlive,final]{segabs}
+\documentclass[wordlite,texlive,final,calfont]{segabs}
 \usepackage{lipsum}
 %\hypersetup{
 %}
@@ -68,6 +68,11 @@ to force tensors to be bold uppercase, in compliance with current SEG
 submission standards. This is so that documents typeset to the old
 standards will print out according to the new ones: e.g., tensor
 $\tensor{t}$ (note converted to uppercase).
+
+Let's check the \texttt{$\backslash$mathcal} command:
+\begin{eqnarray}
+  \mathcal{L} = \mathcal{D}(\Theta) + \mathcal{E}(\sigma).
+\end{eqnarray}
 
 \subsection*{Figures}
 \renewcommand{\figdir}{Fig} % figure directory

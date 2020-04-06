@@ -19,7 +19,7 @@
 %%     version 2003/12/01 or later.
 %% 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{segabs}[2005/04/03 v1.0 SEG expanded abstract]
+\ProvidesClass{segabs}[2020/04/06 RevSEG v1.05 based on v1.0 SEG expanded abstract]
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -38,6 +38,8 @@
 \RequirePackage{ifthen}
 \newboolean{@times}
 \setboolean{@times}{true}
+\newboolean{@rev@calfont}
+\setboolean{@rev@calfont}{false}
 \newboolean{@rev@wordlite}
 \setboolean{@rev@wordlite}{false}
 \newboolean{@rev@hyref}
@@ -50,6 +52,8 @@
 \setboolean{@rev@final}{false}
 \DeclareOption{times}{\setboolean{@times}{true}}
 \DeclareOption{notimes}{\setboolean{@times}{false}}
+\DeclareOption{calfont}{\setboolean{@rev@calfont}{true}}
+\DeclareOption{nocalfont}{\setboolean{@rev@calfont}{false}}
 \DeclareOption{wordlite}{\setboolean{@rev@wordlite}{true}}
 \DeclareOption{nowordlite}{\setboolean{@rev@wordlite}{false}}
 \DeclareOption{hyref}{\setboolean{@rev@hyref}{true}}
@@ -67,6 +71,11 @@
 \ifthenelse{\boolean{@times}}{\RequirePackage{mathptmx}}{}
 \DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
 \RequirePackage{seg}
+\ifthenelse{\boolean{@rev@calfont}}{
+  \DeclareSymbolFont{cmsymbols}{OMS}{cmsy}{m}{n}
+  \SetSymbolFont{cmsymbols}{bold}{OMS}{cmsy}{b}{n}
+  \DeclareSymbolFontAlphabet{\mathcal}{cmsymbols}
+}{}
 \RequirePackage{ifxetex}
 % Hyperref settings
 \ifthenelse{\boolean{@rev@hyref}}{

@@ -20,6 +20,7 @@ We list all avaliable options here. The deault state means whether a option is e
 | Option | Description | Counter option | Default state |
 | -----  |   -----     |      -----     |  -----  |
 | `times` | Use `Times` font. If not set, pdfLaTeX would use `Computer Modern` while XeLaTeX would use `TeX Gyre Termes`.  | `notimes` | Enabled |
+| `calfont` | The default settings of `segabs.cls` would override the `\mathcal` font by *Ralph Smith's Formal Script Font (rsfs)*. We provide an this option for switching back to the original calligraphy font.  | `nocalfont` | Disabled |
 | `wordlite` | Make the template like the word version. It will add a bounding box to all figures. | `nowordlite` | Disabled |
 | `hyref` | Use the hyperref package. It would add hyper links to all referring tags and support `\autoref`. If you switch from `nohyref` to `hyref`, you may need to compile the file for two times to ensure there are no errors. | `nohyref` | Enabled |
 | `extra` | Use extra packages, including AMS math packages, `stfloat`, `algorithm`, and `enumerate`. If `hyref` is disabled, `cleveref` would be used for supporting `\autoref`. | `noextra` | Enabled |
@@ -33,6 +34,10 @@ We list all avaliable options here. The deault state means whether a option is e
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.05 @ 04/06/2020
+
+1. Support the option `calfont`.
 
 ### 1.0 @ 03/17/2020
 
