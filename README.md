@@ -48,7 +48,7 @@ The following options could be assigned in both the class options and the follow
 | `ownerPass` | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`  | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 
-The class also provides two environments, use them as:
+The class also provides environments, use them as:
 
 ```latex
 \begin{envname}
