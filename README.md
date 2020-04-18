@@ -44,7 +44,7 @@ The following options could be assigned in both the class options and the follow
 | `subject`          | The subject that would be shown in the heading and the macros. | `ECE 6000` |
 | `version`          | The version that would be shown beside the date. Could be left blank. | ` ` |
 | `refNum`           | A bool. Whether to add the section number to the reference section. This option may cause problem if you place appendices before the reference. | false |
-| `repeatframetitle` | A bool. Whether to repeat the frame title if a frame is broken into two pages. | true |
+| `repeatframetitle` | A bool. Whether to repeat the frame title if a frame is broken into two pages. | false |
 | `codeStyle`        | The style of the codes created by `listings`, could be either `box` or `default`. | `default` |
 | `ownerPass`        | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`         | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
