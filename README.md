@@ -49,6 +49,21 @@ The following options could be assigned in both the class options and the follow
 | `ownerPass`        | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`         | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 
+The class also provides environments, use them as:
+
+```latex
+\begin{envname}
+  ...
+\end{envname}
+```
+
+The enviorments are listed as below:
+
+| Name | Description |
+|----- |   -----     |
+| `theorem`  | This environment is used for writing theorems. |
+| `question` | This environment is used for writing the contents of a question in the exercise. |
+
 ## Example
 
 | Example 1 (two-col, final mode) | Example 2 (one-col, draft mode) |
