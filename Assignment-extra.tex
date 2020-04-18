@@ -1,0 +1,161 @@
+%----------------------------------------------------------------------------------------
+%	Modified class referred tex document.
+%----------------------------------------------------------------------------------------
+
+\documentclass[layout=rotate,useSpeTable,useQuote,useParallel,useLettrine]{CKAgn}
+\ckasetup{ 
+  type={Math},
+  author={Yuchen Jin},
+  organization={Test the organization},
+  number={1},
+  textStyle={box}
+}
+\usepackage{metalogo}
+\usepackage{lipsum}
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{Introduction}
+
+In this example, we show the extra functions of this class.
+
+\section{Examples}
+
+\subsection{Example of special table}
+
+The features in this sub-sections requires the option \texttt{useSpeTable}.
+
+In \autoref{tab:Table1}, we would add some descriptions for each row.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Example table \label{tab:Table1}}
+  \begin{tabular}{|m{0.1\columnwidth}<{\centering}|m{0.46\columnwidth}|}
+    \hline
+    \textbf{Symbol} & \makebox[0.46\columnwidth][c]{\textbf{Description}} \\ \hline
+    $\alpha$ & text 1 \fullrow{In this part, we show some extra descriptions for the first row.} \\ \hline
+    $\Gamma$ & text 2 \fullrow{In this part, we show some extra descriptions for the second row.} \\ \hline
+    $\Omega$ & text 3 \fullrow[2]{In this part, we show some extra descriptions for the third row. The column number is explicitly assigned as 2.} \\ \hline
+  \end{tabular}
+\end{table}
+
+In the following environment, we show some examples of word boxes.
+\vspace{3em}
+\begin{wordlist}
+  \begin{wordbox}{benefit our lives}{vi.}
+    \witem{g}{= improve our lives}
+    \witem{w}{\weg[benefited our lives]{The internet has benefited our lives.}}
+  \end{wordbox}
+  \begin{wordbox}{doorstep}{n.}
+    \witem{g}{a step leading up to the outer door of a house.}
+    \witem{w}{\weg{What we buy get delivered to our doorstep.}}
+  \end{wordbox}
+  \begin{wordbox}{mail a letter}{vi.}
+    \witem{g}{send a paper-based letter.}
+    \witem{w}{\weg{We mail a letter in the past.}}
+  \end{wordbox}
+  \begin{wordbox}{enjoyable}{adj.}
+    \witem{g}{an adjective that describes anything full of delight and fun.}
+    \witem{w}{\weg{It is not enjoyable to} \blank.}
+  \end{wordbox}
+  \begin{wordbox}{take \blank for example}{v.}
+    \witem{g}{=for example, \blank}
+  \end{wordbox}
+  \begin{wordbox}{class schedule}{n.}
+    \witem{g}{the arrangement of classes}
+    \witem{w}{\weg[class schedules]{All my class schedules are} \emph{on} my phone.}
+  \end{wordbox}
+  \begin{wordbox}{enormously}{adv.}
+    \witem{g}{= greatly}
+    \witem{w}{\weg{The cellphone helps enormously.}}
+  \end{wordbox}
+  \begin{wordbox}{stay in touch with}{vt.}
+    \witem{g}{= keep in touch with \blank}
+    \witem{w}{\weg{We could stay in touch with our loved ones.}}
+  \end{wordbox}
+  \begin{wordbox}{split}{vt.}
+    \witem{g}{divide into two or more groups.}
+    \witem{w}{\weg{Living together allows us to split the rent, utility and food costs.}}
+  \end{wordbox}
+  \begin{wordbox}{a bunch of}{adj.}
+    \witem{g}{a group of \blank}
+    \witem{w}{\weg{a bunch of people}}
+  \end{wordbox}
+  \begin{wordbox}{collect one's thought}{vi.}
+    \witem{g}{= think}
+    \witem{w}{\weg[collect their thoughts]{The students could have a break away from their busy life and collect their thoughts.}}
+  \end{wordbox}
+  \begin{wordbox}{be more productive}{vi.}
+    \witem{g}{= work more efficiently}
+    \witem{w}{\weg{I could be more productive if staying alone.}}
+  \end{wordbox}
+  \begin{wordbox}{block out}{vt.}
+    \witem{g}{= keep (ourselves) away from}
+    \witem{w}{\weg{Music could block out the noise in the working staff.}}
+  \end{wordbox}
+  \begin{wordbox}{s}{}
+    \witem{gb}{I can't even imagine what my life would be like if \blank.}
+    \witem{w}{\weg[I can't even imagine what my life would be like if]{I can't even imagine what my life would be like if music and movies don't exist.}}
+  \end{wordbox}
+  \begin{wordbox}{a record of history}{n.}
+    \witem{g}{= historical relics}
+    \witem{w}{\weg{They leave a record of history to us.}}
+  \end{wordbox}
+  \begin{wordbox}{be involved in}{vt.}
+    \witem{g}{= participate in \blank}
+    \witem{w}{\weg{Tony starts to be involved in many activities.}}
+  \end{wordbox}
+  \begin{wordbox}{have the same taste in}{vt.}
+    \witem{g}{= have the same interests in \blank}
+    \witem{w}{\weg{Tony and I have the same taste in music and art.}}
+  \end{wordbox}
+  \begin{wordbox}{collaborate with}{vt.}
+    \witem{g}{= cooperate with \blank}
+    \witem{w}{\weg{I get more done when I collaborate with a team.}}
+  \end{wordbox}
+  \begin{wordbox}{bond}{vt.}
+    \witem{g}{= connect}
+    \witem{w}{\weg{Reading could bonds people like no other.}}
+  \end{wordbox}
+  \begin{wordbox}{First off}{adv.}
+    \witem{g}{= Firstly/First}
+    \witem{w}{\weg{First off, it will allow you to} \blank.}
+  \end{wordbox}
+\end{wordlist}
+
+\subsection{Example of quote}
+
+The features in this sub-sections requires the option \texttt{useQuote}.
+
+Here we show 3 examples:
+
+\begin{shadeQuote}{}
+  A quote without source.
+\end{shadeQuote}
+
+\begin{shadeQuote}{Shakespeare}
+  To be, or not to be, that is the question.
+\end{shadeQuote}
+
+\begin{shadeQuote}[r]{Shakespeare}
+  To be, or not to be, that is the question.
+\end{shadeQuote}
+
+\subsection{Example of parallel}
+
+The parallel environment is usually used for writing translations. The features in this sub-sections requires the option \texttt{useParallel}. We also show examples of \texttt{$\backslash$textfoot}.
+
+\begin{Parallel}[v]{0.42\textwidth}{0.52\textwidth}
+  \litem{\lipsum[2]}
+  \ritem{\textfoot{dd}{xxxx}2009, MIT opening course project had\textfoot{presented}{ present/release/publish}about approximately 2000 courses, which can be accessed freely online by people around the world. However, there are still some, if not many, are of the\textfoot{opinion}{or believing that}that when it comes to the education, the traditional educational methods has irreplaceable advantages when compared to the other\textfoot{methods}{approach/method/mode}. Personally I tend to think that this conclusion cannot hold its ground.}
+  \litem{\lipsum[4]}
+  \ritem{\lipsum[5]}
+\end{Parallel}
+
+\subsection{Example of lettrine}
+
+\lettrine{I}{n} this paragraph, we show an example of the paragraph with the first letter emphasized by the \texttt{lettrine} package. This feature requires the option \texttt{useLettrine}.
+
+\end{document} 
