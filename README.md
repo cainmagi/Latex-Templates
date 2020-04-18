@@ -21,7 +21,7 @@ The following options should only be enabled when using the class, like
 | Option | Description | Counter option | Default state |
 | -----  |   -----     |      -----     |  -----  |
 | `color`    | Add colors to all links. It would not influence the figures. | `gray` | Disabled |
-| `draft`    | Use the draft mode of `IEEEtran`, all figures would be replaced by placeholders, and the codes in the text would be skipped. | - | Disabled |
+| `draft`    | Use the draft mode of `IEEEtran`, all figures would be replaced by placeholders, and the codes in the text would be skipped. | `final` | Disabled |
 | `twocols`  | Use the two-column and two-side mode of `IEEEtran`. If disabled, the one-column and one-side mode are used. | `onecol` | Enabled |
 | `hyper`    | A bool. Whether to enable all features created by `hyperref` package, if set false, the `\autoref` command would be provided by `cleveref`. | `noHyper` | Enabled |
 | `fleqn`    | Make the equations left-aligned. | `cteqn` | Disabled |
@@ -51,7 +51,7 @@ The following options could be assigned in both the class options and the follow
 
 ## Example
 
-| Example 1 | Example 2 |
+| Example 1 (two-col, final mode) | Example 2 (one-col, draft mode) |
 | ----- | ----- |
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
@@ -64,6 +64,7 @@ The following options could be assigned in both the class options and the follow
 3. Provide an explicit draft mode and an one-column mode.
 4. Provide an option for disabling the `hyperref` package.
 5. Remove useless options and packages.
+6. Fix some typos in the readme file.
 
 ### 1.0 @ 09/15/2018
 
