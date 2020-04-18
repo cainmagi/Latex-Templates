@@ -43,7 +43,7 @@ The following options could be assigned in both the class options and the follow
 | `number`         | The number of the assignment. | `0` |
 | `author`         | The author name that would be shown in the title and macros. | `Yuchen Jin` |
 | `organization`   | The organization name that would be shown in the title. | `University of Houston` |
-| `textStyle`      | The style of the text related functions. Should be `default`, `color` or `box` | - | `default` |
+| `textStyle`      | The style of the text related functions. Should be `default`, `color` or `box`. | `default` |
 | `ownerPass`      | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`       | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 
@@ -84,31 +84,31 @@ When user uses `useSpeTable` option, the following functions would be available:
 * **Special row**: This row would cross all columns. We use it for the further description. It should be used like:
     
     ```latex
-...
-col 1 & col 2 & col 3 \fullrow[3]{This part would cross three columns.} \\ \hline
-col 1 & col 2 & col 3 \fullrow[3]{Another row crossing three columns.} \\ \hline
-...
+    ...
+    col 1 & col 2 & col 3 \fullrow[3]{This part would cross three columns.} \\ \hline
+    col 1 & col 2 & col 3 \fullrow[3]{Another row crossing three columns.} \\ \hline
+    ...
     ```
     
 * **wordbox**: This environment is used for showing keywords. Basically, it could be used as
 
     ```latex
-\begin{wordlist}
-  \begin{wordbox}{keyword}{type}
-    \witem{g}{first row, show the definition.}
-    \witem{w}{\weg{second row, show an example containing the keyword.}}
-  \end{wordbox}
-  ...
-\end{wordlist}
+    \begin{wordlist}
+      \begin{wordbox}{keyword}{type}
+        \witem{g}{first row, show the definition.}
+        \witem{w}{\weg{second row, show an example containing the keyword.}}
+      \end{wordbox}
+      ...
+    \end{wordlist}
     ```
     
     where `\witem{g}` means a gray box, `\witem{w}` means a white box, `\weg{...}` is a command for showing the example. The keyword contained in the example would be highlighted automatically. The option for the `\witem` could be `g/w` (color), `b` (bold) and `e` (emph). For example, another usage is
 
     ```latex
-\begin{wordbox}{s}{}
-  \witem{gb}{This is a long sentence.}
-  \witem{w}{\weg[this is a long sentence]{In this example, we show that this is a long sentence.}}
-\end{wordbox}
+    \begin{wordbox}{s}{}
+      \witem{gb}{This is a long sentence.}
+      \witem{w}{\weg[this is a long sentence]{In this example, we show that this is a long sentence.}}
+    \end{wordbox}
     ```
     
     where we use `s` as the keyword and the type is blank. In this case the title would become `SENTENCE`. The `\weg` has an optional argument now, it is used when the keyword is different from the example in the environment argument.
