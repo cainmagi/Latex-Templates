@@ -70,7 +70,7 @@ Without any option, this class support the following special functions:
     * `\err{text}`: this part is wrong and should be deleted.
     * `\unsure{text}`: we are not sure whether this part is correct.
     * `\change{previous}{after}`: this part should be changed as the second argument.
-* **Password**: users could add a owner password and a user password by using the option or `\ckasetup`. But the password would not be applied automatically. After setting the password, users shuould call `\Coding` before `\begin{document}`.
+* **Password**: users could add a owner password and a user password by using the option or `\ckasetup`. But the password would not be applied automatically. After setting the password, users shuould call `\Coding` before `\begin{document}`. The password in only supported when compling the document by `XeLaTeX`.
 
 All the aforementioned functions shown in the `Assignment.tex`.
 
