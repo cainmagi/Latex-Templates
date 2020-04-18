@@ -1,0 +1,170 @@
+%\documentclass[mainfont=Palatino,onecol,draft]{IEEERev} % One column, draft.
+%\documentclass[mainfont=Palatino,color,onecol]{IEEERev} % One column, final.
+%\documentclass[mainfont=Palatino,draft]{IEEERev} % Two columns, draft.
+%\documentclass[mainfont=Palatino,color,noHyper]{IEEERev} % Two columns, final, no hyperref
+\documentclass[mainfont=Palatino,color]{IEEERev} % Two columns, final
+
+\RITEsetup{
+  stitle       = {Bare Demo of IEEERev.cls for IEEE Journals},
+  version      = {$1^{th}$},
+  sauthor      = {Yuchen Jin, Yuchen Jin II},
+  subject      = {ECE 6397},
+  organization = {University of Houston},
+  codeStyle    = {box}
+}
+
+\title{Bare Demo of IEEERev.cls\\ for IEEE Journals}
+\author{Yuchen~Jin,~\IEEEmembership{Member,~IEEE,}
+  and~Yuchen~Jin~II,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
+  
+  \thanks{Yuchen Jin was with the Department
+    of Electrical and Computer Engineering, University of Houston, TX,
+    77004 USA e-mail: \href{mailto:cainmagi@gmail.com}{cainmagi@gmail.com}.}% <-this % stops a space
+  \thanks{Yuchen Jin II was with the Department
+    of Electrical and Computer Engineering, University of Houston, TX,
+    77004 USA e-mail: \href{mailto:cain.king@foxmail.com}{cain.king@foxmail.com}.}}
+
+%===========================================================
+\begin{document}
+	
+\maketitle
+
+\begin{abstract}
+  The abstract goes here.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+  IEEE, IEEEtran, journal, \LaTeX, paper, template.
+\end{IEEEkeywords}
+
+\section{Show Homework}
+sadfasf, sdfdsf, sdf.
+
+Test citations:
+
+\cite{Zeiler5539957,Yang6175956,Dong7115171}.
+
+\subsection{Show Floats}
+
+Test figures and example block which is shown in \autoref{ex1}.
+
+\begin{example}[Show figures] \label{ex1}
+  Test inner subgraphs, i.e. \autoref{fig:ex1:resD:a} and \autoref{fig:ex1:resD:b}:
+  
+  \begin{figure}[H] \label{fig:ex1:resD}
+		\centering
+		\begin{minipage}[b]{0.48\columnwidth}
+			\centering
+			\subfigure[$D=1$]{ \label{fig:ex1:resD:a}
+				\includegraphics[width = 0.7\columnwidth]{ece-logo.eps}
+			}
+		\end{minipage}
+		\begin{minipage}[b]{0.48\columnwidth}
+			\centering
+			\subfigure[$D=0.5$]{ \label{fig:ex1:resD:b}
+				Here could be graphs.
+			}
+		\end{minipage}
+		\DeclareGraphicsExtensions.
+		\caption{Test graphs.}
+	\end{figure}
+	
+	\qED
+	
+\end{example}
+
+Test subequations and the theorem block which is shown in \autoref{th1}.
+
+\begin{theorem}[Example Theorem] \label{th1}
+  Here we show a simple example of subequations in \eqref{fml:th1:partialW}:
+  \begin{subequations}
+    \renewcommand{\theequation}
+    {\theparentequation-\arabic{equation}}
+    \begin{align}
+      \frac{\partial \mathcal{L}(\mathbf{w},~b)}{\partial \mathbf{w}} &= \mathbf{w} + C \sum\limits_i\frac{\partial \ell_i}{\partial \mathbf{w}}, \label{fml:th1:partialW}\\
+      \frac{\partial \mathcal{L}(\mathbf{w},~b)}{\partial b} &= C \sum\limits_i\frac{\partial \ell_i}{\partial b}, \label{fml:th1:partialb}
+    \end{align}
+  \end{subequations}
+\end{theorem}
+
+Test table, which is shown in \autoref{tab:params}:
+
+\begin{table}[htbp]
+  \centering
+  \normalsize
+  \caption[Parameters of Daubechies's filter.]{Parameters of \textit{Daubechies}'s filter.}
+  \label{tab:params}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $n$ & $h[n]$ & $g[n]$ \\ \hline
+    0 &  0.3327 & -0.0352 \\ \hline
+    1 &  0.8069 & -0.0854 \\ \hline
+    2 &  0.4599 &  0.1350 \\ \hline
+    3 & -0.1350 &  0.4599 \\ \hline
+    4 & -0.0854 & -0.8069 \\ \hline
+    5 &  0.0352 &  0.3327 \\ \hline
+  \end{tabular}
+\end{table}
+
+Test equations in \eqref{fml:ieq2}:
+\begin{equation} \label{fml:ieq2}
+  \begin{aligned}
+    I (\Omega) &= \tRe{ \left. \frac{e^{-x}}{j \Omega} e^{j \Omega x} \right|_0^1 + o\left( \frac{1}{\Omega} \right) } \approx \tRe{ \left. \frac{e^{-x}}{j \Omega} e^{j \Omega x} \right|_0^1 } \\
+    &= \tRe{ \frac{e^{j\Omega-1} - 1}{j \Omega} } = \frac{1}{\Omega e} \cos \left( \Omega - \frac{\pi}{2} \right) = \frac{1}{\Omega e} \sin \Omega. 
+  \end{aligned}
+\end{equation}
+
+\subsection{Show Algorithm}
+
+Test Algorithm in \autoref{alg::Algorithm}:
+
+\begin{algorithm}[htbp]
+  \caption{DWT Algorithm}
+  \label{alg::Algorithm}
+  \begin{algorithmic}[1]
+    \REQUIRE Sequence $\mathbf{x}$ in time domain
+    \ENSURE Sequence $\hat{\mathbf{x}}$ in wavelet domain
+    % if-then-else
+    \STATE N = $\left\lfloor \log_2 (\mathrm{length}(\mathbf{x})) \right\rfloor$;
+    \STATE $\mathbf{c}_{N} = \mathbf{x},~ \hat{\mathbf{x}} = \varnothing$;
+    \FOR{$i$ from $1$ to $N$}
+      \STATE $\mathbf{c}_{N-i},~\mathbf{d}_{N-i}~=~\mathrm{analysis\_filter}(\mathbf{c}_{N-i+1})$;
+      \STATE insert $\mathbf{d}_{N-i}$ at the beginning of $\hat{\mathbf{x}}$.
+    \ENDFOR
+  \end{algorithmic}
+\end{algorithm}
+    
+Test codings:
+
+\lstinputlisting[language=Python]{./codes/Test.py}
+
+\appendices
+\section{Proof of the First Zonklar Equation}
+Appendix one text goes here.
+
+\section{}
+Appendix two text goes here.
+
+\section*{Acknowledgment}
+
+The authors would like to thank...
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+\bibliographystyle{IEEEtran}
+\bibliography{bib/ref_nn,bib/ref_superrs}
+
+\begin{IEEEbiography}{Yuchen Jin}
+  Biography text here.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}{Yuchen Jin II}
+  Biography text here.
+\end{IEEEbiography}
+
+\end{document}
