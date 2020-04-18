@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This template was designed for writing some assignments when I was a graduate student. Now we decide to make it available for everyone. This template is based on `article.cls`. It is compatible for both `pdfLaTeX` and `XeLaTeX`, and could be used and modified by anyone in any case. Now it mainly supports these features
+This template was designed for writing some assignments when I was a graduate student. The original template is designed by *Frits Wenneker*. Unfortunately, now we could not find the source of that work. This template is based on `article.cls`. It is compatible for both `pdfLaTeX` and `XeLaTeX`, and could be used and modified by anyone in any case. Now it mainly supports these features
 
 * **3 kinds of layouts**: now it supports 3 kinds of layouts: `default`, `handbook` and `rotate`. The last two layouts would produce pages with large fonts.
 * **A mode for cards**: if the `layout` is configured as `showcards`, this class would switch to the card mode.
