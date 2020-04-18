@@ -44,7 +44,7 @@ The following options could be assigned in both the class options and the follow
 | `author`         | The author name that would be shown in the title and macros. | `Yuchen Jin` |
 | `organization`   | The organization name that would be shown in the title. | `University of Houston` |
 | `textStyle`      | The style of the text related functions. Should be `default`, `color` or `box`. | `default` |
-| `ownerPass`      | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
+| `ownerPass`      | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | `CKATemplate001` |
 | `userPass`       | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 
 ## Layout
@@ -70,6 +70,7 @@ Without any option, this class support the following special functions:
     * `\err{text}`: this part is wrong and should be deleted.
     * `\unsure{text}`: we are not sure whether this part is correct.
     * `\change{previous}{after}`: this part should be changed as the second argument.
+* **Password**: users could add a owner password and a user password by using the option or `\ckasetup`. But the password would not be applied automatically. After setting the password, users shuould call `\Coding` before `\begin{document}`.
 
 All the aforementioned functions shown in the `Assignment.tex`.
 
