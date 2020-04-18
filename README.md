@@ -26,12 +26,16 @@ Currently this collection includes the following templates. If any template is l
 | [SEG-abstract][ex-seg-abstract]         | Paper   | [![][fig-seg-abstract]][ex-seg-abstract] |
 | [NRSM-URSI abstract][ex-ursi]           | Paper   | [![][fig-ursi]][ex-ursi]                 |
 | [UH-ECE-Homework][ex-ecehw]             | Article | [![][fig-ecehw]][ex-ecehw]               |
-| Revised IEEE Transaction                | Article |  |
-| Assignment                              | Article |  |
+| [Revised IEEE Transaction][ex-ieeerev]  | Article | [![][fig-ieeerev]][ex-ieeerev]           |
+| [Assignment][ex-cka]                    | Article | [![][fig-cka]][ex-cka]                   |
 | Elegant Report                          | Article |  |
 | Source Han Chinese support for XeLaTeX  | Style   |  |
 
 ## Update report
+
+### 0.7 @ 04/18/2020
+
+1. Add 2 templates: [Revised IEEE Transaction][ex-ieeerev] and [Assignment][ex-cka].
 
 ### 0.4 @ 03/19/2020
 
@@ -46,6 +50,10 @@ Currently this collection includes the following templates. If any template is l
 [ex-seg-abstract]:../../tree/SEG-abstract
 [ex-ursi]:../../tree/URSI
 [ex-ecehw]:../../tree/ECE-homework
+[ex-ieeerev]:../../tree/ieeerev
+[ex-cka]:../../tree/assignment
 [fig-seg-abstract]:./display/seg-abs.png
 [fig-ursi]:./display/ursi.png
 [fig-ecehw]:./display/ecehw.png
+[fig-ieeerev]:./display/ieeerev.png
+[fig-cka]:./display/cka.png
