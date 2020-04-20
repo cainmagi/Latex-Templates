@@ -99,7 +99,7 @@ This class provides some commands.
 | `\makeabstract`    | This command is used to make abstract. | - |
 | `\titlepage`       | This command is used to make a front page. Now it supports two styles. Use the argument `1` or `2` to switch the style. | `\titlepage{1}` |
 | `\reneweqnum`, `\renewtabnum`, `\renewfignum`, `\renewsecnum` | These commands are used for resetting the counter of equation, table, figure or sections. | `\reneweqnum{2}` |
-| `\upcite` | This command is used for cite a paper in the superscript. |
+| `\upcite` | This command is used for cite a paper in the superscript. | `\upcite{bibitem}` |
 | `\import` | This command is used for including an external `.tex` file in the `./Documents` folder | `\import{example.tex}` |
 | `\includepage{pages}{filename}` | This command is used for including a pdf file. Use `\includepagetoc{pages}{filename}{title}` if you want the pdf file added in the contents | `\includepage{-}{pdfs/example.pdf}` |
 | `\innerSignature` | This command is used for adding a signature in the front page. If you enable `innerSig`, you need to renew this command | - |
