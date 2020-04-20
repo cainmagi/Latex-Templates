@@ -23,15 +23,19 @@ Currently this collection includes the following templates. If any template is l
 
 | Beamer title | Type | Screenshot|
 | ----- | ----- | ----- |
-| [SEG-abstract][ex-seg-abstract]         | Paper   | [![][fig-seg-abstract]][ex-seg-abstract] |
-| [NRSM-URSI abstract][ex-ursi]           | Paper   | [![][fig-ursi]][ex-ursi]                 |
-| [UH-ECE-Homework][ex-ecehw]             | Article | [![][fig-ecehw]][ex-ecehw]               |
-| [Revised IEEE Transaction][ex-ieeerev]  | Article | [![][fig-ieeerev]][ex-ieeerev]           |
-| [Assignment][ex-cka]                    | Article | [![][fig-cka]][ex-cka]                   |
-| [Elegant Report][ex-ckegr]              | Article | [![][fig-ckegr]][ex-ckegr]                 |
-| Source Han Chinese support for XeLaTeX  | Style   |  |
+| [SEG-abstract][ex-seg-abstract]                   | Paper   | [![][fig-seg-abstract]][ex-seg-abstract] |
+| [NRSM-URSI abstract][ex-ursi]                     | Paper   | [![][fig-ursi]][ex-ursi]                 |
+| [UH-ECE-Homework][ex-ecehw]                       | Article | [![][fig-ecehw]][ex-ecehw]               |
+| [Revised IEEE Transaction][ex-ieeerev]            | Article | [![][fig-ieeerev]][ex-ieeerev]           |
+| [Assignment][ex-cka]                              | Article | [![][fig-cka]][ex-cka]                   |
+| [Elegant Report][ex-ckegr]                        | Article | [![][fig-ckegr]][ex-ckegr]               |
+| [Source Han Chinese support for XeLaTeX][ex-shan] | Style   | [![][fig-shan]][ex-shan]                 |
 
 ## Update report
+
+### 0.9 @ 04/20/2020
+
+1. Add the package: [Source Han Chinese support for XeLaTeX][ex-shan].
 
 ### 0.8 @ 04/19/2020
 
@@ -58,9 +62,11 @@ Currently this collection includes the following templates. If any template is l
 [ex-ieeerev]:../../tree/ieeerev
 [ex-cka]:../../tree/assignment
 [ex-ckegr]:../../tree/elegant-report
+[ex-shan]:../../tree/sourcehan
 [fig-seg-abstract]:./display/seg-abs.png
 [fig-ursi]:./display/ursi.png
 [fig-ecehw]:./display/ecehw.png
 [fig-ieeerev]:./display/ieeerev.png
 [fig-cka]:./display/cka.png
 [fig-ckegr]:./display/ckegr.png
+[fig-shan]:./display/shan.png
