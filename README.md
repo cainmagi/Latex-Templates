@@ -28,7 +28,7 @@ Currently this collection includes the following templates. If any template is l
 | [UH-ECE-Homework][ex-ecehw]             | Article | [![][fig-ecehw]][ex-ecehw]               |
 | [Revised IEEE Transaction][ex-ieeerev]  | Article | [![][fig-ieeerev]][ex-ieeerev]           |
 | [Assignment][ex-cka]                    | Article | [![][fig-cka]][ex-cka]                   |
-| [Elegant Report][ex-ckegr]              | Article | [![][fig-cka]][ex-ckegr]                 |
+| [Elegant Report][ex-ckegr]              | Article | [![][fig-ckegr]][ex-ckegr]                 |
 | Source Han Chinese support for XeLaTeX  | Style   |  |
 
 ## Update report
