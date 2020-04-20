@@ -93,7 +93,7 @@ The following list shows the other options.
 
 This class provides some commands.
 
-| Option | Description | Example |
+| Command | Description | Example |
 | -----  |   -----     |     -----     |
 | `\maketitle`       | This command is used to make title. | - |
 | `\makeabstract`    | This command is used to make abstract. | - |
