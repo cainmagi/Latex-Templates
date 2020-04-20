@@ -28,10 +28,15 @@ Currently this collection includes the following templates. If any template is l
 | [UH-ECE-Homework][ex-ecehw]             | Article | [![][fig-ecehw]][ex-ecehw]               |
 | [Revised IEEE Transaction][ex-ieeerev]  | Article | [![][fig-ieeerev]][ex-ieeerev]           |
 | [Assignment][ex-cka]                    | Article | [![][fig-cka]][ex-cka]                   |
-| Elegant Report                          | Article |  |
+| [Elegant Report][ex-ckegr]              | Article | [![][fig-cka]][ex-ckegr]                 |
 | Source Han Chinese support for XeLaTeX  | Style   |  |
 
 ## Update report
+
+### 0.8 @ 04/19/2020
+
+1. Add the template: [Elegant Report][ex-ckegr].
+2. Fix some typos.
 
 ### 0.7 @ 04/18/2020
 
@@ -52,8 +57,10 @@ Currently this collection includes the following templates. If any template is l
 [ex-ecehw]:../../tree/ECE-homework
 [ex-ieeerev]:../../tree/ieeerev
 [ex-cka]:../../tree/assignment
+[ex-ckegr]:../../tree/elegant-report
 [fig-seg-abstract]:./display/seg-abs.png
 [fig-ursi]:./display/ursi.png
 [fig-ecehw]:./display/ecehw.png
 [fig-ieeerev]:./display/ieeerev.png
 [fig-cka]:./display/cka.png
+[fig-ckegr]:./display/ckegr.png
