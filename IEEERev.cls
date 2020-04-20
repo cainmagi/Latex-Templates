@@ -90,7 +90,7 @@
 \DeclareBoolOption[true]{hyper}
 \DeclareComplementaryOption{noHyper}{hyper}
 \DeclareBoolOption[false]{refNum}
-\DeclareComplementaryOption{deRefNum}{refNum}
+\DeclareComplementaryOption{noRefNum}{refNum}
 \DeclareBoolOption[false]{fleqn}
 \DeclareComplementaryOption{cteqn}{fleqn}
 

@@ -24,6 +24,7 @@ The following options should only be enabled when using the class, like
 | `draft`    | Use the draft mode of `IEEEtran`, all figures would be replaced by placeholders, and the codes in the text would be skipped. | `final` | Disabled |
 | `twocols`  | Use the two-column and two-side mode of `IEEEtran`. If disabled, the one-column and one-side mode are used. | `onecol` | Enabled |
 | `hyper`    | A bool. Whether to enable all features created by `hyperref` package, if set false, the `\autoref` command would be provided by `cleveref`. | `noHyper` | Enabled |
+| `refNum`   | A bool. Whether to add the section number to the reference section. This option may cause problem if you place appendices before the reference. | `noRefNum` | Disabled |
 | `fleqn`    | Make the equations left-aligned. | `cteqn` | Disabled |
 | `mainfont` | The main font. Could be selected from: `Romande`, `Palatino', 'Times', 'Stix', 'Helvetica`, and `Utopia` | - | `Romande` |
 
@@ -43,7 +44,6 @@ The following options could be assigned in both the class options and the follow
 | `organization`     | The organization name that would be shown in the heading and the macros. | `University of Houston` |
 | `subject`          | The subject that would be shown in the heading and the macros. | `ECE 6000` |
 | `version`          | The version that would be shown beside the date. Could be left blank. | ` ` |
-| `refNum`           | A bool. Whether to add the section number to the reference section. This option may cause problem if you place appendices before the reference. | false |
 | `repeatframetitle` | A bool. Whether to repeat the frame title if a frame is broken into two pages. | false |
 | `codeStyle`        | The style of the codes created by `listings`, could be either `box` or `default`. | `default` |
 | `ownerPass`        | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
