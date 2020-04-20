@@ -129,7 +129,7 @@
 \DeclareBoolOption[false]{color}
 \DeclareComplementaryOption{gray}{color}
 \DeclareBoolOption[false]{refNum}
-\DeclareComplementaryOption{deRefNum}{refNum}
+\DeclareComplementaryOption{norefNum}{refNum}
 \DeclareBoolOption[false]{fleqn}
 \DeclareComplementaryOption{cteqn}{fleqn}
 \DeclareBoolOption[true]{nohyper}
