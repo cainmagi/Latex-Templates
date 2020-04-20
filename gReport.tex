@@ -1,0 +1,68 @@
+%----------------------------------------------------------------------------------------
+%	Modified class referred tex document.
+%----------------------------------------------------------------------------------------
+
+\documentclass[linkColor,innerSig,CSensLabel,refNum]{CKEgr}
+\usepackage{metalogo}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\ckesetup{
+  % Heading related settings
+  turn=1, numb=1,
+  % Foot related settings
+  modified=1,
+  originyear=2018,
+  originmonth=7,
+  origindate=27,
+  authorinfo={(1995--),~Male.,~Tel:XXX-XXX-XXXX,~E-mail:~\href{mailto:cainmagi@gmail.com}{cainmagi@gmail.com}},
+  titlenote={none},
+  authornote={none},
+  % Title related settings
+  title={A View of the Chivalry},
+  author={Yuchen Jin},
+  campus={University of Houston},
+  scampus={UH},
+  location={4800 Calhoun Road, Houston, TX, 77002},
+  slocation={ECE 6000},
+  subject={Engineering},
+  keyword={Chivalry, Morality, Sociality},
+  amsno={60G12},
+  abstract={\lipsum[23]sdfdsf},
+  % Front page related settings
+  colledge={Department of Electrical and Computer Engineering},
+  quote={Cougars fight for dear old U of H},
+  % Encryption settings
+  ownerpass={CKEpassword},
+  userpass={none},
+  % Other settings
+  codeStyle={box}
+}
+
+% If using titlepage{1}, this is the logo of publisher.
+\renewcommand{\plogo}{\large \fbox{$\mathcal{UH}$}}
+
+% If using innerSig, this is the implementation of the signature.
+\renewcommand{\innerSignature}[2]{
+  \begin{signature}{#1}{1.2in}{#2}{Sign.eps}
+    \textbf{Name:} Yuchen Jin \\
+    \textbf{Organization:} University of Houston \\
+    \textbf{E-mail:} cainmagi@gmail.com \\
+    \textbf{Tel:} XXX-XXX-XXXX \\
+  \end{signature}
+}
+
+\begin{document}
+
+\titlepage{1}
+\clearpage
+
+\maketitle % Print the title
+
+\makeabstract
+
+%----------------------------------------------------------------------------------------
+%	Section 1
+%----------------------------------------------------------------------------------------
+\import{RepEnglish}
+%----------------------------------------------------------------------------------------
+
+\end{document} 
