@@ -1,0 +1,123 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Source han fonts supports
+% LaTeX Template
+% -----------------------------------
+% % Update statements:
+% -----------------------------------
+% % Version 1.0 (4/20/20)
+%     - Creating this package.
+%
+% -----------------------------------
+% % Control options statements:
+% -----------------------------------
+% % ----------------------
+% % Text Configuration
+%  (It is highly recommended to master them. Use \sourcehansetup{} to
+%   change them)
+% %
+%  algorithm: whether to use the algorithm.
+% % ----------------------
+% % Basic Configuration
+%  (Options influencing the style. Use them as \documentclass[...]{ECEHW}
+%     because \ECEHWsetup will not work.)
+%  (Noted that [] shows the default option.)
+% %
+% % ----------------------
+% % Commands
+% %
+% % \textrm
+%   - Regular Source Han Serif.
+% % \textsf
+%   - Regular Source Han Sans.
+% % \texttt
+%   - Fang song.
+% % \semiSong
+%   - Semi-bold Source Han Serif.
+% % \boldSong
+%   - Bold Source Han Serif.
+% % \semiHei
+%   - Semi-bold Source Han Sans.
+% % \boldHei
+%   - Bold Source Han Sans.
+% % \kai
+%   - Kai ti.
+% -----------------------------------
+% % Publications:
+% -----------------------------------
+% Author:
+% Cain King (cainmagi@gmail.com / cain.king@foxmail.com)
+%
+% License:
+% MIT License.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{sourcehan}[2020/04/19 v1.0 Source Han Chinese Supports - Author: Yuchen Jin]
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
+\RequirePackage{ifthen, calc}
+\SetupKeyvalOptions{family=CKShan, prefix=CKShan@opt@, setkeys=\kvsetkeys}
+
+\DeclareBoolOption[false]{algorithm}
+
+\newcommand{\sourcehansetup}[1]{
+  \kvsetkeys{CKShan}{#1}
+  \CKShan@command@renewnames
+}
+
+\DeclareDefaultOption{\relax}
+\ProcessKeyvalOptions*\relax
+
+\RequirePackage{ifpdf,ifxetex,ifluatex}
+
+\providecommand{\CKShan@command@renewnames}{
+  \def\figureautorefname{图}
+  \def\subfigureautorefname{\figureautorefname}
+  \def\tableautorefname{表}
+  \renewcommand{\figurename}{图}
+  \renewcommand{\tablename}{表}
+  \renewcommand\contentsname{目录}
+  \renewcommand\listfigurename{插图目录} % Chinese list of figures
+  \renewcommand\listtablename{表格目录}  % Chinese list of tables
+  \def\bibname{参考文献}
+  \def\refname{参考文献}
+  %
+  \ifCKShan@opt@algorithm
+    \floatname{algorithm}{算法}
+    \def\algorithmautorefname{算法}
+    \renewcommand{\algorithmicrequire}{\textbf{输入:}}
+    \renewcommand{\algorithmicensure}{\textbf{输出:}}
+  \fi
+}
+
+\ifxetex
+  \RequirePackage[PunctStyle=kaiming,AutoFallBack,AutoFakeBold,AutoFakeSlant]{xeCJK}
+  \setCJKmainfont[FallBack={SimSun},BoldFont={Source Han Serif SC SemiBold},SmallCapsFont={Source Han Serif SC}]{Source Han Serif SC}
+  \setCJKsansfont[FallBack={PMingLiU-ExtB},BoldFont={Source Han Sans SC Medium},SmallCapsFont={Source Han Serif SC Medium}]{Source Han Sans SC}
+  \setCJKmonofont[FallBack={FangSong},SmallCapsFont={STFangsong}]{STFangsong} %FangSong
+  \newCJKfontfamily[shkai]\kai[FallBack={KaiTi},SmallCapsFont={STKaiti}]{STKaiti}
+  \newCJKfontfamily[shheavy]\boldSong[BoldFont={Source Han Serif SC Heavy},SmallCapsFont={Source Han Serif SC Bold}]{Source Han Serif SC Bold} % Bold
+  \newCJKfontfamily[shsemib]\semiSong[BoldFont={Source Han Serif SC Bold},SmallCapsFont={Source Han Serif SC SemiBold}]{Source Han Serif SC SemiBold} % Semi-bold
+  \newCJKfontfamily[shhheavy]\boldHei[BoldFont={Source Han Sans SC Heavy},SmallCapsFont={Source Han Sans SC Bold}]{Source Han Sans SC Bold} % Bold
+  \newCJKfontfamily[shhsemib]\semiHei[BoldFont={Source Han Sans SC Bold},SmallCapsFont={Source Han Sans SC Medium}]{Source Han Sans SC Medium} % Semi-bold
+  \DeclareFontShape{TU}{lmr}{bx}{sc}{<->ssub*lmr/bx/n}{} % Make the font manually fallen back.
+  \CKShan@command@renewnames
+\else
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[UTF8]{ctex}
+  \ifluatex
+    \setCJKmainfont{STSong}
+    \setCJKsansfont{SimHei}
+    \setCJKmonofont{STFangsong}
+    \def\kai{\kaishu}
+  \else
+    \def\texttt[1]{{\fangsong #1}}
+  \fi
+  \def\kai{\kaishu}
+  \def\boldSong{\bfseries}
+  \def\semiSong{\bfseries}
+  \def\boldHei{\bfseries\sffamily}
+  \def\semiHei{\bfseries\sffamily}
+  \CKShan@command@renewnames
+\fi
