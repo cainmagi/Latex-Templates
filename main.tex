@@ -1,0 +1,66 @@
+\documentclass[11pt, nohyper, final]{uhrevthesis}
+% \documentclass[11pt, nohyper, draft]{uhrevthesis}
+
+\UHRevThesisSetup{
+  % Title information:
+  title={Sample Thesis Title - Long, Wide, and Words Capitalized},
+  author={Maya K. Student},
+  dissertation,  % Choose from: thesis, dissertation
+  degree={},  % Use default value if left blank
+  department={Electrical and Computer Engineering},
+  college={Cullen College of Engineering},
+  submitdate={},  % Use today if left blank.
+  % Whether to print out optional pages:
+  lstoftable={false}, lstoffigure={true},
+  copyright={true},
+  % Professor (Committee member) List:
+  chair={Name of Chair Professor},  % Required
+  cochair={},  % Optional, can be blank
+  firstreader={Name of Prof1},  % Required
+  secondreader={Name of Prof2},  % Required
+  thirdreader={Name of Prof3},  % Optional, can be blank
+  fourthreader={Name of Prof4},  % Optional, can be blank
+  fifthreader={},  % Optional, can be blank,
+  ownerPass={}, userPass={}  % Can be configured only when using XeLaTeX
+}
+
+\begin{document}
+
+\makecoverpages
+
+\input{docs/00-dedication}
+
+\input{docs/00-acknowledgement}
+
+\input{docs/00-abstract}
+
+\makecontentspages
+
+\pagenumbering{arabic}
+
+\input{docs/01-introduction}
+\clearpage
+
+\input{docs/02-a-new-section}
+\clearpage
+
+\input{docs/03-conclusion}
+\clearpage
+
+\begin{thebibliography}{10}
+\bibitem{gridftp}W. Allcock, J. Bester, J. Bresnahan, A. Chervenak, I. Foster, C. Kesselman, S. Meder, V. Nefedova, D. Quesnel, and S. Tuecke, "Data Management and Transfer in High-Performance Computational Grid Environments," Proceedings of the 9th International Conference on Grid Computing, 2010, Chicago, IL, USA, June 2010. \\
+
+\bibitem{gass}J. Bester, I. Foster, C. Kesselman, J. Tedesco, S. Tuecke, "GASS: A Data Movement and Access Service for Wide Area Computing Systems," Sixth Workshop on I/O in Parallel and Distributed Systems, May 5, 1999. \\
+
+\bibitem{apples1}F. Berman, R. Wolski, S. Figueira, J. Schopf, G. Shao, "Application-Level Scheduling on Distributed Heterogeneous Networks," Proceedings of Supercomputing, 1996.\\
+
+\bibitem{apples2}F. Berman and R. Wolski, "The AppLeS Project: A Status Report ", Proceedings of the 8th NEC Research Symposium, Berlin, Germany, May 1997. \\
+\\
+\end{thebibliography}
+
+%\bibliography{Dissertation}
+%\bibliographystyle{acm}
+
+
+\end{document}
+
