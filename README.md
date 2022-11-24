@@ -27,11 +27,16 @@ Currently this collection includes the following templates. If any template is l
 | [NRSM-URSI abstract][ex-ursi]                     | Paper   | [![][fig-ursi]][ex-ursi]                 |
 | [UH-ECE-Homework][ex-ecehw]                       | Article | [![][fig-ecehw]][ex-ecehw]               |
 | [Revised IEEE Transaction][ex-ieeerev]            | Article | [![][fig-ieeerev]][ex-ieeerev]           |
+| [UH Revised Thesis][ex-uhthesis]                  | Article | [![][fig-uhthesis]][ex-uhthesis]                   |
 | [Assignment][ex-cka]                              | Article | [![][fig-cka]][ex-cka]                   |
 | [Elegant Report][ex-ckegr]                        | Article | [![][fig-ckegr]][ex-ckegr]               |
 | [Source Han Chinese support for XeLaTeX][ex-shan] | Style   | [![][fig-shan]][ex-shan]                 |
 
 ## Update report
+
+### 1.0 @ 11/23/2020
+
+1. Add the template: [UH Revised Thesis][ex-uhthesis].
 
 ### 0.9 @ 04/20/2020
 
@@ -60,6 +65,7 @@ Currently this collection includes the following templates. If any template is l
 [ex-ursi]:../../tree/URSI
 [ex-ecehw]:../../tree/ECE-homework
 [ex-ieeerev]:../../tree/ieeerev
+[ex-uhthesis]:../../tree/uhrevthesis
 [ex-cka]:../../tree/assignment
 [ex-ckegr]:../../tree/elegant-report
 [ex-shan]:../../tree/sourcehan
@@ -67,6 +73,7 @@ Currently this collection includes the following templates. If any template is l
 [fig-ursi]:./display/ursi.png
 [fig-ecehw]:./display/ecehw.png
 [fig-ieeerev]:./display/ieeerev.png
+[fig-uhthesis]:./display/uhthesis.png
 [fig-cka]:./display/cka.png
 [fig-ckegr]:./display/ckegr.png
 [fig-shan]:./display/shan.png
