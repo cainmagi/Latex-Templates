@@ -10,18 +10,46 @@
 %% Last Updated : October 7, 2019
 %%
 %% =================================================================
-%% Options
+%% Bool Options
 %% =================================================================
-%% legacy:   [false], fall back to the orignal UH Thesis 2019 style
-%%           configurations, where the package is not compatible with
-%%           "xcolor“ package.
-%%           - Complementary option is "current".
-%% hyperref: [false], if used with "hyperref" package, require to
-%%           enable this option to improve the consistency.
+%% legacy:         [false], fall back to the orignal UH Thesis 2019
+%%                 style configurations, where the package is not
+%%                 compatible with "xcolor“ package.
+%%                 - Complementary option is "current".
+%% hyperref:       [false], if used with "hyperref" package, require
+%%                 to enable this option to improve the consistency.
+%%                 - Complementary option is "nohyperref".
+%% indentfirst:    [false], make the first paragraphs of each (sub)
+%%                 sections with indents.
+%%                 - Complementary option is "noindentfirst".
+%% captionhang:    [false], make all captions with hanging indents.
+%%                 - Complementary option is "nocaptionhang".
+%% refdoublespace: [false], make the references double-spaced. If
+%%                 not configured, will use the single space.
+%%                 - Complementary option is "refsinglespace".
+%%
+%% =================================================================
+%% Text Options
+%% =================================================================
+%% refname:       [string], the title of the references.
+%% copyrightyear: [string], the year shown in the copyright page.
+%%                If left blank, will use the current year.
 %%
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver B @ Nov. 29, 2022 By Yuche Jin
+%$ 1. Add bool options: "indentfirst", "captionhang", and
+%%    "refdoublespace".
+%% 2. Add text options: "refname", "copyrightyear".
+%% 3. Enable users to make the first paragraphs with indents.
+%% 4. Enable users to make captions with hanging indents.
+%% 5. Enable users to make the reference double-spaced.
+%% 6. Enable users to change the title of the reference.
+%% 7. Enable users to change the year of the copyright page. If
+%%    configured, now the package will use the current year.
+%% 8. Change the default margin of the page: all=1.0in except
+%%    left=1.5in.
 %% ver A @ Nov. 23, 2022 By Yuche Jin
 %$ 1. Add Package head.
 %% 2. Fix the incompatibility with xcolor package when using
@@ -30,7 +58,7 @@
 %% 3. Add compatibility option with hyperref.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{uhthesis2019}[2022/11/23 vA Document Style Option `UH Thesis Template'.]
+\ProvidesPackage{uhthesis2019}[2022/11/29 vB Document Style Option `UH Thesis Template'.]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -40,11 +68,24 @@
 \DeclareComplementaryOption{current}{legacy}
 \DeclareBoolOption[false]{hyperref}
 \DeclareComplementaryOption{nohyperref}{hyperref}
+\DeclareBoolOption[false]{indentfirst}
+\DeclareComplementaryOption{noindentfirst}{indentfirst}
+\DeclareBoolOption[false]{captionhang}
+\DeclareComplementaryOption{nocaptionhang}{captionhang}
+\DeclareBoolOption[false]{refdoublespace}
+\DeclareComplementaryOption{refsinglespace}{refdoublespace}
 
-% This following command is useless now, because all options need to
-% be specified when initializing the package.
+\DeclareStringOption[Biblography]{refname}[Biblography]
+\DeclareStringOption[]{copyrightyear}[]
+
 \newcommand{\UHThesisSetup}[1]{
   \kvsetkeys{UHThesis}{#1}
+  \UHThesis@cmd@setBiblographyName{\UHThesis@opt@refname}
+  \ifUHThesis@opt@captionhang
+    \captionsetup{format={hang}}
+  \else
+    \captionsetup{format={plain}}
+  \fi
 }
 
 \DeclareDefaultOption{\relax}
@@ -60,10 +101,32 @@
 \ifUHThesis@opt@hyperref
   \RequirePackage{hyperref}
 \fi
+%
+% ver B Hotfix: Add the package "caption", and provide the option for
+% hanging indent of all captions.
+%
+\ifUHThesis@opt@captionhang
+  \PassOptionsToPackage{format={hang}}{caption}
+\fi
+\RequirePackage{caption}
+
+%
+% ver B Hotfix: Add an option for letting the first paragrah with indents.
+%
+\ifUHThesis@opt@indentfirst
+  \RequirePackage{indentfirst}
+\fi
 
 % The directive below can be finetuned for strict acherence to margin settings
 % The default setting works well for the required 1 in margin on all sides
-\geometry{verbose, papersize={8.5in,11in},total={6.5in,8.6in}}
+%
+% ver B Hotfix: Change the page size according to ECE's restrictions.
+%
+\geometry{
+  verbose,
+  papersize={8.5in,11in},
+  left={1.5in}, right={1in}, top={1in}, bottom={1in}
+}
 
 \RequirePackage{setspace}
 
@@ -71,7 +134,6 @@
 \renewcommand{\contentsname}{\begin{center}\Large \bf \uppercase {Table of Contents}\end{center}}
 \renewcommand{\listfigurename}{\begin{center}\Large\bf \uppercase {LIST OF FIGURES}\end{center}}
 \renewcommand{\listtablename}{\begin{center}\Large\bf \uppercase{LIST OF TABLES}\end{center}}
-\renewcommand{\refname}{Bibliography}
 
 \long\def\comment#1{}
 
@@ -394,14 +456,20 @@ Documentation:
 }
 %%%%%%%%%%%%%%%%%%% End of Title Page %%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
-
+%
+% ver B Hotfix: Let the year of the copyright page adjustable.
+%
 \def\copyrightpage{%
   \newpage
   \thispagestyle{empty}%
   \setcounter{page}{2}
   \null\vskip2.5in
   \begin{center}
-    Copyright 2019, \expandafter{\@author}
+    Copyright %
+    \ifthenelse{\equal{\UHThesis@opt@copyrightyear}{}}{%
+      \the\year{}%
+    }{\UHThesis@opt@copyrightyear}%
+    , \expandafter{\@author}
   \end{center}
 }
 
@@ -577,25 +645,38 @@ Documentation:
 
 %Chapter page definition
 \def\chapterpages{
-        % Put the page number on the top of the page
-%        \def\@oddhead{\rm\hfil\thepage\hfil}
-%        \def\@oddfoot{}
-%        \let\@evenhead\@oddhead
-%        \let\@evenfoot\@oddfoot
-
-    \pagenumbering{arabic}}
+  % Put the page number on the top of the page
+%  \def\@oddhead{\rm\hfil\thepage\hfil}
+%  \def\@oddfoot{}
+%  \let\@evenhead\@oddhead
+%  \let\@evenfoot\@oddfoot
+  \pagenumbering{arabic}
+}
 
 % Redefine \thebibliography to go to a new page and put an entry in the
 % table of contents
+%
+% ver B Hotfix: Let the title of the reference adjustable.
+% ver B Hotfix: Provide an option for controling the space of the
+% references.
+%
 \let\@ldthebibliography\thebibliography
+\providecommand{\UHThesis@cmd@setBiblographyName}[1]{
+  \renewcommand{\refname}{#1}
+}
 \renewcommand{\thebibliography}[1]{
   \newpage
-  \def\baselinestretch{1}\@normalsize
+  \ifUHThesis@opt@refdoublespace
+    \def\baselinestretch{1.7}\@normalsize
+  \else
+    \def\baselinestretch{1}\@normalsize
+  \fi
   % ver A Hotfix: Adjust the title configs according to the appearance
   % of the "hyperref" pakcage.
-  \UHThesis@cmd@createtoctitleAlt{Bibliography}
+  \UHThesis@cmd@createtoctitleAlt{\refname}
   \@ldthebibliography{#1}
 }
+\UHThesis@cmd@setBiblographyName{\UHThesis@opt@refname}
 
 % Single space for drafts
 \def\singlespace{

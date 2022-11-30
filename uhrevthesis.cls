@@ -4,6 +4,20 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.1.0 (11/29/22)
+%   - Add bool options: "indentfirst", "captionhang", and
+%     "refdoublespace".
+%   - Add text options: "refname", "copyrightyear".
+%   - Enable users to make the first paragraphs with indents.
+%   - Enable users to make captions with hanging indents.
+%   - Enable users to make the reference double-spaced.
+%   - Enable users to change the title of the reference.
+%   - Enable users to change the year of the copyright page. If
+%     configured, now the package will use the current year.
+%   - Make the following options default: "indentfirst", "captionhang",
+%     "refdoublespace", and "refname=Reference".
+%   - Change the default margin of the page: all=1.0in except left=1.5in.
+%   - Fix typos of the password configurations (only works with XeLaTeX).
 % Version 1.0.0 (11/23/22)
 %   - Incorporate all required packages.
 %   - Fix the \xfloat issue of the original template when using
@@ -32,6 +46,9 @@
 %                   to use commands for this option, recommend to use
 %                   \submitdate{} to configure this option. When being blank,
 %                   will use \today.
+%  refname        : [string], the title of the references.
+%  copyrightyear  : [string], the year shown in the copyright page. If left
+%                   blank, will use the current year.
 %  ownerPass      : [string], password, if not provided, users could not edit
 %                   this document.
 %                   - Only works when using XeLaTeX.
@@ -41,6 +58,14 @@
 %                   - Noted that if ownerPass is not defined, this password 
 %                     will not be effective!
 %
+% Boolean configurations for formats
+% (Adjust these options according to requirements of the department.)
+%  captionhang    : [true], make all captions with hanging indents.
+%                   - Complementary option is "nocaptionhang".
+%  refdoublespace : [true], make the references double-spaced. If not
+%                   configured, will use the single space.
+%                   - Complementary option is "refsinglespace".
+% 
 % Boolean configurations for pages
 % (Adjust these options according to the situation of the finished manuscript.)
 %
@@ -72,15 +97,18 @@
 %
 %% -----------------------------------
 % Basic Configuration
-% (Options influencing the style. Use them as \documentclass[...]{NRSM}
-%  because \NRSMsetup will not work.)
+% (Options influencing the style. Use them as \documentclass[...]{uhrevthesis}
+%  because \UHRevThesisSetup will not work.)
 % (Noted that [] shows the default option.)
 %
-%  hyper :   [false], make links, section titles and frames colored and
-%            hyper-referred.
-%            - Complementary option is "nohyper".
-%  draft :   [false], enable the draft mode for the article class.
-%            - Complementary option is "final".
+%  hyper       : [false], make links, section titles and frames colored and
+%                hyper-referred.
+%                - Complementary option is "nohyper".
+%  draft       : [false], enable the draft mode for the article class.
+%                - Complementary option is "final".
+%  indentfirst : [true], make the first paragraphs of each (sub) sections
+%                with indents.
+%                - Complementary option is "noindentfirst".
 %
 %% -----------------------------------
 % Other Configuration
@@ -131,7 +159,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/11/15 v1.0.0 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/11/29 v1.1.0 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -144,6 +172,12 @@
 \DeclareComplementaryOption{nohyper}{hyper}
 \DeclareBoolOption[false]{thesis}
 \DeclareComplementaryOption{dissertation}{thesis}
+\DeclareBoolOption[true]{indentfirst}
+\DeclareComplementaryOption{noindentfirst}{indentfirst}
+\DeclareBoolOption[true]{captionhang}
+\DeclareComplementaryOption{nocaptionhang}{captionhang}
+\DeclareBoolOption[true]{refdoublespace}
+\DeclareComplementaryOption{refsinglespace}{refdoublespace}
 \DeclareBoolOption[true]{lstoftable}
 \DeclareBoolOption[true]{lstoffigure}
 \DeclareComplementaryOption{nolstoftable}{lstoftable}
@@ -157,6 +191,8 @@
 \DeclareStringOption[Electrical and Computer Engineering]{department}[Electrical and Computer Engineering]
 \DeclareStringOption[Cullen College of Engineering]{college}[Cullen College of Engineering]
 \DeclareStringOption[]{submitdate}[] % if not set, will use today
+\DeclareStringOption[]{copyrightyear}[] % if not set, will use today
+\DeclareStringOption[Reference]{refname}[Reference] % Name of the reference
 
 % List of Professors (Committee members)
 \DeclareStringOption[Name of Chair Professor]{chair}[Name of Chair Professor]
@@ -172,6 +208,22 @@
 
 \newcommand{\UHRevThesisSetup}[1]{
   \kvsetkeys{UHRevThesis}{#1}
+  % Pass bool options to uhthesis2019
+  \ifUHRevThesis@opt@refdoublespace
+    \kvsetkeys{UHThesis}{refdoublespace}
+  \else
+    \kvsetkeys{UHThesis}{refsinglespace}
+  \fi
+  \ifUHRevThesis@opt@captionhang
+    \kvsetkeys{UHThesis}{captionhang}
+  \else
+    \kvsetkeys{UHThesis}{nocaptionhang}
+  \fi
+  \UHThesisSetup{
+    refname=\UHRevThesis@opt@refname,
+    copyrightyear=\UHRevThesis@opt@copyrightyear
+  }
+  % Configure other options for uhrevthesis.
   \ifUHRevThesis@opt@hyper
     \hypersetup{
       pdfauthor={\UHRevThesis@opt@author},% 
@@ -204,6 +256,19 @@
   \RequirePackage[colorlinks]{hyperref}
   \PassOptionsToPackage{hyperref}{uhthesis2019}
 \fi
+\ifUHRevThesis@opt@indentfirst
+  \PassOptionsToPackage{indentfirst}{uhthesis2019}
+\fi
+\ifUHRevThesis@opt@captionhang
+  \PassOptionsToPackage{captionhang}{uhthesis2019}
+\fi
+\ifUHRevThesis@opt@refdoublespace
+  \PassOptionsToPackage{refdoublespace}{uhthesis2019}
+\fi
+\PassOptionsToPackage{
+  refname=\UHRevThesis@opt@refname,
+  copyrightyear=\UHRevThesis@opt@copyrightyear
+}{uhthesis2019}
 \RequirePackage[current]{uhthesis2019}
 
 %%***************************************
@@ -318,7 +383,8 @@
 
 % *** Use FLOAT PACKAGES ***
 \RequirePackage{float}
-\RequirePackage{caption}
+% \RequirePackage{caption}
+% Package caption has been added to uhthesis2019.sty.
 \RequirePackage{subfig}
 % subfigure.sty has been superceeded by subfig.sty.
 % The package provides support for the manipulation and reference of small
@@ -435,13 +501,13 @@
   \ifthenelse{\equal{\UHRevThesis@opt@ownerPass}{}}{}{
     \ifthenelse{\equal{\UHRevThesis@opt@userPass}{}}{
       \ifxetex
-        \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) length 128 perm 2052}
+        \special{pdf:encrypt ownerpw (\UHRevThesis@opt@ownerPass) length 128 perm 2052}
       \else
         \errmessage{The file password feature is only supported by XeLaTeX. Please do not use it with other compilers.}
       \fi
     }{
       \ifxetex
-        \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) userpw (\NRSM@opt@userPass) length 128 perm 2052}
+        \special{pdf:encrypt ownerpw (\UHRevThesis@opt@ownerPass) userpw (\UHRevThesis@opt@userPass) length 128 perm 2052}
       \else
         \errmessage{The file password feature is only supported by XeLaTeX. Please do not use it with other compilers.}
       \fi

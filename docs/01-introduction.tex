@@ -33,12 +33,13 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
   \subfloat[Second fig.]{
     \includegraphics[width=0.45\columnwidth]{RD}
   }
-  \caption{A sample of two sub figures. \label{fig:two-figs}}
+  \caption{A sample of two sub figures. The two different figures are combines by the \texttt{subfloat} package. This figure has an extreme long caption for verifying whether the hanging paragraph of the single-spacing caption works. \label{fig:two-figs}}
 \end{figure}
 
 Try to ref \autoref{fig:two-figs}, and \autoref{fig:two-figs:v1}.
 
 \subsection{Formulation test}
+Test the following formulation:
 \begin{subequations}
   \renewcommand{\theequation}
   {\theparentequation-\arabic{equation}}
@@ -47,6 +48,7 @@ Try to ref \autoref{fig:two-figs}, and \autoref{fig:two-figs:v1}.
     \frac{\partial \mathcal{L}(\mathbf{w},~b)}{\partial b} &= C \sum\limits_i\frac{\partial \ell_i}{\partial b}, \label{fml:eq1:partialb}
   \end{align}
 \end{subequations}
+where the gradients are used in support vector machine.
 
 Try to refer the equations like this: \eqref{fml:eq1:partialb}.
 

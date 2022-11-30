@@ -50,27 +50,32 @@ The following options could be assigned in both the class options and the follow
 }
 ```
 
-|     Option      |  Description  |  Default value  |
-| :-------------: | :------------ | :-------------- |
-| `title`         | The title that would be shown in the cover page and the macros of this file. | `Sample Thesis Title - Long, Wide, and Words Capitalized` |
-| `author`        | The author name that would be shown in the cover page and the macros of this file. | `Maya K. Student` |
-| `degree`        | The degree to be fetched. When being blank, will use the default value. | ` ` |
-| `department`    | The name of the department. Do **not** need to include `"Department of ..."`. | `Electrical and Computer Engineering` |
-| `college`       | The name of the college. **Need** to include `"College of ..."`. | `Cullen College of Engineering` |
-| `submitdate`    | The date of the submission. If needing to use commands for this option, recommend to use `\submitdate{}` to configure this option. When being blank, will use `\today`. | ` ` |
-| `ownerPass`    | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
-| `userPass`     | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
-| `chair`        | The name of the committee chair. | `Name of Chair Professor` |
-| `cochair`      | The name of the committee chair. Can be blank. | ` ` |
-| `firstreader`  | The name of the 1st committee member. | `Name of Prof1` |
-| `secondreader` | The name of the 2nd committee member. | `Name of Prof2` |
-| `thirdreader`  | The name of the 3rd committee member. Can be blank. | ` ` |
-| `fourthreader` | The name of the 4th committee member. Can be blank. | ` ` |
-| `fifthreader`  | The name of the 5th committee member. Can be blank. | ` ` |
-| `lstoftable`   | A flag. When configured, print the list of tables page. | true |
-| `lstoffigure`  | A flag. When configured, print the list of figures page. | true |
-| `copyright`    | A flag. When configured, print the copyright page. | true |
-| `thesis`       | A flag. Treat the manuscript as a thesis. Otherwise, will treat it as a dissertation | false |
+|      Option      |  Description  |  Default value  |
+| :--------------: | :------------ | :-------------- |
+| `title`          | The title that would be shown in the cover page and the macros of this file. | `Sample Thesis Title - Long, Wide, and Words Capitalized` |
+| `author`         | The author name that would be shown in the cover page and the macros of this file. | `Maya K. Student` |
+| `degree`         | The degree to be fetched. When being blank, will use the default value. | ` ` |
+| `department`     | The name of the department. Do **not** need to include `"Department of ..."`. | `Electrical and Computer Engineering` |
+| `college`        | The name of the college. **Need** to include `"College of ..."`. | `Cullen College of Engineering` |
+| `submitdate`     | The date of the submission. If needing to use commands for this option, recommend to use `\submitdate{}` to configure this option. When being blank, will use `\today`. | ` ` |
+| `refname`        | The title of the references. It can also get configured by `\renewcommand{\refname}{...}`. | `Reference` |
+| `copyrightyear`  | The year shown in the copyright page. When being blank, will use the current year. | ` ` |
+| `ownerPass`      | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
+| `userPass`       | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
+| `chair`          | The name of the committee chair. | `Name of Chair Professor` |
+| `cochair`        | The name of the committee chair. Can be blank. | ` ` |
+| `firstreader`    | The name of the 1st committee member. | `Name of Prof1` |
+| `secondreader`   | The name of the 2nd committee member. | `Name of Prof2` |
+| `thirdreader`    | The name of the 3rd committee member. Can be blank. | ` ` |
+| `fourthreader`   | The name of the 4th committee member. Can be blank. | ` ` |
+| `fifthreader`    | The name of the 5th committee member. Can be blank. | ` ` |
+| `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | true |
+| `captionhang`    | A flag. When configured, make all captions with hanging indents. Otherwise, use the plain caption indents. | true |
+| `refdoublespace` | A flag. When configured, make the references double-spaced. Otherwise, use the single space. | true |
+| `lstoftable`     | A flag. When configured, print the list of tables page. | true |
+| `lstoffigure`    | A flag. When configured, print the list of figures page. | true |
+| `copyright`      | A flag. When configured, print the copyright page. | true |
+| `thesis`         | A flag. Treat the manuscript as a thesis. Otherwise, will treat it as a dissertation | false |
 
 ## All commands
 
@@ -91,6 +96,19 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.1.0 @ 11/29/2022
+
+1.  Add bool options: `indentfirst`, `captionhang`, and `refdoublespace`.
+2.  Add text options: `refname`, `copyrightyear`.
+3.  Enable users to make the first paragraphs with indents.
+4.  Enable users to make captions with hanging indents.
+5.  Enable users to make the reference double-spaced.
+6.  Enable users to change the title of the reference.
+7.  Enable users to change the year of the copyright page. If configured, now the package will use the current year.
+8.  Make the following options default: `indentfirst`, `captionhang`, `refdoublespace`, and `refname=Reference`.
+9.  Change the default margin of the page: `all=1.0in` except `left=1.5in`.
+10. Fix typos of the password configurations (only works with `XeLaTeX`).
 
 ### 1.0.0 @ 11/23/2022
 
