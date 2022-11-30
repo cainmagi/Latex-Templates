@@ -109,7 +109,8 @@ The following options could be assigned in both the class options and the follow
 7.  Enable users to change the year of the copyright page. If configured, now the package will use the current year.
 8.  Make the following options default: `indentfirst`, `captionhang`, `refdoublespace`, and `refname=Reference`.
 9.  Change the default margin of the page: `all=1.0in` except `left=1.5in`.
-10. Fix typos of the password configurations (only works with `XeLaTeX`).
+10.  Fix typos of the password configurations (only works with `XeLaTeX`).
+11.  Fix the misplacement of the toc tag for the list of figures and the list of tables.
 
 ### 1.0.0 @ 11/23/2022
 

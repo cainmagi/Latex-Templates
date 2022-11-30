@@ -50,6 +50,8 @@
 %%    configured, now the package will use the current year.
 %% 8. Change the default margin of the page: all=1.0in except
 %%    left=1.5in.
+%% 9. Fix the misplacement of the toc tag for the list of figures
+%%    and the list of tables.
 %% ver A @ Nov. 23, 2022 By Yuche Jin
 %$ 1. Add Package head.
 %% 2. Fix the incompatibility with xcolor package when using
@@ -400,7 +402,7 @@ Documentation:
 %Cover pages
  %%%%%%%%%%%%%%%%%%% Create the Title Page %%%%%%%%%%%%%%%%%%%%%%%%%%%   
 \def\titlep{%
-  \newpage
+  \cleardoublepage
   \thispagestyle{empty}%
   \setcounter{page}{1}
   \begin{center}
@@ -460,7 +462,7 @@ Documentation:
 % ver B Hotfix: Let the year of the copyright page adjustable.
 %
 \def\copyrightpage{%
-  \newpage
+  \cleardoublepage
   \thispagestyle{empty}%
   \setcounter{page}{2}
   \null\vskip2.5in
@@ -475,7 +477,7 @@ Documentation:
 
 
 \def\signaturepage{%
-  \newpage
+  \cleardoublepage
   \begin{center}
     \Large\uppercase\expandafter{\@title}
   \end{center}
@@ -520,7 +522,7 @@ Documentation:
 
 %Abstract cover page
 \def\abstractp{%
-  \newpage
+  \cleardoublepage
   \begin{center}
     \Large\uppercase\expandafter{\@title}
   \end{center}
@@ -578,9 +580,9 @@ Documentation:
 
 %Abstract 
 \def\abstract{
-  \def\baselinestretch{1.6}\@normalsize
+  \def\baselinestretch{1.7}\@normalsize
   %\abstractp
-  \newpage
+  \cleardoublepage
   \begin{center}
     \large{ \bf {\uppercase{Abstract}}}
   \end{center}
@@ -596,7 +598,7 @@ Documentation:
 %Dedication and Epigraph
 
 \def\dedication{
-  \newpage
+  \cleardoublepage
   \begin{center}
   \large { \bf {\uppercase {Dedication/Epigraph}}}
   \end{center}
@@ -609,7 +611,7 @@ Documentation:
 
 %Acknowledgements
 \def\acknowledgements{
-  \newpage
+  \cleardoublepage
   \begin{center}
   \large { \bf {\uppercase {Acknowledgments}}}
   \end{center}
@@ -622,25 +624,26 @@ Documentation:
 
 %Table of contents
 \def\makecontentspages{
+  \cleardoublepage
   \def\baselinestretch{1}\@normalsize
   %\renewcommand{\cfttoctitlefont}{\normalfont\Large\bfseries\MakeUppercase}
   \tableofcontents
-  \newpage
   \iffigurelist
-    \listoffigures
+    \cleardoublepage
     % ver A Hotfix: Adjust the title configs according to the appearance
     % of the "hyperref" pakcage.
     \UHThesis@cmd@createtoctitle{List of Figures}
-    \newpage
+    \listoffigures
   \fi
   \iftablelist
-    \listoftables
+    \cleardoublepage
     % ver A Hotfix: Adjust the title configs according to the appearance
     % of the "hyperref" pakcage.
     \UHThesis@cmd@createtoctitle{List of Tables}
-    \newpage
+    \listoftables
   \fi
   \def\baselinestretch{1.7}\@normalsize
+  \cleardoublepage
 }
 
 %Chapter page definition
@@ -665,7 +668,7 @@ Documentation:
   \renewcommand{\refname}{#1}
 }
 \renewcommand{\thebibliography}[1]{
-  \newpage
+  \cleardoublepage
   \ifUHThesis@opt@refdoublespace
     \def\baselinestretch{1.7}\@normalsize
   \else

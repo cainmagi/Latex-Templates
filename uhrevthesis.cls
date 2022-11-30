@@ -18,6 +18,8 @@
 %     "refdoublespace", and "refname=Reference".
 %   - Change the default margin of the page: all=1.0in except left=1.5in.
 %   - Fix typos of the password configurations (only works with XeLaTeX).
+%   - Fix the misplacement of the toc tag for the list of figures and the
+%     list of tables.
 % Version 1.0.0 (11/23/22)
 %   - Incorporate all required packages.
 %   - Fix the \xfloat issue of the original template when using
