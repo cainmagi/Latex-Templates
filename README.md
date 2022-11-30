@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This template is adapted from the UH Thesis Style File. It is both compatible with pdfLaTeX and XeLaTeX. UH Department of Computer Science has provided a template for writing the master thesis or the Ph.D dissertation (see [here :link:][uhthesis]). According to the official example, we design this template for providing more supports.
+This template is adapted from the UH Thesis Style File. It is both compatible with `pdfLaTeX` and `XeLaTeX`. UH Department of Computer Science has provided a template for writing the master thesis or the Ph.D dissertation (see [here :link:][uhthesis]). According to the official example, we design this template for providing more supports.
 
 In this package, we mainly make the following two modifications:
 
@@ -40,6 +40,7 @@ The following options should only be enabled when using the class, like
 | -----  |   -----     |      -----     |  -----  |
 | `hyper`  | Add colors to all links. It would not influence the figures. | `nohyper` | Disabled |
 | `draft`  | Use the draft mode of `article`, all figures would be replaced by placeholders, and the `hyperref` package (if used) will also work in draft mode. | `final` | Disabled |
+| `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Disabled |
 
 The following options could be assigned in both the class options and the following command:
 
@@ -60,8 +61,8 @@ The following options could be assigned in both the class options and the follow
 | `submitdate`     | The date of the submission. If needing to use commands for this option, recommend to use `\submitdate{}` to configure this option. When being blank, will use `\today`. | ` ` |
 | `refname`        | The title of the references. It can also get configured by `\renewcommand{\refname}{...}`. | `Reference` |
 | `copyrightyear`  | The year shown in the copyright page. When being blank, will use the current year. | ` ` |
-| `ownerPass`      | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
-| `userPass`       | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
+| `ownerPass`      | This option is only compatible with `XeLaTeX`. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
+| `userPass`       | This option is only compatible with `XeLaTeX`. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 | `chair`          | The name of the committee chair. | `Name of Chair Professor` |
 | `cochair`        | The name of the committee chair. Can be blank. | ` ` |
 | `firstreader`    | The name of the 1st committee member. | `Name of Prof1` |
@@ -69,13 +70,12 @@ The following options could be assigned in both the class options and the follow
 | `thirdreader`    | The name of the 3rd committee member. Can be blank. | ` ` |
 | `fourthreader`   | The name of the 4th committee member. Can be blank. | ` ` |
 | `fifthreader`    | The name of the 5th committee member. Can be blank. | ` ` |
-| `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | true |
-| `captionhang`    | A flag. When configured, make all captions with hanging indents. Otherwise, use the plain caption indents. | true |
-| `refdoublespace` | A flag. When configured, make the references double-spaced. Otherwise, use the single space. | true |
-| `lstoftable`     | A flag. When configured, print the list of tables page. | true |
-| `lstoffigure`    | A flag. When configured, print the list of figures page. | true |
-| `copyright`      | A flag. When configured, print the copyright page. | true |
-| `thesis`         | A flag. Treat the manuscript as a thesis. Otherwise, will treat it as a dissertation | false |
+| `captionhang`    | A flag. When configured, make all captions with hanging indents. Otherwise, use the plain caption indents. (Counter option: `nocaptionhang`) | true |
+| `refdoublespace` | A flag. When configured, make the references double-spaced. Otherwise, use the single space. (Counter option: `refsinglespace`) | true |
+| `lstoftable`     | A flag. When configured, print the list of tables page. (Counter option: `nolstoftable`) | true |
+| `lstoffigure`    | A flag. When configured, print the list of figures page. (Counter option: `nolstoffigure`) | true |
+| `copyright`      | A flag. When configured, print the copyright page. (Counter option: `nocopyright`) | true |
+| `thesis`         | A flag. Treat the manuscript as a thesis. Otherwise, will treat it as a dissertation. (Counter option: `dissertation`) | false |
 
 ## All commands
 
