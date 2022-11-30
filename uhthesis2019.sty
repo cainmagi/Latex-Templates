@@ -38,6 +38,10 @@
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver C @ Nov. 30, 2022 By Yuche Jin
+%% 1. Fix the wrong link positions in the table of contents.
+%% 2. Fix the wrong leading space of some titles.
+%% 3. Fix the size of some titles.
 %% ver B @ Nov. 29, 2022 By Yuche Jin
 %$ 1. Add bool options: "indentfirst", "captionhang", and
 %%    "refdoublespace".
@@ -553,27 +557,33 @@ Documentation:
 %
 % ver A Hotfix: If "hyperref" is enabled, will add \texorpdfstring
 % filter.
+% ver C Hotfix: Fix the position of the toc tag.
+% ver C Hotfix: Fix the blank space character in the toc titles.
 %
 \ifUHThesis@opt@hyperref
   \newcommand{\UHThesis@cmd@createtoctitle}[1]{
-    \addcontentsline{toc}{section}{
-      \texorpdfstring{
-        \numberline{} {\large {\bf {\uppercase{#1}}}}
-      }{#1}
+    \phantomsection
+    \addcontentsline{toc}{section}{%
+      \texorpdfstring{%
+        \numberline{} {\large {\bf {\uppercase{#1}}}}%
+      }{#1}%
     }
   }
   \newcommand{\UHThesis@cmd@createtoctitleAlt}[1]{
-    \addcontentsline{toc}{section}{
-      \texorpdfstring{\uppercase{#1}}{#1}
+    \phantomsection
+    \addcontentsline{toc}{section}{%
+      \texorpdfstring{\uppercase{#1}}{#1}%
     }
   }
 \else
   \newcommand{\UHThesis@cmd@createtoctitle}[1]{
-    \addcontentsline{toc}{section}{
-      \numberline{} {\large {\bf {\uppercase{#1}}}}
+    \phantomsection
+    \addcontentsline{toc}{section}{%
+      \numberline{} {\large {\bf {\uppercase{#1}}}}%
     }
   }
   \newcommand{\UHThesis@cmd@createtoctitleAlt}[1]{
+    \phantomsection
     \addcontentsline{toc}{section}{\uppercase{#1}}
   }
 \fi
@@ -583,12 +593,14 @@ Documentation:
   \def\baselinestretch{1.7}\@normalsize
   %\abstractp
   \cleardoublepage
-  \begin{center}
-    \large{ \bf {\uppercase{Abstract}}}
-  \end{center}
   % ver A Hotfix: Adjust the title configs according to the appearance
   % of the "hyperref" pakcage.
+  % ver C Hotfix: Fix the position of the toc tag.
+  % ver C Hotfix: Fix the size of the title.
   \UHThesis@cmd@createtoctitle{Abstract}
+  \begin{center}
+    \Large{ \bf {\uppercase{Abstract}}}
+  \end{center}
 }
 
 \def\endabstract{
@@ -599,12 +611,14 @@ Documentation:
 
 \def\dedication{
   \cleardoublepage
-  \begin{center}
-  \large { \bf {\uppercase {Dedication/Epigraph}}}
-  \end{center}
   % ver A Hotfix: Adjust the title configs according to the appearance
   % of the "hyperref" pakcage.
+  % ver C Hotfix: Fix the position of the toc tag.
+  % ver C Hotfix: Fix the size of the title.
   \UHThesis@cmd@createtoctitle{Dedication}
+  \begin{center}
+    \Large{ \bf {\uppercase {Dedication/Epigraph}}}
+  \end{center}
 }
 
 %\def\endacknowledgements{}
@@ -612,12 +626,14 @@ Documentation:
 %Acknowledgements
 \def\acknowledgements{
   \cleardoublepage
-  \begin{center}
-  \large { \bf {\uppercase {Acknowledgments}}}
-  \end{center}
   % ver A Hotfix: Adjust the title configs according to the appearance
   % of the "hyperref" pakcage.
+  % ver C Hotfix: Fix the position of the toc tag.
+  % ver C Hotfix: Fix the size of the title.
   \UHThesis@cmd@createtoctitle{Acknowledgments}
+  \begin{center}
+    \Large{ \bf {\uppercase {Acknowledgments}}}
+  \end{center}
 }
 
 %\def\endacknowledgements{}

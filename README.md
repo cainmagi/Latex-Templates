@@ -38,7 +38,7 @@ The following options should only be enabled when using the class, like
 ```
 
 |  Option  |  Description  |  Counter option  |  Default state  |
-| :------: | :------------ | :--------------: | :-------------- |
+| :------: | ------------- | :--------------: | --------------- |
 | `hyper`  | Add colors to all links. It would not influence the figures. | `nohyper` | Disabled |
 | `draft`  | Use the draft mode of `article`, all figures would be replaced by placeholders, and the `hyperref` package (if used) will also work in draft mode. | `final` | Disabled |
 | `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Disabled |
@@ -53,7 +53,7 @@ The following options could be assigned in both the class options and the follow
 ```
 
 |      Option      |  Description  |  Default value  |
-| :--------------: | :------------ | :-------------- |
+| :--------------: | ------------- | --------------- |
 | `title`          | The title that would be shown in the cover page and the macros of this file. | `Sample Thesis Title - Long, Wide, and Words Capitalized` |
 | `author`         | The author name that would be shown in the cover page and the macros of this file. | `Maya K. Student` |
 | `degree`         | The degree to be fetched. When being blank, will use the default value. | ` ` |
@@ -71,6 +71,7 @@ The following options could be assigned in both the class options and the follow
 | `thirdreader`    | The name of the 3rd committee member. Can be blank. | ` ` |
 | `fourthreader`   | The name of the 4th committee member. Can be blank. | ` ` |
 | `fifthreader`    | The name of the 5th committee member. Can be blank. | ` ` |
+| `hypercolor`     | A flag. When configured, make all links with colors (require to specify the option "hyper" first). (Counter option: `nohypercolor`) | true |
 | `captionhang`    | A flag. When configured, make all captions with hanging indents. Otherwise, use the plain caption indents. (Counter option: `nocaptionhang`) | true |
 | `refdoublespace` | A flag. When configured, make the references double-spaced. Otherwise, use the single space. (Counter option: `refsinglespace`) | true |
 | `lstoftable`     | A flag. When configured, print the list of tables page. (Counter option: `nolstoftable`) | true |
@@ -81,7 +82,7 @@ The following options could be assigned in both the class options and the follow
 ## All commands
 
 |         Command        |        Description       |
-| :--------------------: | :----------------------- |
+| :--------------------: | ------------------------ |
 | `\makecoverpages`      | Used to make a modified title. No options are required. |
 | `\makecontentspages`   | Used to make the table of contents. No options are required. |
 | `\sectionalt`          | Used to create the section title (highest level). It is used for replacing the built-in `\section` but not for replacing `\section*`. |
@@ -97,6 +98,13 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.1.1 @ 11/30/2022
+
+1. Fix the wrong link positions in the table of contents.
+2. Fix the wrong leading space of some titles.
+3. Fix the size of some titles.
+4. Add bool option: `hypercolor`. If disabled, will make all links black.
 
 ### 1.1.0 @ 11/29/2022
 

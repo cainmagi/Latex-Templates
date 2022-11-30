@@ -4,6 +4,12 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.1.1 (11/30/22)
+%   - Fix the wrong link positions in the table of contents.
+%   - Fix the wrong leading space of some titles.
+%   - Fix the size of some titles.
+%   - Add bool option: "hypercolor". If disabled, will make all links
+%     black.
 % Version 1.1.0 (11/29/22)
 %   - Add bool options: "indentfirst", "captionhang", and
 %     "refdoublespace".
@@ -62,6 +68,9 @@
 %
 % Boolean configurations for formats
 % (Adjust these options according to requirements of the department.)
+%  hypercolor     : [true], make all links with colors (require to specify
+%                   the option "hyper" first).
+%                   - Complementary option is "nohypercolor".
 %  captionhang    : [true], make all captions with hanging indents.
 %                   - Complementary option is "nocaptionhang".
 %  refdoublespace : [true], make the references double-spaced. If not
@@ -161,7 +170,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/11/29 v1.1.0 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/11/30 v1.1.1 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -172,6 +181,8 @@
 \DeclareComplementaryOption{final}{draft}
 \DeclareBoolOption[false]{hyper}
 \DeclareComplementaryOption{nohyper}{hyper}
+\DeclareBoolOption[true]{hypercolor}
+\DeclareComplementaryOption{nohypercolor}{hypercolor}
 \DeclareBoolOption[false]{thesis}
 \DeclareComplementaryOption{dissertation}{thesis}
 \DeclareBoolOption[true]{indentfirst}
@@ -233,6 +244,7 @@
       pdfsubject={\UHRevThesis@opt@department},%
       %pdfkeywords={}%
     }
+    \UHRevThesis@cmd@setHyperrefColors
     \renewcommand{\email}[1]{\href{mailto:##1}{\texttt{##1}}}
     \renewcommand{\sectionalt}[1]{\section[\texorpdfstring{\bf \uppercase{##1}}{##1}]{##1}}
   \else
@@ -374,7 +386,6 @@
 \else
   \RequirePackage[svgnames]{xcolor}
 \fi
-\definecolor{DarkGreen}{RGB}{0,128,0}
 \definecolor{UHviolet}{RGB}{100,16,86}
 \definecolor{UHred}{RGB}{200,16,46}
 \definecolor{UHgray}{RGB}{84,88,90}
@@ -444,10 +455,25 @@
 % algorithmicx.sty package by Szasz Janos:
 % http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
 
+% Configure the hyperref color settings.
+\providecommand{\UHRevThesis@cmd@setHyperrefColors}{
+  \ifUHRevThesis@opt@hypercolor
+  \hypersetup{
+    citecolor={DarkGreen}, linkcolor={red}, filecolor={DeepSkyBlue},
+    menucolor={red}, urlcolor={magenta}
+  }
+  \else
+  \hypersetup{
+    citecolor={black}, linkcolor={black}, filecolor={black},
+    menucolor={black}, urlcolor={black}
+  }
+  \fi
+}
+
 % *** Use HYPERREF PACKAGES ***
 \ifUHRevThesis@opt@hyper
   \typeout{UHThesis: Hyperref Mode Enabled.}
-  \hypersetup{citecolor={DarkGreen}}
+  \UHRevThesis@cmd@setHyperrefColors
   \RequirePackage[all]{hypcap}
   % This package tries a solution of the problem with hyperref, that 
   % links to floats points below the caption and not at the beginning 
@@ -520,7 +546,6 @@
 %% =========== Define hyperref options ===========
 \ifUHRevThesis@opt@hyper
   \renewcommand{\eqref}[1]{\hyperref[#1]{\textnormal{(\ref*{#1})}}}
-  
   \hypersetup{pdfdisplaydoctitle={true}}
   \ifpdf
     \hypersetup{pdfcreator={pdfLaTeX}}
@@ -639,24 +664,3 @@
 %% =========== Run pre-defined commands with default configs ===========
 \UHRevThesis@cmd@setupCoverPages
 \UHRevThesis@cmd@setupPassword
-
-%%***************************************
-%% Hot fixtures ...
-%%***************************************
-
-%% =========== Hotfix of the legacy doublespace package ===========
-\def\@xfloat#1[#2]{\ifhmode \@bsphack\@floatpenalty -\@Mii\else
-  \@floatpenalty-\@Miii\fi\def\@captype{#1}\ifinner
-  \@parmoderr\@floatpenalty\z@
-  \else\@next\@currbox\@freelist{\@tempcnta\csname ftype@#1\endcsname
-    \multiply\@tempcnta\@xxxii\advance\@tempcnta\sixt@@n
-    \@tfor \@tempa :=#2\do
-    {\if\@tempa h\advance\@tempcnta \@ne\fi
-      \if\@tempa t\advance\@tempcnta \tw@\fi
-      \if\@tempa b\advance\@tempcnta 4\relax\fi
-      \if\@tempa p\advance\@tempcnta 8\relax\fi
-    }\global\count\@currbox\@tempcnta}\@fltovf\fi
-  \global\setbox\@currbox\color@vbox\normalcolor\vbox\bgroup 
-  \def\baselinestretch{1}\small\normalsize
-  \boxmaxdepth\z@
-  \hsize\columnwidth \@parboxrestore}
