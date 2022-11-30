@@ -14,17 +14,18 @@ In this package, we mainly make the following two modifications:
    | :--------------------------------------------------- | :----------------------------------------------------------- |
    | `hyperref`, `hypcap`                                 | Add hyper links to all references and titles. Will only works if specified `hyper` option. |
    | `setspace`                                           | Control the line spacing with `\setstrecth` or `\renewcommand{\baselinestretch}` |
-   | `geometry`                                           | Configure the page size.                                     |
-   | `amsmath`                                            | Provide mathematical environments.                           |
-   | `amssymb`, `amsbsy`, `dsfont`, `bm`                  | Provide mathematical symbols and fonts.                      |
-   | `graphicx`, `epstopdf`, `bmpsize`                    | Provide functionalities to use images.                       |
-   | `multirow`, `tabularx`, `array`                      | Provide more features for drawing complicated tables.        |
-   | `xcolor`, `colortbl`                                 | Packages about colors.                                       |
+   | `geometry`                                           | Configure the page size.                                       |
+   | `indentfirst`                                        | Provide features for letting the first paragraphs with indent. |
+   | `amsmath`                                            | Provide mathematical environments.                             |
+   | `amssymb`, `amsbsy`, `dsfont`, `bm`                  | Provide mathematical symbols and fonts.                        |
+   | `graphicx`, `epstopdf`, `bmpsize`                    | Provide functionalities to use images.                         |
+   | `multirow`, `tabularx`, `array`                      | Provide more features for drawing complicated tables.          |
+   | `xcolor`, `colortbl`                                 | Packages about colors.                                         |
    | `float`, `caption`, `subfig`, `stfloats`, `placeins` | Provide complicated float environments for placing tables and figures. |
-   | `multicol`                                           | Provide the multi-column text feature.                       |
-   | `algorithm`, `algorithmic`                           | Provide environments for describing algorithms.              |
-   | `enumitem`                                           | Reformat the Enumerate / Itemize environments.               |
-   | `siunitx`                                            | Provide commands about SI Units.                             |
+   | `multicol`                                           | Provide the multi-column text feature.                         |
+   | `algorithm`, `algorithmic`                           | Provide environments for describing algorithms.                |
+   | `enumitem`                                           | Reformat the Enumerate / Itemize environments.                 |
+   | `siunitx`                                            | Provide commands about SI Units.                               |
 
 3. **Add a pdf password**: This feature only supports XeLaTeX. It will enable you to add an owner password and a viewer password to the produced pdf file. 
 
@@ -36,8 +37,8 @@ The following options should only be enabled when using the class, like
 \documentclass[option]{uhrevthesis}
 ```
 
-| Option | Description | Counter option | Default state |
-| -----  |   -----     |      -----     |  -----  |
+|  Option  |  Description  |  Counter option  |  Default state  |
+| :------: | :------------ | :--------------: | :-------------- |
 | `hyper`  | Add colors to all links. It would not influence the figures. | `nohyper` | Disabled |
 | `draft`  | Use the draft mode of `article`, all figures would be replaced by placeholders, and the `hyperref` package (if used) will also work in draft mode. | `final` | Disabled |
 | `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Disabled |
@@ -92,7 +93,7 @@ The following options could be assigned in both the class options and the follow
 ## Example
 
 | Example 1 | Example 2 |
-| ----- | ----- |
+| :-----: | :-----: |
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
