@@ -6,6 +6,7 @@
 %% -----------------------------------
 % Version 1.1.2 (11/30/22)
 %   - Fix the indent of dedication, acknowledgements, and abstract.
+%   - Fix a typo in the package info.
 % Version 1.1.1 (11/30/22)
 %   - Fix the wrong link positions in the table of contents.
 %   - Fix the wrong leading space of some titles.

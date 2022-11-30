@@ -102,6 +102,7 @@ The following options could be assigned in both the class options and the follow
 ### 1.1.2 @ 11/30/2022
 
 1. Fix the indent of dedication, acknowledgements, and abstract.
+2. Fix a typo in the package info.
 
 ### 1.1.1 @ 11/30/2022
 
