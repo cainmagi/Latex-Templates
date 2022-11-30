@@ -4,6 +4,8 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.1.2 (11/30/22)
+%   - Fix the indent of dedication, acknowledgements, and abstract.
 % Version 1.1.1 (11/30/22)
 %   - Fix the wrong link positions in the table of contents.
 %   - Fix the wrong leading space of some titles.
@@ -170,7 +172,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/11/30 v1.1.1 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/11/30 v1.1.2 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}

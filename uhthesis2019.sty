@@ -38,6 +38,8 @@
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver D @ Nov. 30, 2022 By Yuche Jin
+%% 1. Fix the indent of dedication, acknowledgements, and abstract.
 %% ver C @ Nov. 30, 2022 By Yuche Jin
 %% 1. Fix the wrong link positions in the table of contents.
 %% 2. Fix the wrong leading space of some titles.
@@ -588,7 +590,15 @@ Documentation:
   }
 \fi
 
-%Abstract 
+% Configure the indent or no indent for the first paragraph of each page.
+% ver D Hotfix: Fix the indent of dedication, acknowledgements, and abstract.
+\providecommand{\UHThesis@cmd@firstPar}{%
+  \ifUHThesis@opt@indentfirst%
+    \par%
+  \fi%
+} 
+
+% Abstract 
 \def\abstract{
   \def\baselinestretch{1.7}\@normalsize
   %\abstractp
@@ -601,14 +611,15 @@ Documentation:
   \begin{center}
     \Large{ \bf {\uppercase{Abstract}}}
   \end{center}
+  % ver D Hotfix: Fix the indent of abstract.
+  \UHThesis@cmd@firstPar
 }
 
 \def\endabstract{
   \def\baselinestretch{1.7}\@normalsize
 }
 
-%Dedication and Epigraph
-
+% Dedication and Epigraph
 \def\dedication{
   \cleardoublepage
   % ver A Hotfix: Adjust the title configs according to the appearance
@@ -619,11 +630,13 @@ Documentation:
   \begin{center}
     \Large{ \bf {\uppercase {Dedication/Epigraph}}}
   \end{center}
+  % ver D Hotfix: Fix the indent of dedication.
+  \UHThesis@cmd@firstPar
 }
 
 %\def\endacknowledgements{}
 
-%Acknowledgements
+% Acknowledgements
 \def\acknowledgements{
   \cleardoublepage
   % ver A Hotfix: Adjust the title configs according to the appearance
@@ -634,11 +647,13 @@ Documentation:
   \begin{center}
     \Large{ \bf {\uppercase {Acknowledgments}}}
   \end{center}
+  % ver D Hotfix: Fix the indent of acknowledgements.
+  \UHThesis@cmd@firstPar
 }
 
 %\def\endacknowledgements{}
 
-%Table of contents
+% Table of contents
 \def\makecontentspages{
   \cleardoublepage
   \def\baselinestretch{1}\@normalsize
@@ -662,7 +677,7 @@ Documentation:
   \cleardoublepage
 }
 
-%Chapter page definition
+% Chapter page definition
 \def\chapterpages{
   % Put the page number on the top of the page
 %  \def\@oddhead{\rm\hfil\thepage\hfil}

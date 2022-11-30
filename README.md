@@ -99,6 +99,10 @@ The following options could be assigned in both the class options and the follow
 
 ## Update report
 
+### 1.1.2 @ 11/30/2022
+
+1. Fix the indent of dedication, acknowledgements, and abstract.
+
 ### 1.1.1 @ 11/30/2022
 
 1. Fix the wrong link positions in the table of contents.
