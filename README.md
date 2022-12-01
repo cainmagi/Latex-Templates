@@ -99,6 +99,11 @@ The following options could be assigned in both the class options and the follow
 
 ## Update report
 
+### 1.1.3 @ 11/30/2022
+
+1. Fix the wrong vertical trailing space of the `\parbox`.
+2. Make the default global table row stretch changed to `1.3`.
+
 ### 1.1.2 @ 11/30/2022
 
 1. Fix the indent of dedication, acknowledgements, and abstract.

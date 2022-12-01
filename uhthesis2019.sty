@@ -38,6 +38,10 @@
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver E @ Nov. 30, 2022 By Yuche Jin
+%% 1. Fix the wrong vertical trailing space of the parbox when using
+%%    the original template. This problem is fixed by referring the
+%%    newest latexrelease.dtx source codes.
 %% ver D @ Nov. 30, 2022 By Yuche Jin
 %% 1. Fix the indent of dedication, acknowledgements, and abstract.
 %% ver C @ Nov. 30, 2022 By Yuche Jin
@@ -66,7 +70,7 @@
 %% 3. Add compatibility option with hyperref.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{uhthesis2019}[2022/11/30 vD Document Style Option `UH Thesis Template'.]
+\ProvidesPackage{uhthesis2019}[2022/11/30 vE Document Style Option `UH Thesis Template'.]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -305,7 +309,14 @@ Documentation:
     \boxmaxdepth\z@
     \hsize\columnwidth \@parboxrestore}
 \else
-  \def\@xfloat#1[#2]{\ifhmode \@bsphack\@floatpenalty -\@Mii\else
+  % ver E Hotfix: Add more details copied from the TeXLive 2021
+  % latexrelease.dtx source codes.
+  \def\@xfloat#1[#2]{\@nodocument
+    \def\@captype{#1}\def\@fps{#2}%
+    \@onelevel@sanitize\@fps\def\reserved@b{!}%
+    \ifx\reserved@b\@fps\@fpsadddefault%
+    \else\ifx\@fps\@empty\@fpsadddefault\fi\fi%
+    \ifhmode \@bsphack\@floatpenalty -\@Mii\else
     \@floatpenalty-\@Miii\fi\def\@captype{#1}\ifinner
     \@parmoderr\@floatpenalty\z@
     \else\@next\@currbox\@freelist{\@tempcnta\csname ftype@#1\endcsname
@@ -317,9 +328,13 @@ Documentation:
         \if\@tempa p\advance\@tempcnta 8\relax\fi
       }\global\count\@currbox\@tempcnta}\@fltovf\fi
     \global\setbox\@currbox\color@vbox\normalcolor\vbox\bgroup 
-    \def\baselinestretch{1}\small\normalsize
-    \boxmaxdepth\z@
-    \hsize\columnwidth \@parboxrestore}
+    \def\baselinestretch{1}\@normalsize
+    %\boxmaxdepth\z@
+    \boxmaxdepth\maxdimen
+    % ver E Hotfix: I change this line, because I find this line will
+    % cause unexpected vertical space of table cells.
+    \hsize\columnwidth\@parboxrestore\@floatboxreset
+  }
 \fi
 
 % Redefine the macro used for footnotes to use single spacing

@@ -4,6 +4,9 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.1.3 (11/30/22)
+%   - Fix the wrong vertical trailing space of the parbox.
+%   - Make the default global table row stretch changed to "1.3".
 % Version 1.1.2 (11/30/22)
 %   - Fix the indent of dedication, acknowledgements, and abstract.
 %   - Fix a typo in the package info.
@@ -173,7 +176,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/11/30 v1.1.2 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/11/30 v1.1.3 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -502,6 +505,10 @@
 %%***************************************
 %% Make further settings ...
 %%***************************************
+
+%% =========== Define tabularx configurations ===========
+\renewcommand\tabularxcolumn[1]{m{#1}}  % Automatic column configs
+\renewcommand\arraystretch{1.3}  % Global table row stretch
 
 %% =========== Define autoref macros ===========
 % \def\figureautorefname{\textnormal{Fig.}}
