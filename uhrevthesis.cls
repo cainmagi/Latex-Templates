@@ -4,6 +4,8 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.1.4 (12/6/22)
+%   - Add a math operator: `\mathand`.
 % Version 1.1.3 (11/30/22)
 %   - Fix the wrong vertical trailing space of the parbox.
 %   - Make the default global table row stretch changed to "1.3".
@@ -176,7 +178,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/11/30 v1.1.3 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/12/6 v1.1.4 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -524,6 +526,7 @@
 \providecommand{\qED}{\rightline{$\square$}}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\mathand}{and}
 \DeclareMathOperator*{\mean}{mean}
 \DeclareMathOperator*{\std}{std}
 \DeclareMathOperator*{\intd}{d}

@@ -39,18 +39,42 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
 Try to ref \autoref{fig:two-figs}, and \autoref{fig:two-figs:v1}.
 
 \subsection{Formulation test}
-Test the following formulation:
+Test the following formulation. No comma should be used if there are only two equations:
 \begin{subequations}
   \renewcommand{\theequation}
   {\theparentequation-\arabic{equation}}
   \begin{align}
-    \frac{\partial \mathcal{L}(\mathbf{w},~b)}{\partial \mathbf{w}} &= \mathbf{w} + C \sum\limits_i\frac{\partial \ell_i}{\partial \mathbf{w}}, \label{fml:eq1:partialW}\\
-    \frac{\partial \mathcal{L}(\mathbf{w},~b)}{\partial b} &= C \sum\limits_i\frac{\partial \ell_i}{\partial b}, \label{fml:eq1:partialb}
+    \frac{\partial \mathcal{L}(\mathbf{w},~b)}{\partial \mathbf{w}} &= \mathbf{w} + C \sum\limits_i\frac{\partial \ell_i}{\partial \mathbf{w}} \label{fml:eq1:partialW}\\
+    \mathand~\frac{\partial \mathcal{L}(\mathbf{w},~b)}{\partial b} &= C \sum\limits_i\frac{\partial \ell_i}{\partial b}, \label{fml:eq1:partialb}
   \end{align}
 \end{subequations}
 where the gradients are used in support vector machine.
 
+However, when there are more than 2 equations, commas should be used:
+\begin{equation} \label{fml:ptl:robust}
+  \begin{aligned}
+    \argmin\limits_{\Theta} & \frac{1}{N_{tr}} \sum_{i=1}^{N_{tr}} \mathcal{L}\left(\mathbf{d}_{HF}^{(i)}, \mathbf{d}_{LF}^{(i)}\right) + \frac{\lambda/2}{N_{tr}} \sum_{i=1}^{N_{tr}} \mathcal{R}\left(\mathbf{d}_{HF}^{(i)}\right) + \frac{\lambda/2}{N_{ts}} \sum_{i=1}^{N_{ts}} \mathcal{R}\left(\mathbf{d}^{(i)}\right), \\
+    &\mathcal{L} \left( \mathbf{d}_{HF}, \mathbf{d}_{LF} \right) = \left\lVert \mathcal{D}_{\Theta}\left( \mathbf{d}_{HF} \right) - \mathbf{d}_{LF} \right\rVert^2_2, \\
+    \mathand~&\mathcal{R} \left( \mathbf{d} \right) = \left\lVert \mathcal{D}_{\Theta}\left( \mathbf{d} \right) - \Psi\left(\mathcal{D}_{\Theta}\left( \mathbf{d} \right)\right) \right\rVert^2_2.
+  \end{aligned}
+\end{equation}
+
 Try to refer the equations like this: \eqref{fml:eq1:partialb}.
+
+\subsection{Table test}
+
+The title of the table should appear on the top of the table.
+
+\begin{table}[tbp]
+  \centering
+  \caption{Example table.\label{tbl:res-accu}}
+  \begin{tabularx}{0.6\textwidth}{|c|X<\centering|X<\centering|X<\centering|X<\centering|}
+    \hline
+    & Col 1 & Col 2 & Col 3 & Col 4 \\ \hline
+    $\mathcal{L}_{\mathrm{a}}$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+    $\mathcal{L}_{\mathrm{b}}$ & $5$ & $6$ & $7$ & $8$ \\ \hline
+  \end{tabularx}
+\end{table}
 
 \subsection{A Sample subsection}
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English \cite{gass}. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).

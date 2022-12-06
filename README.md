@@ -91,6 +91,18 @@ The following options could be assigned in both the class options and the follow
 | `\usvardate\today`     | Print out the date like "November 23th, 2022" |
 | Other commands...      | The title that would be shown in the cover page and the macros of this file. |
 
+## Extended math operators
+
+|         Command        |        Description       |
+| :--------------------: | ------------------------ |
+| `\tRe`, `\tIm`         | "Re" and "Im". |
+| `\arcsinh`, `\arccosh` | "sinh" and "cosh". |
+| `\qED`                 | Right-aligned QED command. |
+| `\argmax`, `argmin   ` | Math symbols for defining an optimization: "argmax" and "argmin" |
+| `\mean`, `\std`        | "mean" and "std". |
+| `\intd`                | "d" appearing as the differential operator in integration.
+| `\expect`              | "E" with a `\mathbb` style.
+
 ## Example
 
 | Example 1 | Example 2 |
@@ -98,6 +110,10 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.1.4 @ 12/6/2022
+
+1. Add a math operator: `\mathand`.
 
 ### 1.1.3 @ 11/30/2022
 
