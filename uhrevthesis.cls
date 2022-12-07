@@ -4,6 +4,11 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.2.0 (12/7/22)
+%   - Add bool option: "lstoftablefirst".
+%   - Change: Make the list of tables before the list of figures.
+%     This feature can be disabled if specifying "lstoffigurefirst".
+%   - Change the default refname: "Reference" -> "References".
 % Version 1.1.4 (12/6/22)
 %   - Add a math operator: `\mathand`.
 % Version 1.1.3 (11/30/22)
@@ -88,15 +93,18 @@
 % Boolean configurations for pages
 % (Adjust these options according to the situation of the finished manuscript.)
 %
-%  lstoftable     : [true], when configured, print the list of tables page.
-%                   - Complementary option is "nolstoftable".
-%  lstoffigure    : [true], when configured, print the list of figures page.
-%                   - Complementary option is "nolstoffigure".
-%  copyright      : [true], when configured, print the copyright page.
-%                   - Complementary option is "nocopyright".
-%  thesis         : [false], when configured, will treat the draft as a thesis.
-%                   Otherwise, will treat the draft as a dissertation.
-%                   - Complementary option is "dissertation".
+%  lstoftable      : [true], when configured, print the list of tables page.
+%                     - Complementary option is "nolstoftable".
+%  lstoffigure     : [true], when configured, print the list of figures page.
+%                    - Complementary option is "nolstoffigure".
+%  lstoftablefirst : [true], when configured, make the list of tables before
+%                    the list of figures.
+%                    - Complementary option is "lstoffigurefirst".
+%  copyright       : [true], when configured, print the copyright page.
+%                    - Complementary option is "nocopyright".
+%  thesis          : [false], when configured, will treat the draft as a thesis.
+%                    Otherwise, will treat the draft as a dissertation.
+%                    - Complementary option is "dissertation".
 %
 % Text configurations for committee members.
 % (At least 3 members are required for thesis, and 5 members are required for
@@ -178,7 +186,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/12/06 v1.1.4 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/12/07 v1.2.0 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -203,6 +211,8 @@
 \DeclareBoolOption[true]{lstoffigure}
 \DeclareComplementaryOption{nolstoftable}{lstoftable}
 \DeclareComplementaryOption{nolstoffigure}{lstoffigure}
+\DeclareBoolOption[true]{lstoftablefirst}
+\DeclareComplementaryOption{lstoffigurefirst}{lstoftablefirst}
 \DeclareBoolOption[true]{copyright}
 \DeclareComplementaryOption{nocopyright}{copyright}
 
@@ -213,7 +223,7 @@
 \DeclareStringOption[Cullen College of Engineering]{college}[Cullen College of Engineering]
 \DeclareStringOption[]{submitdate}[] % if not set, will use today
 \DeclareStringOption[]{copyrightyear}[] % if not set, will use today
-\DeclareStringOption[Reference]{refname}[Reference] % Name of the reference
+\DeclareStringOption[References]{refname}[References] % Name of the reference
 
 % List of Professors (Committee members)
 \DeclareStringOption[Name of Chair Professor]{chair}[Name of Chair Professor]
@@ -239,6 +249,11 @@
     \kvsetkeys{UHThesis}{captionhang}
   \else
     \kvsetkeys{UHThesis}{nocaptionhang}
+  \fi
+  \ifUHRevThesis@opt@lstoftablefirst
+    \kvsetkeys{UHThesis}{lstoftablefirst}
+  \else
+    \kvsetkeys{UHThesis}{lstoffigurefirst}
   \fi
   \UHThesisSetup{
     refname=\UHRevThesis@opt@refname,
@@ -286,6 +301,9 @@
 \fi
 \ifUHRevThesis@opt@refdoublespace
   \PassOptionsToPackage{refdoublespace}{uhthesis2019}
+\fi
+\ifUHRevThesis@opt@lstoftablefirst
+  \PassOptionsToPackage{lstoftablefirst}{uhthesis2019}
 \fi
 \PassOptionsToPackage{
   refname=\UHRevThesis@opt@refname,
@@ -652,15 +670,15 @@
   \fi
   % If there are no tables / figures in the Chapters, 
   % we can avoid creating a List of Tables / Figures.
-  \ifUHRevThesis@opt@lstoffigure
-    \figurelisttrue
-  \else
-    \figurelistfalse
-  \fi
   \ifUHRevThesis@opt@lstoftable
     \tablelisttrue
   \else
     \tablelistfalse
+  \fi
+  \ifUHRevThesis@opt@lstoffigure
+    \figurelisttrue
+  \else
+    \figurelistfalse
   \fi
 }
 

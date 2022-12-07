@@ -52,32 +52,33 @@ The following options could be assigned in both the class options and the follow
 }
 ```
 
-|      Option      |  Description  |  Default value  |
-| :--------------: | ------------- | --------------- |
-| `title`          | The title that would be shown in the cover page and the macros of this file. | `Sample Thesis Title - Long, Wide, and Words Capitalized` |
-| `author`         | The author name that would be shown in the cover page and the macros of this file. | `Maya K. Student` |
-| `degree`         | The degree to be fetched. When being blank, will use the default value. | ` ` |
-| `department`     | The name of the department. Do **not** need to include `"Department of ..."`. | `Electrical and Computer Engineering` |
-| `college`        | The name of the college. **Need** to include `"College of ..."`. | `Cullen College of Engineering` |
-| `submitdate`     | The date of the submission. If needing to use commands for this option, recommend to use `\submitdate{}` to configure this option. When being blank, will use `\today`. | ` ` |
-| `refname`        | The title of the references. It can also get configured by `\renewcommand{\refname}{...}`. | `Reference` |
-| `copyrightyear`  | The year shown in the copyright page. When being blank, will use the current year. | ` ` |
-| `ownerPass`      | This option is only compatible with `XeLaTeX`. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
-| `userPass`       | This option is only compatible with `XeLaTeX`. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
-| `chair`          | The name of the committee chair. | `Name of Chair Professor` |
-| `cochair`        | The name of the committee chair. Can be blank. | ` ` |
-| `firstreader`    | The name of the 1st committee member. | `Name of Prof1` |
-| `secondreader`   | The name of the 2nd committee member. | `Name of Prof2` |
-| `thirdreader`    | The name of the 3rd committee member. Can be blank. | ` ` |
-| `fourthreader`   | The name of the 4th committee member. Can be blank. | ` ` |
-| `fifthreader`    | The name of the 5th committee member. Can be blank. | ` ` |
-| `hypercolor`     | A flag. When configured, make all links with colors (require to specify the option "hyper" first). (Counter option: `nohypercolor`) | true |
-| `captionhang`    | A flag. When configured, make all captions with hanging indents. Otherwise, use the plain caption indents. (Counter option: `nocaptionhang`) | true |
-| `refdoublespace` | A flag. When configured, make the references double-spaced. Otherwise, use the single space. (Counter option: `refsinglespace`) | true |
-| `lstoftable`     | A flag. When configured, print the list of tables page. (Counter option: `nolstoftable`) | true |
-| `lstoffigure`    | A flag. When configured, print the list of figures page. (Counter option: `nolstoffigure`) | true |
-| `copyright`      | A flag. When configured, print the copyright page. (Counter option: `nocopyright`) | true |
-| `thesis`         | A flag. Treat the manuscript as a thesis. Otherwise, will treat it as a dissertation. (Counter option: `dissertation`) | false |
+|       Option      |  Description  |  Default value  |
+| :---------------: | ------------- | --------------- |
+| `title`           | The title that would be shown in the cover page and the macros of this file. | `Sample Thesis Title - Long, Wide, and Words Capitalized` |
+| `author`          | The author name that would be shown in the cover page and the macros of this file. | `Maya K. Student` |
+| `degree`          | The degree to be fetched. When being blank, will use the default value. | ` ` |
+| `department`      | The name of the department. Do **not** need to include `"Department of ..."`. | `Electrical and Computer Engineering` |
+| `college`         | The name of the college. **Need** to include `"College of ..."`. | `Cullen College of Engineering` |
+| `submitdate`      | The date of the submission. If needing to use commands for this option, recommend to use `\submitdate{}` to configure this option. When being blank, will use `\today`. | ` ` |
+| `refname`         | The title of the references. It can also get configured by `\renewcommand{\refname}{...}`. | `Reference` |
+| `copyrightyear`   | The year shown in the copyright page. When being blank, will use the current year. | ` ` |
+| `ownerPass`       | This option is only compatible with `XeLaTeX`. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
+| `userPass`        | This option is only compatible with `XeLaTeX`. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
+| `chair`           | The name of the committee chair. | `Name of Chair Professor` |
+| `cochair`         | The name of the committee chair. Can be blank. | ` ` |
+| `firstreader`     | The name of the 1st committee member. | `Name of Prof1` |
+| `secondreader`    | The name of the 2nd committee member. | `Name of Prof2` |
+| `thirdreader`     | The name of the 3rd committee member. Can be blank. | ` ` |
+| `fourthreader`    | The name of the 4th committee member. Can be blank. | ` ` |
+| `fifthreader`     | The name of the 5th committee member. Can be blank. | ` ` |
+| `hypercolor`      | A flag. When configured, make all links with colors (require to specify the option "hyper" first). (Counter option: `nohypercolor`) | true |
+| `captionhang`     | A flag. When configured, make all captions with hanging indents. Otherwise, use the plain caption indents. (Counter option: `nocaptionhang`) | true |
+| `refdoublespace`  | A flag. When configured, make the references double-spaced. Otherwise, use the single space. (Counter option: `refsinglespace`) | true |
+| `lstoftable`      | A flag. When configured, print the list of tables page. (Counter option: `nolstoftable`) | true |
+| `lstoffigure`     | A flag. When configured, print the list of figures page. (Counter option: `nolstoffigure`) | true |
+| `lstoftablefirst` | A flag. When configured, make the list of tables before the list of figures. (Counter option: `lstoffigurefirst`) | true |
+| `copyright`       | A flag. When configured, print the copyright page. (Counter option: `nocopyright`) | true |
+| `thesis`          | A flag. Treat the manuscript as a thesis. Otherwise, will treat it as a dissertation. (Counter option: `dissertation`) | false |
 
 ## All commands
 
@@ -110,6 +111,12 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.0 @ 12/7/2022
+
+1. Add bool option: `lstoftablefirst`.
+2. Change: Make the list of tables before the list of figures. This feature can be disabled if specifying `lstoffigurefirst`.
+3. Change the default `\refname`: "Reference" -> "References".
 
 ### 1.1.4 (patched) @ 12/7/2022
 

@@ -12,21 +12,25 @@
 %% =================================================================
 %% Bool Options
 %% =================================================================
-%% legacy:         [false], fall back to the orignal UH Thesis 2019
-%%                 style configurations, where the package is not
-%%                 compatible with "xcolor“ package.
-%%                 - Complementary option is "current".
-%% hyperref:       [false], if used with "hyperref" package, require
-%%                 to enable this option to improve the consistency.
-%%                 - Complementary option is "nohyperref".
-%% indentfirst:    [false], make the first paragraphs of each (sub)
-%%                 sections with indents.
-%%                 - Complementary option is "noindentfirst".
-%% captionhang:    [false], make all captions with hanging indents.
-%%                 - Complementary option is "nocaptionhang".
-%% refdoublespace: [false], make the references double-spaced. If
-%%                 not configured, will use the single space.
-%%                 - Complementary option is "refsinglespace".
+%% legacy:          [false], fall back to the orignal UH Thesis 2019
+%%                  style configurations, where the package is not
+%%                  compatible with "xcolor“ package.
+%%                  - Complementary option is "current".
+%% hyperref:        [false], if used with "hyperref" package,
+%%                  require to enable this option to improve the
+%%                  consistency.
+%%                  - Complementary option is "nohyperref".
+%% indentfirst:     [false], make the first paragraphs of each (sub)
+%%                  sections with indents.
+%%                  - Complementary option is "noindentfirst".
+%% captionhang:     [false], make all captions with hanging indents.
+%%                  - Complementary option is "nocaptionhang".
+%% refdoublespace:  [false], make the references double-spaced. If
+%%                  not configured, will use the single space.
+%%                  - Complementary option is "refsinglespace".
+%% lstoftablefirst: [false], make the list of tables before the list
+%%                  of figures.
+%%                  - Complementary option is "lstoffigurefirst".
 %%
 %% =================================================================
 %% Text Options
@@ -38,6 +42,9 @@
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver F @ Dec. 7, 2022 By Yuche Jin
+%% 1. Provide an option for making the list of tables before the
+%%    list of figures.
 %% ver E @ Nov. 30, 2022 By Yuche Jin
 %% 1. Fix the wrong vertical trailing space of the parbox when using
 %%    the original template. This problem is fixed by referring the
@@ -70,7 +77,7 @@
 %% 3. Add compatibility option with hyperref.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{uhthesis2019}[2022/11/30 vE Document Style Option `UH Thesis Template'.]
+\ProvidesPackage{uhthesis2019}[2022/12/07 vF Document Style Option `UH Thesis Template'.]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -86,6 +93,8 @@
 \DeclareComplementaryOption{nocaptionhang}{captionhang}
 \DeclareBoolOption[false]{refdoublespace}
 \DeclareComplementaryOption{refsinglespace}{refdoublespace}
+\DeclareBoolOption[false]{lstoftablefirst}
+\DeclareComplementaryOption{lstoffigurefirst}{lstoftablefirst}
 
 \DeclareStringOption[Biblography]{refname}[Biblography]
 \DeclareStringOption[]{copyrightyear}[]
@@ -674,6 +683,17 @@ Documentation:
   \def\baselinestretch{1}\@normalsize
   %\renewcommand{\cfttoctitlefont}{\normalfont\Large\bfseries\MakeUppercase}
   \tableofcontents
+  % ver F Hotfix: If specified lstoftablefirst, will print list of tables
+  % before the list of figures.
+  \ifUHThesis@opt@lstoftablefirst%
+    \iftablelist
+      \cleardoublepage
+      % ver A Hotfix: Adjust the title configs according to the appearance
+      % of the "hyperref" pakcage.
+      \UHThesis@cmd@createtoctitle{List of Tables}
+      \listoftables
+    \fi
+  \fi
   \iffigurelist
     \cleardoublepage
     % ver A Hotfix: Adjust the title configs according to the appearance
@@ -681,12 +701,16 @@ Documentation:
     \UHThesis@cmd@createtoctitle{List of Figures}
     \listoffigures
   \fi
-  \iftablelist
-    \cleardoublepage
-    % ver A Hotfix: Adjust the title configs according to the appearance
-    % of the "hyperref" pakcage.
-    \UHThesis@cmd@createtoctitle{List of Tables}
-    \listoftables
+  % ver F Hotfix: If not specified lstoftablefirst, will print list of
+  % tables after the list of figures.
+  \ifUHThesis@opt@lstoftablefirst\else%
+    \iftablelist
+      \cleardoublepage
+      % ver A Hotfix: Adjust the title configs according to the appearance
+      % of the "hyperref" pakcage.
+      \UHThesis@cmd@createtoctitle{List of Tables}
+      \listoftables
+    \fi
   \fi
   \def\baselinestretch{1.7}\@normalsize
   \cleardoublepage
