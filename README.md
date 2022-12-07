@@ -111,6 +111,11 @@ The following options could be assigned in both the class options and the follow
 
 ## Update report
 
+### 1.1.4 (patched) @ 12/7/2022
+
+1. Fix a bug caused by the template information.
+2. Make the example of dedication looks better.
+
 ### 1.1.4 @ 12/6/2022
 
 1. Add a math operator: `\mathand`.

@@ -178,7 +178,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/12/6 v1.1.4 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/12/06 v1.1.4 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
