@@ -19,7 +19,7 @@
 % -----------------------------------
 % % ----------------------
 % % Text Configuration
-%  (It is highly recommended to master them. Use \ckesetup{} to
+%  (It is highly recommended to master them. Use \NRSMsetup{} to
 %   change them)
 % %
 %  stitle, sauthor  : [string], the short title and the short author names of 
@@ -118,8 +118,9 @@
 % *** not appear when using other class files.                            ***
 % The testflow support page is at:
 % http://www.michaelshell.org/tex/testflow/
+%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{NRSMRev}[2018/09/15 v1.0 Revised NRSM Class - Author: Yuchen Jin]
+\ProvidesClass{NRSMRev}[2018/09/15 v1.10 Revised NRSM Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
