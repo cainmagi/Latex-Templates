@@ -39,6 +39,7 @@ Currently this collection includes the following templates. If any template is l
 ### 1.1 @ 12/8/2020
 
 1. Add the template: [UH Revised Proposal][ex-uhproposal].
+2. Add the template: [NRSM-URSI abstract (2022 ver.)][ex-ursi2022].
 
 ### 1.0 @ 11/23/2020
 
