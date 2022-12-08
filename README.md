@@ -2,6 +2,8 @@
 
 ## Introduction
 
+> :warning: Actually, there are no format demands for a dissertation/thesis proposal. Therefore, the best choice is to prefer the [thesis template :link:][git-uhrevthesis] directly rather than this template. If you insist on using this template, you may have to switch to a different template when writing your thesis.
+
 This template is adapted from the an old version of the UH Thesis Style File. It is both compatible with `pdfLaTeX` and `XeLaTeX`. Now it has been modified for writing dissertation (thesis) proposal. According to the official example, we design this template for providing more supports.
 
 In this package, we mainly make the following two modifications:
@@ -131,6 +133,8 @@ The following options could be assigned in both the class options and the follow
 
 1. Creating this template `uhrevproposal.cls`.
 2. Prepare all functionalities of this extended template.
+
+[git-uhrevthesis]:../../tree/uhrevthesis
 
 [ex-fig-1]:./display/uhproposal-1.png
 [ex-fig-2]:./display/uhproposal-2.png
