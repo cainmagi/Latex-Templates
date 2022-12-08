@@ -1,0 +1,480 @@
+%% University of Houston PhD/MS thesis proposal style
+%% Original title:
+%%   University of Houston PhD/MS thesis style -- modifications to
+%%   the report style
+%% This version has been tested by TeXLive 2021
+%% For LaTeX version 2.09 (original)
+%%
+%% Original author: Dimitrios Georgakopoulos (dimitris@cs.uh.edu)
+%%
+%% The float and footnote macros bellow are stolen from the
+%% Stanfford University thesis style.
+%%
+%% Author of this modified version: Yuchen jin (yjin4@uh.edu)
+%%
+%% =================================================================
+%% Bool Options
+%% =================================================================
+%% hyperref:        [false], if used with "hyperref" package,
+%%                  require to enable this option to improve the
+%%                  consistency.
+%%                  - Complementary option is "nohyperref".
+%% indentfirst:     [false], make the first paragraphs of each (sub)
+%%                  sections with indents.
+%%                  - Complementary option is "noindentfirst".
+%% captionhang:     [false], make all captions with hanging indents.
+%%                  - Complementary option is "nocaptionhang".
+%% lstoftable：     [true], when configured, print the list of tables page.
+%%                  - Complementary option is "nolstoftable".
+%% lstoffigure：    [true], when configured, print the list of figures page.
+%%                  - Complementary option is "nolstoffigure".
+%% lstoftablefirst: [false], make the list of tables before the list
+%%                  of figures.
+%%                  - Complementary option is "lstoffigurefirst".
+%%
+%% =================================================================
+%% Text Options
+%% =================================================================
+%% refname:       [string], the title of the references.
+%% copyrightyear: [string], the year shown in the copyright page.
+%%                If left blank, will use the current year.
+%%
+%% =================================================================
+%% Modifications
+%% =================================================================
+%% ver A @ Dec. 7, 2022 By Yuche Jin
+%$ 1. Add Package head.
+%% 2. Fix the incompatibility with xcolor package when using
+%%    texlive>=2020. This feature can be disabled by setting the
+%%    fall-back option.
+%% 3. Add compatibility option with hyperref.
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{uhproposal}[2022/12/07 vA Document Style Option `UH Thesis Proposal Template'.]
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
+\RequirePackage{ifthen, calc}
+\SetupKeyvalOptions{family=UHProposal, prefix=UHProposal@opt@, setkeys=\kvsetkeys}
+
+\DeclareBoolOption[false]{hyperref}
+\DeclareComplementaryOption{nohyperref}{hyperref}
+\DeclareBoolOption[false]{indentfirst}
+\DeclareComplementaryOption{noindentfirst}{indentfirst}
+\DeclareBoolOption[false]{captionhang}
+\DeclareComplementaryOption{nocaptionhang}{captionhang}
+\DeclareBoolOption[true]{lstoftable}
+\DeclareBoolOption[true]{lstoffigure}
+\DeclareComplementaryOption{nolstoftable}{lstoftable}
+\DeclareComplementaryOption{nolstoffigure}{lstoffigure}
+\DeclareBoolOption[false]{lstoftablefirst}
+\DeclareComplementaryOption{lstoffigurefirst}{lstoftablefirst}
+
+\DeclareStringOption[References]{refname}[References]
+\DeclareStringOption[]{copyrightyear}[]
+
+\newcommand{\UHProposalSetup}[1]{
+  \kvsetkeys{UHProposal}{#1}
+  \ifUHProposal@opt@captionhang
+    \captionsetup{format={hang}}
+  \else
+    \captionsetup{format={plain}}
+  \fi
+}
+
+\DeclareDefaultOption{\relax}
+\ProcessKeyvalOptions*\relax
+
+%% ----------------
+%% Use packages
+%% ----------------
+
+% ver A Hotfix: If "hyperref" is enabled, will add \texorpdfstring
+% filter.
+\ifUHProposal@opt@hyperref
+  \RequirePackage{hyperref}
+\fi
+
+% ver A Hotfix: Add the package "caption", and provide the option for
+% hanging indent of all captions.
+\ifUHProposal@opt@captionhang
+  \PassOptionsToPackage{format={hang}}{caption}
+\fi
+\RequirePackage[font={stretch=1},labelsep=period]{caption}
+
+% ver A Hotfix: Add an option for letting the first paragrah with indents.
+\ifUHProposal@opt@indentfirst
+  \RequirePackage{indentfirst}
+\fi
+
+%% ---------------------------------------
+%% Extra definitions for interior commands
+%% ---------------------------------------
+
+% Configure the indent or no indent for the first paragraph of each page.
+% ver A Hotfix: Fix the indent of dedication, acknowledgements, and abstract.
+\providecommand{\UHProposal@cmd@firstPar}{%
+  \ifUHProposal@opt@indentfirst%
+    \par%
+  \fi%
+}
+
+% ver A Hotfix: If "hyperref" is enabled, will add \texorpdfstring
+% filter.
+\ifUHProposal@opt@hyperref
+  \newcommand{\UHProposal@cmd@createtoctitle}[1]{
+    \phantomsection
+    \addcontentsline{toc}{chapter}{%
+      \texorpdfstring{#1}{#1}%
+    }
+  }
+\else
+  \newcommand{\UHProposal@cmd@createtoctitle}[1]{
+    \phantomsection
+    \addcontentsline{toc}{chapter}{#1}
+  }
+\fi
+
+%% -----------------
+%% Plain definitions
+%% -----------------
+
+\long\def\comment#1{}
+
+% First thing we do is make sure that report has been loaded.  A
+% common error is to try to use uhthesis as a documentstyle.
+\@ifundefined{chapter}{\@latexerr{The `uhproposal' package should be used
+with the `report' document style}}{}
+
+% We need 1 1/2" margins except on the right edge, where it is 1"
+% Theses are single-sided, so we don't care about \evensidemargin
+\oddsidemargin 0.52in
+\topmargin 0.0in
+\headheight 0.0in
+\headsep 0.0in
+\textheight 9.0in
+\textwidth 5.98in
+\footskip 0.5in
+
+% Disallow page breaks at hyphens (this will give some underfull vbox's,
+% so an alternative is to use \brokenpenalty=100 and manually search
+% for and fix such page breaks)
+\brokenpenalty=100
+
+% Use 1.7 times the normal baseline-to-baseline skip
+\renewcommand{\baselinestretch}{1.7}
+
+% Roman page numbers in cover pages
+\pagenumbering{roman}
+
+
+
+% Redefine the macro used for footnotes to use single spacing
+\long\def\@footnotetext#1{\insert\footins{\def\baselinestretch{1}\footnotesize
+    \interlinepenalty\interfootnotelinepenalty
+    \splittopskip\footnotesep
+    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
+    \hsize\columnwidth \@parboxrestore
+   \edef\@currentlabel{\csname p@footnote\endcsname\@thefnmark}\@makefntext
+    {\rule{\z@}{\footnotesep}\ignorespaces
+      #1\strut}}}
+
+% \author, \title are defined in report style; here are the rest definitions
+% Define degree & thesis type
+% it takes two arguments: author's degree and thesis/disseration/whatever
+% defaults Doctor of Philosophy and Dissertation
+\def\degree#1#2{%
+  \gdef\@degree{#1}%
+  \gdef\@thesistype{#2}%
+}
+\def\@degree{\rm Doctor of Philosophy}
+\def\@thesistype{\rm Dissertation}
+
+% Define college/school  -- default College of Natural Sciences and Mathematics
+\def\college#1{\gdef\@college{#1}}
+\def\@college{\rm College of Natural Sciences and Mathematics}
+
+% Define department -- default Computer Science
+\def\department#1{\gdef\@department{#1}}
+\def\@department{\rm Computer Science}
+
+% Thesis advisor and committee
+\def\advisor#1{\gdef\@advisor{#1}}
+\def\firstreader#1{\gdef\@firstreader{#1}}
+\def\secondreader#1{\gdef\@secondreader{#1}}
+\def\thirdreader#1{\gdef\@thirdreader{#1}}
+\def\fourthreader#1{\gdef\@fourthreader{#1}}
+\def\fifthreader#1{\gdef\@fifthreader{#1}}
+\def\dean#1{\gdef\@dean{#1}}
+\def\chair#1{\gdef\@chair{#1}}
+\def\submitdate#1{\gdef\@submitdate{#1}}
+
+% \author, \title in report
+\def\@title{}
+\def\@author{}
+\def\@advisor{}
+\def\@firstreader{}
+\def\@secondreader{}
+\def\@thirdreader{}
+\def\@fourthreader{}
+\def\@fifthreader{}
+\def\@dean{}
+\def\@chair{}
+\def\@submitdate{}
+
+\newif\ifcopyright
+\copyrighttrue
+
+\newif\ifsignature
+\signaturetrue
+
+\newif\ifthreereaders
+\threereaderstrue
+
+\newif\iffourreaders
+\fourreaderstrue
+
+\newif\iffivereaders
+\fivereaderstrue
+
+%Cover pages
+\def\titlep{%
+  % ver A: Replace \newpage by \cleardoublepage
+  \cleardoublepage
+  \thispagestyle{empty}%
+  \vspace*{0.1in}
+  \begin{center}
+    \Large\bf\uppercase\expandafter{\@title}
+  \end{center}
+  \vskip.7in
+  \begin{center}
+    \rm A \expandafter{\@thesistype}\\
+    Presented to\\
+    the Faculty of the Department of
+    \expandafter{\@department}\\
+    University of Houston
+    \vskip.7in
+    In Partial Fulfillment\\
+    of the Requirements for the Degree\\
+    \expandafter{\@degree}\\
+    in Electrical Engineering
+    \vskip.7in
+    \rm by\\
+    \@author
+    \vskip.3in
+    \@submitdate
+  \end{center}%
+}
+
+\def\copyrightpage{%
+  % ver A: Replace \newpage by \cleardoublepage
+  \cleardoublepage
+  \thispagestyle{empty}%
+  \setcounter{page}{2}
+  \null\vskip2.5in
+  % ver A: Fix a bug of creating two blank pages here.
+  \begin{center}
+    {\copyright} Copyright by {\@author} %
+    \ifthenelse{\equal{\UHProposal@opt@copyrightyear}{}}{%
+      \the\year{}%
+    }{\UHProposal@opt@copyrightyear}%
+    \\
+    All Rights Reserved
+  \end{center}%
+}
+
+
+\def\signaturepage{%
+  % ver A: Replace \newpage by \cleardoublepage
+  \cleardoublepage
+  \thispagestyle{empty}%
+  \begin{center}
+    \Large\bf\uppercase\expandafter{\@title}
+  \end{center}
+  \vspace{.6in}
+	
+  \centerline{
+    \shortstack[c]{
+      \vrule width 1.5in height 0.4pt\\
+      \@author
+    }
+  }
+  \vspace{0.3in}
+	
+  \leftline{Approved:}
+  \vspace{.1in}
+	
+  \rightline{\shortstack[l]{\vrule width 2.9in height 0.4pt\\
+  Chair of the Committee\\ \@advisor}}
+  \vspace{.1in}
+	
+  \leftline{Committee Members:}
+  \vspace{.1in}
+	
+  \rightline{\shortstack[l]{\vrule width 2.9in height 0.4pt\\ \@firstreader}}
+  \vspace{.4in}
+
+  \rightline{\shortstack[l]{\vrule width 2.9in height 0.4pt\\ \@secondreader}}
+  \vspace{.4in}
+
+  \ifthenelse{\equal{\@thirdreader}{}}{}{
+    \rightline{\shortstack[l]{\vrule width 2.9in height 0.4pt\\ \@thirdreader}}
+    \vspace{.4in}
+  }
+
+  \ifthenelse{\equal{\@fourthreader}{}}{}{
+    \rightline{\shortstack[l]{\vrule width 2.9in height 0.4pt\\ \@fourthreader}}
+    \vspace{.4in}
+  }
+
+  \ifthenelse{\equal{\@fifthreader}{}}{}{
+    \rightline{\shortstack[l]{\vrule width 2.9in height 0.4pt\\ \@fifthreader}}
+    \vspace{.4in}
+  }
+
+  \vspace{.1in}
+  \noindent\shortstack[l]{\vrule width 2.5in height 0.4pt\\ \@dean}
+  \hspace{\fill}
+  \shortstack[l]{\vrule width 2.9in height 0.4pt\\ \@chair}
+}
+
+\def\makecoverpages{%
+  \abstractp%
+  \ifcopyright\copyrightpage\fi%
+  \ifsignature\signaturepage\fi%
+}
+
+
+%Abstract cover page
+\def\abstractp{%
+  % ver A: Replace \newpage by \cleardoublepage
+  \cleardoublepage
+  % ver A: Fix a bug that the page style is not empty.
+  \thispagestyle{empty}%
+  \begin{center}
+    \Large\bf\uppercase\expandafter{\@title}
+    \end{center}
+  \vskip.7in
+  \begin{center}
+    \rm An Abstract\\ of a\\ \expandafter{\@thesistype}\\
+    Presented to\\
+    the Faculty of the Department of
+    \expandafter{\@department}\\
+    University of Houston
+    \vskip.7in
+    In Partial Fulfillment\\
+    of the Requirements for the Degree\\
+    \expandafter{\@degree}\\
+    in Electrical Engineering
+    \vskip.7in
+    \rm by\\
+    \@author
+    \vskip.3in
+    \@submitdate
+  \end{center}%
+}
+
+% Abstract
+\def\abstract{
+  \def\baselinestretch{1.7}\@normalsize
+  % ver A: Move \abstractp to a separated command.
+  % ver A: Replace \newpage by \cleardoublepage
+  \cleardoublepage
+  % ver A: Fix the position of the toc tag.
+  \UHProposal@cmd@createtoctitle{Abstract}
+  \begin{center}
+    \Large \bf Abstract
+  \end{center}
+  % ver A Hotfix: Fix the indent of abstract.
+  \UHProposal@cmd@firstPar
+}
+
+% ver A Hotfix: Add this for using Abstract environment
+\def\endabstract{
+  \def\baselinestretch{1.7}\@normalsize
+}
+
+
+% Acknowledgements
+\def\acknowledgements{
+  % ver A: Replace \newpage by \cleardoublepage
+  \cleardoublepage
+  % ver A: Fix the position of the toc tag.
+  \UHProposal@cmd@createtoctitle{Acknowledgements}
+  \begin{center}
+    \Large \bf Acknowledgements
+  \end{center}
+  % ver A Hotfix: Fix the indent of abstract.
+  \UHProposal@cmd@firstPar
+}
+
+
+
+% Table of contents
+\def\makecontentspages{
+  \def\baselinestretch{1}\@normalsize
+  \setlength{\parskip}{0.8em}
+
+  % ver A: Replace \newpage by \cleardoublepage
+  \cleardoublepage
+  % ver A: Fix the position of the toc tag.
+  \UHProposal@cmd@createtoctitle{Table of Contents}
+  \renewcommand{\contentsname}{Table of Contents}
+  \tableofcontents
+
+  % ver A Hotfix: If specified lstoftablefirst, will print list of tables
+  % before the list of figures.
+  \ifUHProposal@opt@lstoftablefirst%
+    \ifUHProposal@opt@lstoftable%
+      % ver A: Replace \newpage by \cleardoublepage
+      \cleardoublepage
+      % ver A: Fix the position of the toc tag.
+      \UHProposal@cmd@createtoctitle{List of Tables}
+      \listoftables
+    \fi
+  \fi
+
+  \ifUHProposal@opt@lstoffigure%
+    % ver A: Replace \newpage by \cleardoublepage
+    \cleardoublepage
+    % ver A: Fix the position of the toc tag.
+    \UHProposal@cmd@createtoctitle{List of Figures}
+    \listoffigures
+  \fi
+
+  % ver A Hotfix: If not specified lstoftablefirst, will print list of
+  % tables after the list of figures.
+  \ifUHProposal@opt@lstoftablefirst\else%\
+    \ifUHProposal@opt@lstoftable%
+      % ver A: Replace \newpage by \cleardoublepage
+      \cleardoublepage
+      % ver A: Fix the position of the toc tag.
+      \UHProposal@cmd@createtoctitle{List of Tables}
+      \listoftables
+    \fi
+  \fi
+
+  \def\baselinestretch{1.7}\@normalsize
+  \setlength{\parskip}{0 in}
+}
+
+% Chapter page definition
+\def\chapterpages{
+  % ver A: Replace \newpage by \cleardoublepage
+	\cleardoublepage
+  \pagenumbering{arabic}
+}
+
+% \bibpages
+\def\bibpages{
+  % ver A: Replace \newpage by \cleardoublepage
+	\cleardoublepage
+  % ver A: Fix the position of the toc tag.
+  \renewcommand{\bibname}{\UHProposal@opt@refname}
+  \UHProposal@cmd@createtoctitle{\bibname}
+	\urlstyle{same}
+	\bibhang=0pt
+	\setlength\bibitemsep{0pt}
+	\printbibliography[title=\bibname]
+}
+
+% That's all folks

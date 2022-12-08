@@ -1,0 +1,64 @@
+\documentclass[12pt, hyper, oldmathcal, final]{uhrevproposal}
+%\documentclass[12pt, hyper, oldmathcal, draft]{uhrevproposal}
+
+\UHRevProposalSetup{
+  % Title information:
+  title={Sample Thesis Title - Long, Wide, and Words Capitalized},
+  author={Maya K. Student},
+  degree={Doctor of Philosophy},  % Ph.D. or Master
+  doctype={Dissertation Proposal},  % Dissertation or Thesis Proposal
+  department={Electrical and Computer Engineering},
+  college={Cullen College of Engineering},
+  submitdate={},  % Use today if left blank.
+  copyrightyear={2022},  % Use this year if left blank.
+  % Special configs:
+  nohypercolor,
+  % Whether to print out optional pages:
+  lstoftable, lstoffigure, copyright, nosignature,
+  % lstoffigurefirst,  % Will make Lst of Figures before Lst of Tables.
+  % Professor (Committee member) List:
+  advisor={Name of Chair Professor},  % Required
+  firstreader={Name of Prof1},  % Required
+  secondreader={Name of Prof2},  % Required
+  thirdreader={Name of Prof3},  % Optional, can be blank
+  fourthreader={Name of Prof4},  % Optional, can be blank
+  fifthreader={},  % Optional, can be blank
+  dean={Name of Dean},  % Required
+  chair={Name of College Chair},  % Required
+  ownerPass={}, userPass={}  % Can be configured only when using XeLaTeX
+}
+
+\submitdate{\monthyeardate\formatdate{14}{12}{2022}}
+\graphicspath{{./pics}}
+
+\bibliography{bib/ref}
+
+\begin{document}
+
+\makecoverpages
+
+\input{docs/00-abstract.tex}
+
+\input{docs/00-acknowledgement.tex}
+
+\makecontentspages
+
+\chapterpages
+
+\cleardoublepage
+\input{docs/01-introduction}
+
+\cleardoublepage
+\input{docs/02-a-new-section}
+
+\cleardoublepage
+\input{docs/03-conclusion}
+
+% References
+\bibpages
+
+\begin{appendices}
+  \input{docs/04-appendix}
+\end{appendices}
+
+\end{document}
