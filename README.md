@@ -46,7 +46,7 @@ The following options should only be enabled when using the class, like
 | :------: | ------------- | :--------------: | --------------- |
 | `hyper`  | Add colors to all links. It would not influence the figures. | `nohyper` | Disabled |
 | `draft`  | Use the draft mode of `article`, all figures would be replaced by placeholders, and the `hyperref` package (if used) will also work in draft mode. | `final` | Disabled |
-| `oldmathcal`     | A flag. When configured, make \mathcal and related symbols fall back to the old caligraphy style. | `newmathcal` | Enabled |
+| `oldmathcal`     | A flag. When configured, make `\mathcal` and related symbols fall back to the old caligraphy style. | `newmathcal` | Enabled |
 | `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Enabled |
 
 The following options could be assigned in both the class options and the following command:
