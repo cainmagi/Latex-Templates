@@ -25,6 +25,7 @@ Currently this collection includes the following templates. If any template is l
 | ----- | ----- | ----- |
 | [SEG-abstract][ex-seg-abstract]                   | Paper   | [![][fig-seg-abstract]][ex-seg-abstract] |
 | [NRSM-URSI abstract][ex-ursi]                     | Paper   | [![][fig-ursi]][ex-ursi]                 |
+| [NRSM-URSI abstract (2022 ver.)][ex-ursi2022]     | Paper   | [![][fig-ursi2022]][ex-ursi2022]         |
 | [UH-ECE-Homework][ex-ecehw]                       | Article | [![][fig-ecehw]][ex-ecehw]               |
 | [Revised IEEE Transaction][ex-ieeerev]            | Article | [![][fig-ieeerev]][ex-ieeerev]           |
 | [UH Revised Thesis][ex-uhthesis]                  | Article | [![][fig-uhthesis]][ex-uhthesis]                   |
@@ -68,6 +69,7 @@ Currently this collection includes the following templates. If any template is l
 
 [ex-seg-abstract]:../../tree/SEG-abstract
 [ex-ursi]:../../tree/URSI
+[ex-ursi2022]:../../tree/URSI2022
 [ex-ecehw]:../../tree/ECE-homework
 [ex-ieeerev]:../../tree/ieeerev
 [ex-uhthesis]:../../tree/uhrevthesis
@@ -77,6 +79,7 @@ Currently this collection includes the following templates. If any template is l
 [ex-shan]:../../tree/sourcehan
 [fig-seg-abstract]:./display/seg-abs.png
 [fig-ursi]:./display/ursi.png
+[fig-ursi2022]:./display/ursi2022.png
 [fig-ecehw]:./display/ecehw.png
 [fig-ieeerev]:./display/ieeerev.png
 [fig-uhthesis]:./display/uhthesis.png
