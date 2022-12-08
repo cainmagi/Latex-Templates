@@ -2,12 +2,12 @@
 
 ## Introduction
 
-This template is adapted from the IEEE transaction. It is both compatible with pdfLaTeX and XeLaTeX. URSI 2019 has provided a template for using the IEEE transaction template to write the two-page summary (see [here][ursi]). According to the official example, we design this template for providing more supports.
+This template is adapted from the IEEE transaction. It is both compatible with pdfLaTeX and XeLaTeX. URSI 2022 has provided a template for using the IEEE transaction template to write the two-page summary (see [here][ursi]). According to the official example, we design this template for providing more supports.
 
 The `NRSMRev.cls` is designed based on `IEEEtrans.cls`. This branch would provide both files. We make the following adaptions for supporting more features:
 
 * **Introduce `hyperref`**: it will add hyperlinks to all referring tags. We provide options to disable this feature.
-* **Support some packages**: we have integrate some useful packages, including AMS math packages, `graphicx`, `dsfont`, `tabularx`, `xcolor`, `subfigure`, `float`, `multicol`, `algorithm`, `listings`, `ntheorem`, `enumitem`, and `placeins`.
+* **Support some packages**: we have integrate some useful packages, including AMS math packages, `graphicx`, `dsfont`,  `bm`, `tabularx`, `xcolor`, `subfloat`, `float`, `multicol`, `algorithm`, `listings`, `ntheorem`, `enumitem`, and `placeins`.
 * **Add a pdf password**: This feature only supports XeLaTeX. It will enable you to add an owner password and a viewer password to the produced pdf file. 
 
 ## All options
@@ -52,6 +52,10 @@ The following options could be assigned in both the class options and the follow
 
 ## Update report
 
+### 2.0.0 @ 12/08/2020
+
+Upload the revised NRSM 2022 template.
+
 ### 1.10 @ 03/19/2020
 
 1. Remove useless features.
@@ -65,7 +69,7 @@ The following options could be assigned in both the class options and the follow
 
 1. Creating this template: `URSI`.
 
-[ursi]:https://nrsmboulder.org/abstract-submissions
+[ursi]:https://2022apsursi.org/papers.php
 [git-beamer]:https://github.com/cainmagi/UH-beamer-templates
 
 [ex-fig-1]:./display/ursi-1.png

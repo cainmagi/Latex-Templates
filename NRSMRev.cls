@@ -4,6 +4,8 @@
 % -----------------------------------
 % % Update statements:
 % -----------------------------------
+% % Version 2.0.0 (12/8/20)
+%     - Upgrade the NRSM template to the 2022 version.
 % % Version 1.10 (3/19/20)
 %     - Remove useless features.
 %     - Adjust the draft mode.
@@ -23,7 +25,7 @@
 %   change them)
 % %
 %  stitle, sauthor  : [string], the short title and the short author names of 
-%                     this report, which appears in  head and PDF metadata.
+%                     this report, which appears in head and PDF metadata.
 %  subject          : [string], the subject would appear in the pdf macros.
 %  ownerPass        : [string], password, if not provided, users could not edit
 %                     this document.
@@ -64,10 +66,19 @@
 % License:
 % MIT License
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ----------------------------------------------------
+% Note that the following parts are 
+% heritaged from original NRSM 2022 template.
+% ----------------------------------------------------
+%
+% This template is based on bare_conf.tex, V1.3, Michael Shell
+% The major change for AP-S/URSI 2021 is that authors are listed
+% on a single line with affiliations below.
+%
+% ----------------------------------------------------
 % Note that the following parts are 
 % heritaged from IEEEtran Template!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ----------------------------------------------------
 %% bare_conf.tex
 %% V1.3
 %% 2007/01/11
@@ -120,10 +131,11 @@
 % http://www.michaelshell.org/tex/testflow/
 %
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{NRSMRev}[2018/09/15 v1.10 Revised NRSM Class - Author: Yuchen Jin]
+\ProvidesClass{NRSMRev}[2022/12/08 v2.0.0 Revised NRSM Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
+\RequirePackage{ifpdf, ifxetex}
 \SetupKeyvalOptions{family=NRSM, prefix=NRSM@opt@, setkeys=\kvsetkeys}
 
 \DeclareBoolOption[false]{draft}
@@ -159,9 +171,15 @@
     }
     \renewcommand{\email}[1]{\texttt{##1}}
   \else
-    \hypersetup{
-      nolinks=false
-    }
+    \ifNRSM@opt@draft
+      \hypersetup{
+        nolinks=true
+      }
+    \else
+      \hypersetup{
+        nolinks=false
+      }
+    \fi
     \renewcommand{\email}[1]{\href{mailto:##1}{\texttt{##1}}}
   \fi
   \ifthenelse{\equal{\NRSM@opt@ownerPass}{}}{}{
@@ -212,17 +230,15 @@
       }
     }
   }
-  
+
   \title{
     \NRSM@opt@stitle
   }
-  \author{
-    \NRSM@opt@sauthor,~\IEEEmembership{Member,~IEEE}
-  }
-  
 }
 
-\DeclareDefaultOption{\relax}
+\DeclareDefaultOption{
+  \PassOptionsToClass{\CurrentOption}{IEEEtran}
+}
 \ProcessKeyvalOptions*\relax
 
 % Note that the a4paper option is mainly intended so that authors in
@@ -236,11 +252,12 @@
 % should be used if it is desired that the figures are to be displayed in
 % draft mode.
 %
+% Load the class and the UH thesis package.
+%
 \ifNRSM@opt@draft
-  \LoadClass[conference,10pt,draftcls]{IEEEtran}
-\else
-  \LoadClass[conference,10pt]{IEEEtran}
+  \PassOptionsToClass{draftcls}{IEEEtran}
 \fi
+\LoadClass[conference,10pt]{IEEEtran}
  % Conf. paper and 10pt font size
 % Add the compsoc option for Computer Society conferences.
 %
@@ -259,7 +276,7 @@
   \RequirePackage[cmex10]{amsmath}
 \fi
 \RequirePackage{amssymb,amsbsy}
-\RequirePackage{dsfont}
+\RequirePackage{dsfont,bm}
 % amsmath provides an AMS math environment which would be necessary for most
 % tex works. amssymb and dsfont would provide extra icons and symbols.
 % A popular package from the American Mathematical Society that provides
@@ -279,11 +296,10 @@
 % http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
 
 %================Graphic Settings====================
-\RequirePackage{ifpdf, ifxetex}
 \ifpdf
   \RequirePackage{graphicx}
   \RequirePackage{epstopdf}
-  \graphicspath{{Pics/}}
+  \graphicspath{{pics}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   \DeclareGraphicsExtensions{.pdf,.jpeg,.png,.jpg}
@@ -294,7 +310,7 @@
     \RequirePackage[dvipdfmx]{graphicx}
     \RequirePackage{bmpsize}
   \fi
-  \graphicspath{{Pics/}}
+  \graphicspath{{pics}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   \DeclareGraphicsExtensions{.eps,.pdf,.jpeg,.png,.jpg}
@@ -334,13 +350,13 @@
 % http://www.ctan.org/tex-archive/macros/latex/required/tools/
 
 % *** Use XColor PACKAGES ***
-\RequirePackage{xcolor}
+\RequirePackage[svgnames]{xcolor}
 % An improvement compared to color package, which enables users to use 
 % SVG colors, high-level color commands and more color sets
 
 % *** Use FLOAT PACKAGES ***
 \RequirePackage{float}
-\RequirePackage[tight,footnotesize]{subfigure}
+\RequirePackage[font=footnotesize,caption=false]{subfig}
 % subfigure.sty was written by Steven Douglas Cochran. This package makes it
 % easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
 % work, it is a good idea to load it with the tight package option to reduce
@@ -370,6 +386,8 @@
 % not format its papers in such ways.
 \RequirePackage{multicol}
 % Multicol is a package that uses the environment to divide sub-columns.
+\RequirePackage{placeins}
+% Defines a \FloatBarrier command, beyond which floats may not pass; useful,
 
 % *** Use SPECIALIZED LIST PACKAGES ***
 \RequirePackage{algorithm}
@@ -398,7 +416,6 @@
 \ifNRSM@opt@color
   \typeout{NRSMRev: Color Mode Enabled.}
   \RequirePackage[colorlinks]{hyperref}
-  \definecolor{DarkGreen}{RGB}{0,128,0}
   \definecolor{NRSMRviolet}{RGB}{100,16,86}
   \definecolor{NRSMRred}{RGB}{200,16,46}
   \definecolor{NRSMRgray}{RGB}{84,88,90}
@@ -407,7 +424,11 @@
   \hypersetup{citecolor={DarkGreen}}
 \else
   \typeout{NRSMRev: Gray Mode Enabled.}
-  \RequirePackage[hidelinks]{hyperref}
+  \RequirePackage[colorlinks]{hyperref}
+  \hypersetup{
+    citecolor={black}, linkcolor={black}, filecolor={black},
+    menucolor={black}, urlcolor={black}
+  }
 \fi
 \RequirePackage[all]{hypcap}
 % This package tries a solution of the problem with hyperref, that 
@@ -420,7 +441,7 @@
 \RequirePackage[thref,hyperref]{ntheorem}
 
 % *** CITATION PACKAGES ***
-\usepackage{cite}
+\RequirePackage{cite}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of IEEE. Loading the cite package will
@@ -443,8 +464,8 @@
 % enumitem is used to customize lists %\RequirePackage{enumerate}
 % \RequirePackage{siunitx}
 % enable users to use Système International d'Unités (SI).
-\RequirePackage{placeins}
 \RequirePackage{colortbl}
+\RequirePackage{url}
 % Other packages required by NRSM.
 
 %%***************************************
@@ -480,8 +501,20 @@
 \newcommand{\arccosh}{\cosh^{-1}}
 \newcommand{\qED}{\rightline{$\square$}}
 \ifNRSM@opt@nohyper
+  \hypersetup{
+    nolinks=true
+  }
   \providecommand{\email}[1]{\texttt{#1}}
 \else
+  \ifNRSM@opt@draft
+    \hypersetup{
+      nolinks=true
+    }
+  \else
+    \hypersetup{
+      nolinks=false
+    }
+  \fi
   \providecommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
 \fi
 
@@ -512,22 +545,10 @@
   pdfsubject={\NRSM@opt@subject},%
   %pdfkeywords={}%
 }
-\ifNRSM@opt@nohyper
-  \hypersetup{
-    nolinks=true
-  }
-\else
-  \hypersetup{
-    nolinks=false
-  }
-\fi
 
-%% =========== Define default title & author =========== 
+%% =========== Define default title =========== 
 \title{
   \NRSM@opt@stitle
-}
-\author{
-  \NRSM@opt@sauthor,~\IEEEmembership{Member,~IEEE}
 }
 
 %% =========== Define default listings options =========== 
@@ -568,7 +589,7 @@
       keywordstyle= \color{ blue!70},commentstyle=\color{red!50!green!50!blue!50},
       frame=shadowbox,
       xleftmargin=2em,
-      rulesepcolor= \color{ red!20!green!20!blue!20},
+      rulesepcolor=\color{red!20!green!20!blue!20},
       breaklines=true % automatically break the line
     }
   }
@@ -577,53 +598,147 @@
 %% =========== correct bad hyphenation here =========== 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-%% =========== Define reference number =========== 
+%% =========== Define new author section =========== 
 \makeatletter
 
+\newcounter{author}
+\renewcommand{\author}[2][]{
+  \stepcounter{author}
+  \@namedef{author@\theauthor}{#2}
+  \@namedef{authorlabel@\theauthor}{#1}
+}
+
+\newcounter{address}
+\newcommand{\address}[2][]{
+  \stepcounter{address}
+  \@namedef{address@\theaddress}{#2}
+  \@namedef{addresslabel@\theaddress}{#1}
+}
+
+\newcommand{\alsep}{and}
+
+\let\NRSM@cmd@oldmaketitle\maketitle
+% this is borrowed from IEEEtran.cls and revised for single column author block formatting
+\def\newmaketitle{\par%
+  \begingroup%
+  \normalfont%
+  \def\thefootnote{}%  the \thanks{} mark type is empty
+  \def\footnotemark{}% and kill space from \thanks within author
+  \let\@makefnmark\relax% V1.7, must *really* kill footnotemark to remove all \textsuperscript spacing as well.
+  \footnotesize%       equal spacing between thanks lines
+  \footnotesep 0.7\baselineskip%see global setting of \footnotesep for more info
+  \normalsize%
+  \twocolumn[\thenewmaketitle\@IEEEaftertitletext]%
+  % pullup page for pubid if used.
+  \if@IEEEusingpubid
+  \enlargethispage{-\@IEEEpubidpullup}%
+  \fi
+  \endgroup
+  \setcounter{footnote}{0}\let\maketitle\relax\let\@maketitle\relax
+  \gdef\@thanks{}%
+  % v1.6b do not clear these as we will need the title again for peer review papers
+  % \gdef\@author{}\gdef\@title{}%
+  \let\thanks\relax}
+
+% this is borrowed from ursi2022.cls for single column author block formatting
+\def\thenewmaketitle{
+  % Add the formatted title
+  \newpage
+  \begin{center}%
+    \vskip0.2em{\Huge\@IEEEcompsoconly{\sffamily}\@IEEEcompsocconfonly{\normalfont\normalsize\vskip 2\@IEEEnormalsizeunitybaselineskip
+        \bfseries\large}\@title\par}\vskip1.0em\par%
+    %
+    \vspace{1ex}
+    \newcounter{c@author}
+    \newcounter{c@tmp}
+    \ifthenelse{\value{author}=2}{%
+      \newcommand{\liand}{ and }}{%
+      \newcommand{\liand}{, and }}
+    % Next add the authors
+    \ifthenelse{\value{address}<2}{%
+      %No address references required if there is only one
+      \@nameuse{author@1}%
+      \stepcounter{c@author}%
+      \whiledo{\value{c@author}<\value{author}}{%
+        \setcounter{c@tmp}{\value{author}}%
+        \addtocounter{c@tmp}{-\value{c@author}}%
+        \ifthenelse{\value{c@tmp}=1}{%
+          \renewcommand{\alsep}{\liand}}{\renewcommand{\alsep}{, }}%
+        \stepcounter{c@author}\alsep \@nameuse{author@\thec@author}}\\%
+    }
+    {%Add address references after the author's name
+      \@nameuse{author@1}${}^{(\ref{\@nameuse{authorlabel@1}})}$%
+      \stepcounter{c@author}%
+      \whiledo{\value{c@author}<\value{author}}{%
+        \setcounter{c@tmp}{\value{author}}%
+        \addtocounter{c@tmp}{-\value{c@author}}%
+        \ifthenelse{\value{c@tmp}=1}{%
+          \renewcommand{\alsep}{\liand}}{\renewcommand{\alsep}{, }}%
+        \stepcounter{c@author}\alsep \@nameuse{author@\thec@author}%
+        ${}^{(\ref{\@nameuse{authorlabel@\thec@author}})}$%
+      }
+    }
+    %    \theaddress
+    \vspace{0.2ex}
+    
+    \ifthenelse{\value{address}>0}{%
+      \ifthenelse{\value{address}=1}{
+        %Output the address without any reference symbols
+        %%        {\slshape\small \@nameuse{address@1}}
+        {\@nameuse{address@1}}
+      }
+      {%Output the addresses as an enumerated list
+        \newcounter{c@address}
+        
+        \begin{center}
+          \whiledo{\value{c@address}<\value{address}}
+          {
+            \refstepcounter{c@address}
+            ${}^{(\thec@address)}$\,%
+            \label{\@nameuse{addresslabel@\thec@address}}%
+            \@nameuse{address@\thec@address}\\ %
+          }
+        \end{center}
+      } % end of the address creation ifthenelse block
+    }
+    {
+      \relax
+    }
+  \end{center}
+}
+\let\maketitle\newmaketitle
+
 \renewcommand{\thebibliography}[1]
-  {\ifNRSM@opt@refNum
-      \section{\refname}%
-    \else
-      \section*{\refname}%
-      \addcontentsline{toc}{section}{\refname}%
-    \fi
-    % V1.6 add some rubber space here and provide a command trigger
-    \footnotesize\vskip 0.3\baselineskip plus 0.1\baselineskip minus 0.1\baselineskip%
-    \list{\@biblabel{\@arabic\c@enumiv}}%
-    {\settowidth\labelwidth{\@biblabel{#1}}%
+{\ifNRSM@opt@refNum
+  \section{\refname}%
+  \else
+  \section*{\refname}%
+  \addcontentsline{toc}{section}{\refname}%
+  \fi
+  % V1.6 add some rubber space here and provide a command trigger
+  \footnotesize\vskip 0.3\baselineskip plus 0.1\baselineskip minus 0.1\baselineskip%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+  {\settowidth\labelwidth{\@biblabel{#1}}%
     \leftmargin\labelwidth
     \advance\leftmargin\labelsep\relax
     \itemsep \IEEEbibitemsep\relax
     \usecounter{enumiv}%
     \let\p@enumiv\@empty
     \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-    \let\@IEEElatexbibitem\bibitem%
-    \def\bibitem{\@IEEEbibitemprefix\@IEEElatexbibitem}%
-    \def\newblock{\hskip .11em plus .33em minus .07em}%
-    % originally:
-    %   \sloppy\clubpenalty4000\widowpenalty4000%
-    % by adding the \interlinepenalty here, we make it more
-    % difficult, but not impossible, for LaTeX to break within a reference.
-    % The IEEE almost never breaks a reference (but they do it more often with
-    % technotes). You may get an underfull vbox warning around the bibliography, 
-    % but the final result will be much more like what the IEEE will publish. 
-    % MDS 11/2000
-    \ifCLASSOPTIONtechnote\sloppy\clubpenalty4000\widowpenalty4000\interlinepenalty100%
-    \else\sloppy\clubpenalty4000\widowpenalty4000\interlinepenalty500\fi%
-        \sfcode`\.=1000\relax
-  }
-
-\AtBeginDocument{%
-  \newcommand*{\original@ref}{}%
-  \newcommand*{\original@autoref}{}%
-  \let\original@ref\ref
-  \let\original@autoref\autoref
-  \renewcommand*{\ref}{%
-    \normalfont\original@ref
-  }%
-  \renewcommand*{\autoref}{%
-    \normalfont\original@autoref
-  }%
+  \let\@IEEElatexbibitem\bibitem%
+  \def\bibitem{\@IEEEbibitemprefix\@IEEElatexbibitem}%
+  \def\newblock{\hskip .11em plus .33em minus .07em}%
+  % originally:
+  %   \sloppy\clubpenalty4000\widowpenalty4000%
+  % by adding the \interlinepenalty here, we make it more
+  % difficult, but not impossible, for LaTeX to break within a reference.
+  % The IEEE almost never breaks a reference (but they do it more often with
+  % technotes). You may get an underfull vbox warning around the bibliography, 
+  % but the final result will be much more like what the IEEE will publish. 
+  % MDS 11/2000
+  \ifCLASSOPTIONtechnote\sloppy\clubpenalty4000\widowpenalty4000\interlinepenalty100%
+  \else\sloppy\clubpenalty4000\widowpenalty4000\interlinepenalty500\fi%
+  \sfcode`\.=1000\relax
 }
 
 \makeatother

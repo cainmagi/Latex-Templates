@@ -8,26 +8,23 @@
   refNum       = {true}
 }
 
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+% If not configuredl, will use stitle in the setup directly.
 \title{Bare Demo of NRSMRev.cls\\ for USNC-URSI National Radio Science Meeting}
 
-% author names and affiliations
-% use a multiple column layout for up to three different
-% affiliations
-\author{\IEEEauthorblockN{Authors Name/s associated with 1st Affiliation}
-  \IEEEauthorblockA{line 1: dept. name (if applicable)\\
-    line 2: name of organization, acronyms acceptable\\
-    line 3: City, State/Province, Country\\
-    line 4: e-mail address if desired\\}
-  \and
-  \IEEEauthorblockN{Authors Name/s associated with 2nd Affiliation}
-  \IEEEauthorblockA{line 1: dept. name (if applicable)\\
-    line 2: name of organization, acronyms acceptable\\
-    line 3: City, State/Province, Country\\9444444444444787
-    line 4: e-mail address if desired}}
+% authors and affiliations
+% the organization option [orgN] associates the authors with the
+% proper address
+\author[org1]{Yuchen Jin}
+\author[org1]{Yuchen Jin II}
+
+% each address must have a unique identifier in the option field
+\address[org1]{The University of Here, Anywhere, VA 12345, USA, http://www.here.edu}
 
 %===========================================================
 \begin{document}
-	
+
 \maketitle
 
 \begin{abstract}
@@ -51,19 +48,19 @@ Test citations:
 Test figures and example block which is shown in \autoref{ex1}.
 
 \begin{example}[Figure Problem] \label{ex1}
-  Test inner subgraphs, i.e. \autoref{fig:ex1:resD:a} and \autoref{fig:ex1:resD:b}. Also test \ref{fig:ex1:resD:b} and \eqref{fml:th1:partialW}:
+  Test those inner subgraphs, i.e. \autoref{fig:ex1:resD:a} and \autoref{fig:ex1:resD:b}. Also test \ref{fig:ex1:resD:b} and \eqref{fml:th1:partialW}:
   
   \begin{figure}[H] \label{fig:ex1:resD}
 		\centering
 		\begin{minipage}[b]{0.48\columnwidth}
 			\centering
-			\subfigure[$D=1$]{ \label{fig:ex1:resD:a}
+			\subfloat[$D=1$]{ \label{fig:ex1:resD:a}
 				\includegraphics[width = 0.7\columnwidth]{pic-ex}
 			}
 		\end{minipage}
 		\begin{minipage}[b]{0.48\columnwidth}
 			\centering
-			\subfigure[$D=0.5$]{ \label{fig:ex1:resD:b}
+			\subfloat[$D=0.5$]{ \label{fig:ex1:resD:b}
 				Here could be graphs.
 			}
 		\end{minipage}
@@ -94,7 +91,7 @@ Test table, which is shown in \autoref{tab:params}:
 
 \begin{table}[htbp]
   \centering
-  \caption[Parameters of Daubechies's filter.]{Parameters of \textit{Daubechies}'s filter.}
+  \caption{Parameters of Daubechies's filter.}
   \label{tab:params}
   \begin{tabular}{|c|c|c|}
     \hline
