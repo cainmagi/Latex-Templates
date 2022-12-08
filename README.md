@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a collection of LaTeX templates designed by Yuchen Jin (cainmagi). This collection does not include any Beamer templates. People who want to find the templates for slices and posters, should check [this repository][git-beamer]. Since some of them are adapted from other templates, we may apply different licenses to different templates. If anyone who want to use these templates, please pay attension to the licenses.
+This is a collection of LaTeX templates designed by Yuchen Jin (cainmagi). This collection does not include any Beamer templates. People who want to find the templates for slices and posters, should check [this repository][git-beamer]. Since some of them are adapted from other templates, we may apply different licenses to different templates. If anyone who want to use these templates, please pay attention to the licenses.
 
 It is OK to place them in your `texmf-local` folder to make it work globally, but personally I suggest users place the files in any folder where your projects are stored. It will work locally for your specific LaTeX projects.
 
@@ -28,11 +28,16 @@ Currently this collection includes the following templates. If any template is l
 | [UH-ECE-Homework][ex-ecehw]                       | Article | [![][fig-ecehw]][ex-ecehw]               |
 | [Revised IEEE Transaction][ex-ieeerev]            | Article | [![][fig-ieeerev]][ex-ieeerev]           |
 | [UH Revised Thesis][ex-uhthesis]                  | Article | [![][fig-uhthesis]][ex-uhthesis]                   |
+| [UH Revised Proposal][ex-uhproposal]              | Report  | [![][fig-uhproposal]][ex-uhproposal]                   |
 | [Assignment][ex-cka]                              | Article | [![][fig-cka]][ex-cka]                   |
 | [Elegant Report][ex-ckegr]                        | Article | [![][fig-ckegr]][ex-ckegr]               |
 | [Source Han Chinese support for XeLaTeX][ex-shan] | Style   | [![][fig-shan]][ex-shan]                 |
 
 ## Update report
+
+### 1.1 @ 12/8/2020
+
+1. Add the template: [UH Revised Proposal][ex-uhproposal].
 
 ### 1.0 @ 11/23/2020
 
@@ -66,6 +71,7 @@ Currently this collection includes the following templates. If any template is l
 [ex-ecehw]:../../tree/ECE-homework
 [ex-ieeerev]:../../tree/ieeerev
 [ex-uhthesis]:../../tree/uhrevthesis
+[ex-uhproposal]:../../tree/uhrevproposal
 [ex-cka]:../../tree/assignment
 [ex-ckegr]:../../tree/elegant-report
 [ex-shan]:../../tree/sourcehan
@@ -74,6 +80,7 @@ Currently this collection includes the following templates. If any template is l
 [fig-ecehw]:./display/ecehw.png
 [fig-ieeerev]:./display/ieeerev.png
 [fig-uhthesis]:./display/uhthesis.png
+[fig-uhproposal]:./display/uhproposal.png
 [fig-cka]:./display/cka.png
 [fig-ckegr]:./display/ckegr.png
 [fig-shan]:./display/shan.png
