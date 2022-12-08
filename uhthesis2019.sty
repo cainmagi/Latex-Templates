@@ -101,7 +101,7 @@
 
 \newcommand{\UHThesisSetup}[1]{
   \kvsetkeys{UHThesis}{#1}
-  \UHThesis@cmd@setBiblographyName{\UHThesis@opt@refname}
+  \UHThesis@cmd@setBibliographyName{\UHThesis@opt@refname}
   \ifUHThesis@opt@captionhang
     \captionsetup{format={hang}}
   \else
@@ -734,7 +734,7 @@ Documentation:
 % references.
 %
 \let\@ldthebibliography\thebibliography
-\providecommand{\UHThesis@cmd@setBiblographyName}[1]{
+\providecommand{\UHThesis@cmd@setBibliographyName}[1]{
   \renewcommand{\refname}{#1}
 }
 \renewcommand{\thebibliography}[1]{
@@ -749,7 +749,7 @@ Documentation:
   \UHThesis@cmd@createtoctitleAlt{\refname}
   \@ldthebibliography{#1}
 }
-\UHThesis@cmd@setBiblographyName{\UHThesis@opt@refname}
+\UHThesis@cmd@setBibliographyName{\UHThesis@opt@refname}
 
 % Single space for drafts
 \def\singlespace{

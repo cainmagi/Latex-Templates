@@ -50,7 +50,7 @@
 %  Control options statements:
 %% -----------------------------------
 % Text configuration for the information
-% (It is highly recommended to master them. Use \UHThesisSetup{} to
+% (It is highly recommended to master them. Use \UHRevThesisSetup{} to
 %  change them)
 %
 %  title, author  : [string], the short title and the short author names of 
@@ -498,7 +498,7 @@
 
 % *** Use HYPERREF PACKAGES ***
 \ifUHRevThesis@opt@hyper
-  \typeout{UHThesis: Hyperref Mode Enabled.}
+  \typeout{UHRevThesis: Hyperref Mode Enabled.}
   \UHRevThesis@cmd@setHyperrefColors
   \RequirePackage[all]{hypcap}
   % This package tries a solution of the problem with hyperref, that 
@@ -507,7 +507,7 @@
   % the link setting with \capstart or automatically at the beginning 
   % of a float and the rest in the \caption command.
 \else
-  \typeout{UHThesis: Hyperref Mode Disabled.}
+  \typeout{UHRevThesis: Hyperref Mode Disabled.}
   \RequirePackage[capitalise, noabbrev, sort&compress]{cleveref}
   \let\autoref\cref
 \fi

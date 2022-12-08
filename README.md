@@ -41,7 +41,7 @@ The following options should only be enabled when using the class, like
 | :------: | ------------- | :--------------: | --------------- |
 | `hyper`  | Add colors to all links. It would not influence the figures. | `nohyper` | Disabled |
 | `draft`  | Use the draft mode of `article`, all figures would be replaced by placeholders, and the `hyperref` package (if used) will also work in draft mode. | `final` | Disabled |
-| `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Disabled |
+| `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Enabled |
 
 The following options could be assigned in both the class options and the following command:
 
@@ -60,7 +60,7 @@ The following options could be assigned in both the class options and the follow
 | `department`      | The name of the department. Do **not** need to include `"Department of ..."`. | `Electrical and Computer Engineering` |
 | `college`         | The name of the college. **Need** to include `"College of ..."`. | `Cullen College of Engineering` |
 | `submitdate`      | The date of the submission. If needing to use commands for this option, recommend to use `\submitdate{}` to configure this option. When being blank, will use `\today`. | ` ` |
-| `refname`         | The title of the references. It can also get configured by `\renewcommand{\refname}{...}`. | `Reference` |
+| `refname`         | The title of the references. It can also get configured by `\renewcommand{\refname}{...}`. | `References` |
 | `copyrightyear`   | The year shown in the copyright page. When being blank, will use the current year. | ` ` |
 | `ownerPass`       | This option is only compatible with `XeLaTeX`. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`        | This option is only compatible with `XeLaTeX`. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
@@ -101,8 +101,8 @@ The following options could be assigned in both the class options and the follow
 | `\qED`                 | Right-aligned QED command. |
 | `\argmax`, `argmin   ` | Math symbols for defining an optimization: "argmax" and "argmin" |
 | `\mean`, `\std`        | "mean" and "std". |
-| `\intd`                | "d" appearing as the differential operator in integration.
-| `\expect`              | "E" with a `\mathbb` style.
+| `\intd`                | "d" appearing as the differential operator in integration. |
+| `\expect`              | "E" with a `\mathbb` style. |
 
 ## Example
 
@@ -111,6 +111,10 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.0 (patched) @ 12/7/2022
+
+1. Fix some typos in the files and the Readme file. They do not influence the performance.
 
 ### 1.2.0 @ 12/7/2022
 
