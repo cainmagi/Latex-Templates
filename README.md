@@ -112,6 +112,10 @@ The following options could be assigned in both the class options and the follow
 
 ## Update report
 
+### 1.2.1 @ 12/10/2022
+
+1. Fix the package loading order for the `hyperref` pacakge. This may avoid some unexpected bugs especially for AMS pacakges.
+
 ### 1.2.0 (patched) @ 12/7/2022
 
 1. Fix some typos in the files and the Readme file. They do not influence the performance.

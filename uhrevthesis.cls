@@ -4,6 +4,9 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.2.1 (12/10/22)
+%   - Fix the package loading order for the hyperref pacakge. This
+%     may avoid some unexpected bugs especially for AMS pacakges.
 % Version 1.2.0 (12/7/22)
 %   - Add bool option: "lstoftablefirst".
 %   - Change: Make the list of tables before the list of figures.
@@ -186,7 +189,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/12/07 v1.2.0 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/12/10 v1.2.1 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -289,6 +292,55 @@
   \PassOptionsToClass{draft}{article}
 \fi
 \LoadClass{article}
+
+%
+% Special modification @ 1.2.1
+% Move the prerequisite packages of uhthesis2019 to the front.
+% Both geometry and setspace are required to be loaded before hyperref.
+%
+% Two prerequisite pacckages of UH Thesis 2019
+\RequirePackage{setspace}
+% setspace:
+% Provides support for setting the spacing between lines in a document.
+% Package options include singlespacing, onehalfspacing, and doublespacing.
+% Alternatively the spacing can be changed as required with the
+% \singlespacing, \onehalfspacing, and \doublespacing commands. Other size
+% spacings also available.
+\RequirePackage{geometry}
+% geometry:
+% The package provides an easy and flexible user interface to customize page
+% layout, implementing auto-centering and auto-balancing mechanisms so that
+% the users have only to give the least description for the page layout. 
+
+%
+% Special modification @ 1.2.1
+% AMS packages are required to be loaded before hyperref
+% float package is required to be loaded before hyperref
+%
+% *** Use AMS MATH PACKAGES ***
+\RequirePackage{amsmath}
+\RequirePackage{amssymb,amsbsy}
+\RequirePackage{dsfont}
+\RequirePackage{bm}
+% amsmath provides an AMS math environment which would be necessary for most
+% tex works. amssymb and dsfont would provide extra icons and symbols.
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+\RequirePackage{float}
+
 \ifUHRevThesis@opt@hyper
   \RequirePackage[colorlinks]{hyperref}
   \PassOptionsToPackage{hyperref}{uhthesis2019}
@@ -314,43 +366,6 @@
 %%***************************************
 %% Require Packages ...
 %%***************************************
-
-% Two pacckages required by UH Thesis 2019
-\RequirePackage{setspace}
-% setspace:
-% Provides support for setting the spacing between lines in a document.
-% Package options include singlespacing, onehalfspacing, and doublespacing.
-% Alternatively the spacing can be changed as required with the
-% \singlespacing, \onehalfspacing, and \doublespacing commands. Other size
-% spacings also available.
-\RequirePackage{geometry}
-% geometry:
-% The package provides an easy and flexible user interface to customize page
-% layout, implementing auto-centering and auto-balancing mechanisms so that
-% the users have only to give the least description for the page layout. 
-
-% *** Use AMS MATH PACKAGES ***
-\RequirePackage{amsmath}
-\RequirePackage{amssymb,amsbsy}
-\RequirePackage{dsfont}
-\RequirePackage{bm}
-% amsmath provides an AMS math environment which would be necessary for most
-% tex works. amssymb and dsfont would provide extra icons and symbols.
-% A popular package from the American Mathematical Society that provides
-% many useful and powerful commands for dealing with mathematics. If using
-% it, be sure to load this package with the cmex10 option to ensure that
-% only type 1 fonts will utilized at all point sizes. Without this option,
-% it is possible that some math symbols, particularly those within
-% footnotes, will be rendered in bitmap form which will result in a
-% document that can not be IEEE Xplore compliant!
-%
-% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
-%\interdisplaylinepenalty=2500
-% after loading amsmath to restore such page breaks as IEEEtran.cls normally
-% does. amsmath.sty is already installed on most LaTeX systems. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
 
 %================Graphic Settings====================
 \ifpdf
@@ -421,7 +436,6 @@
 % SVG colors, high-level color commands and more color sets
 
 % *** Use FLOAT PACKAGES ***
-\RequirePackage{float}
 % \RequirePackage{caption}
 % Package caption has been added to uhthesis2019.sty.
 \RequirePackage{subfig}

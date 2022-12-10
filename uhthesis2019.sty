@@ -42,6 +42,8 @@
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver G @ Dec. 10, 2022 By Yuche Jin
+%% 1. Fix the package loading order for hyperref (if used).
 %% ver F @ Dec. 7, 2022 By Yuche Jin
 %% 1. Provide an option for making the list of tables before the
 %%    list of figures.
@@ -77,7 +79,7 @@
 %% 3. Add compatibility option with hyperref.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{uhthesis2019}[2022/12/07 vF Document Style Option `UH Thesis Template'.]
+\ProvidesPackage{uhthesis2019}[2022/12/10 vG Document Style Option `UH Thesis Template'.]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -112,8 +114,12 @@
 \DeclareDefaultOption{\relax}
 \ProcessKeyvalOptions*\relax
 
+%
+% ver G Hotfix: Fix the loading order of packages.
+%
 \RequirePackage{geometry}
 \RequirePackage{tocloft}
+\RequirePackage{setspace}
 
 %
 % ver A Hotfix: If "hyperref" is enabled, will add \texorpdfstring
@@ -148,8 +154,6 @@
   papersize={8.5in,11in},
   left={1.5in}, right={1in}, top={1in}, bottom={1in}
 }
-
-\RequirePackage{setspace}
 
 % Following overrides are used to center the title of the TOC, TOF and TOT listings
 \renewcommand{\contentsname}{\begin{center}\Large \bf \uppercase {Table of Contents}\end{center}}
