@@ -4,7 +4,10 @@
 %% --------------------------------------
 %  Update statements:
 %% --------------------------------------
-% Version 1.0.0 (12/7/22)
+% Version 1.0.1 (12/9/2022)
+%   - Fix a hidden bug. The ams packges are required to be loaded before
+%     hyperref.
+% Version 1.0.0 (12/7/2022)
 %   - Create this template.
 %   - Prepare all functionalities of this extended template.
 %% -----------------------------------
@@ -147,7 +150,7 @@
 % Stanfford University thesis style.
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevproposal}[2022/12/07 v1.0.0 Revised UH Proposal Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevproposal}[2022/12/09 v1.0.1 Revised UH Proposal Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -255,6 +258,12 @@
   \PassOptionsToClass{draft}{report}
 \fi
 \LoadClass{report}
+
+% Need to make ams packages come before hyperref
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts,amssymb,amsbsy}
+\RequirePackage{amsthm}
+
 \ifUHRevProposal@opt@hyper
   \RequirePackage[colorlinks]{hyperref}
   \PassOptionsToPackage{hyperref}{uhproposal}
@@ -301,9 +310,6 @@
 \RequirePackage{multicol}
 
 % Math
-\RequirePackage{amsmath}
-\RequirePackage{amsfonts,amssymb,amsbsy}
-\RequirePackage{amsthm}
 \RequirePackage{dsfont}
 \RequirePackage{bm}
 \ifUHRevProposal@opt@oldmathcal\else

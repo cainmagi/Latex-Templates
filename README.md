@@ -129,6 +129,10 @@ The following options could be assigned in both the class options and the follow
 
 ## Update report
 
+### 1.0.1 @ 12/9/2022
+
+1. Fix a hidden bug. The `ams` packges are required to be loaded before `hyperref`.
+
 ### 1.0.0 @ 12/7/2022
 
 1. Creating this template `uhrevproposal.cls`.
