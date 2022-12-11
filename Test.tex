@@ -1,8 +1,8 @@
 \documentclass[color,hyper]{NRSMRev}
 
 \NRSMsetup{
-  stitle       = {Bare Demo of NRSMRev.cls for USNC-URSI National Radio Science Meeting},
-  sauthor      = {Yuchen Jin, Yuchen Jin II},
+  stitle       = {},  % inferred from \title command.
+  sauthor      = {},  % inferred from \author commands.
   subject      = {URSI 2020},
   codeStyle    = {box},
   refNum       = {true}
@@ -11,7 +11,13 @@
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
 % If not configuredl, will use stitle in the setup directly.
-\title{Bare Demo of NRSMRev.cls\\ for USNC-URSI National Radio Science Meeting}
+\title{%
+  \texorpdfstring{% Used in printed title.
+    Bare Demo of NRSMRev.cls\\ for USNC-URSI National Radio Science Meeting%
+  }{% Used in pdf marcos.
+    Bare Demo of NRSMRev.cls for USNC-URSI National Radio Science Meeting%
+  }%
+}
 
 % authors and affiliations
 % the organization option [orgN] associates the authors with the

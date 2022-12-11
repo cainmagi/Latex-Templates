@@ -36,8 +36,8 @@ The following options could be assigned in both the class options and the follow
 
 | Option | Description | Default value |
 | -----  |   -----     |     -----     |
-| `stitle`    | The title that would be shown in the macros of this file. | `Bare Demo of IEEERev.cls` |
-| `sauthor`   | The author name that would be shown in the macros of this file. | `Yuchen Jin` |
+| `stitle`    | The title that would be shown in the macros of this file. If not provided, will be inferred from `\title`. | ` ` |
+| `sauthor`   | The author name that would be shown in the macros of this file. If not provided, will be inferred from `\author`. | ` ` |
 | `subject`   | The subject that would be shown in the macros of this file. | `USNC-URSI National Radio Science Meeting` |
 | `nohyper`   | A bool. Whether to disable the links created by `hyperref` package, note that the other features of this package would remain. | true |
 | `codeStyle` | The style of the codes created by `listings`, could be either `box` or `default`. | `default` |
@@ -51,6 +51,10 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 2.1.0 @ 12/11/2020
+
+Enable the title and author(s) in pdf macros to be configured automatically.
 
 ### 2.0.0 @ 12/08/2020
 

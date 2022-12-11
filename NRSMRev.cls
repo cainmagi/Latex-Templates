@@ -4,6 +4,9 @@
 % -----------------------------------
 % % Update statements:
 % -----------------------------------
+% % Version 2.1.0 (12/11/20)
+%     - Enable the title and author(s) in pdf macros to be configured
+%       automatically.
 % % Version 2.0.0 (12/8/20)
 %     - Upgrade the NRSM template to the 2022 version.
 % % Version 1.10 (3/19/20)
@@ -25,7 +28,9 @@
 %   change them)
 % %
 %  stitle, sauthor  : [string], the short title and the short author names of 
-%                     this report, which appears in head and PDF metadata.
+%                     this report, which appears in head and PDF metadata. If
+%                     not defined, will be inferred from the \title and \author
+%                     commands.
 %  subject          : [string], the subject would appear in the pdf macros.
 %  ownerPass        : [string], password, if not provided, users could not edit
 %                     this document.
@@ -131,7 +136,7 @@
 % http://www.michaelshell.org/tex/testflow/
 %
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{NRSMRev}[2022/12/08 v2.0.0 Revised NRSM Class - Author: Yuchen Jin]
+\ProvidesClass{NRSMRev}[2022/12/11 v2.1.0 Revised NRSM Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -149,7 +154,7 @@
 \DeclareComplementaryOption{hyper}{nohyper}
 
 \DeclareStringOption[Bare Demo of IEEERev.cls]{stitle}[Bare Demo of IEEERev.cls]
-\DeclareStringOption[Yuchen Jin]{sauthor}[Yuchen Jin]
+\DeclareStringOption[]{sauthor}[]
 \DeclareStringOption[USNC-URSI National Radio Science Meeting]{subject}[USNC-URSI National Radio Science Meeting]
 
 \DeclareStringOption[]{ownerPass}[]
@@ -160,8 +165,6 @@
 \newcommand{\NRSMsetup}[1]{
   \kvsetkeys{NRSM}{#1}
   \hypersetup{
-    pdfauthor={\NRSM@opt@sauthor},% 
-    pdftitle={\NRSM@opt@stitle},%
     pdfsubject={\NRSM@opt@subject},%
     %pdfkeywords={}%
   }
@@ -231,8 +234,18 @@
     }
   }
 
-  \title{
-    \NRSM@opt@stitle
+  \ifthenelse{\equal{\NRSM@opt@stitle}{}}{}{
+    \title{
+      \NRSM@opt@stitle
+    }
+    \hypersetup{
+      pdftitle={\NRSM@opt@stitle},%
+    }
+  }
+  \ifthenelse{\equal{\NRSM@opt@sauthor}{}}{}{
+    \hypersetup{
+      pdfauthor={\NRSM@opt@sauthor},%
+    }
   }
 }
 
@@ -546,9 +559,11 @@
   %pdfkeywords={}%
 }
 
-%% =========== Define default title =========== 
-\title{
-  \NRSM@opt@stitle
+%% =========== Define default title ===========
+\ifthenelse{\equal{\NRSM@opt@stitle}{}}{}{
+  \title{
+    \NRSM@opt@stitle
+  }
 }
 
 %% =========== Define default listings options =========== 
@@ -640,17 +655,56 @@
   % \gdef\@author{}\gdef\@title{}%
   \let\thanks\relax}
 
+\newcounter{c@author}
+\newcounter{c@tmp}
+
+\def\NRSM@tmp@authorlist{}
+\def\makeauthorlist{
+  \def\NRSM@tmp@authorlist{\@nameuse{author@1}}
+  \setcounter{c@author}{0}
+  \setcounter{c@tmp}{0}
+  \stepcounter{c@author}%
+  \whiledo{\value{c@author}<\value{author}}{%
+    \setcounter{c@tmp}{\value{author}}%
+    \addtocounter{c@tmp}{-\value{c@author}}%
+    \ifthenelse{\value{c@tmp}=1}{%
+      \ifthenelse{\value{author}=2}{%
+        \eappto\NRSM@tmp@authorlist{ and }%
+      }{%
+        \eappto\NRSM@tmp@authorlist{, and }%
+      }%
+    }{%
+      \eappto\NRSM@tmp@authorlist{, }%
+    }%
+    \stepcounter{c@author}%
+    \eappto\NRSM@tmp@authorlist{\@nameuse{author@\thec@author}}%
+  }%
+}
+
 % this is borrowed from ursi2022.cls for single column author block formatting
 \def\thenewmaketitle{
   % Add the formatted title
-  \newpage
+  \clearpage
+  % Configure the title from the command if stitle is empty
+  \ifthenelse{\equal{\NRSM@opt@stitle}{}}{
+    \hypersetup{
+      pdftitle={\@title},%
+    }
+  }{}
+  % Configure the authors from the commands if sauthor is empty
+  \ifthenelse{\equal{\NRSM@opt@sauthor}{}}{
+    \makeauthorlist
+    \hypersetup{
+      pdfauthor={\NRSM@tmp@authorlist},%
+    }
+  }{}
   \begin{center}%
     \vskip0.2em{\Huge\@IEEEcompsoconly{\sffamily}\@IEEEcompsocconfonly{\normalfont\normalsize\vskip 2\@IEEEnormalsizeunitybaselineskip
         \bfseries\large}\@title\par}\vskip1.0em\par%
     %
     \vspace{1ex}
-    \newcounter{c@author}
-    \newcounter{c@tmp}
+    \setcounter{c@author}{0}
+    \setcounter{c@tmp}{0}
     \ifthenelse{\value{author}=2}{%
       \newcommand{\liand}{ and }}{%
       \newcommand{\liand}{, and }}
@@ -663,7 +717,9 @@
         \setcounter{c@tmp}{\value{author}}%
         \addtocounter{c@tmp}{-\value{c@author}}%
         \ifthenelse{\value{c@tmp}=1}{%
-          \renewcommand{\alsep}{\liand}}{\renewcommand{\alsep}{, }}%
+          \renewcommand{\alsep}{\liand}}{%
+          \renewcommand{\alsep}{, }%
+        }%
         \stepcounter{c@author}\alsep \@nameuse{author@\thec@author}}\\%
     }
     {%Add address references after the author's name
