@@ -40,7 +40,7 @@ The following options could be assigned in both the class options and the follow
 | `sauthor`   | The author name that would be shown in the macros of this file. If not provided, will be inferred from `\author`. | ` ` |
 | `subject`   | The subject that would be shown in the macros of this file. | `USNC-URSI National Radio Science Meeting` |
 | `nohyper`   | A bool. Whether to disable the links created by `hyperref` package, note that the other features of this package would remain. | true |
-| `codeStyle` | The style of the codes created by `listings`, could be either `box` or `default`. | `default` |
+| `codeStyle` | The style of the codes created by `listings`, could be `formal`, `box` or `default`. | `default` |
 | `ownerPass` | This option is only compatible with XeLaTeX. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`  | This option is only compatible with XeLaTeX. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 
@@ -54,7 +54,9 @@ The following options could be assigned in both the class options and the follow
 
 ### 2.1.0 @ 12/11/2020
 
-Enable the title and author(s) in pdf macros to be configured automatically.
+1. Enable the title and author(s) in pdf macros to be configured automatically.
+2. Provide a new coding style "formal".
+3. Adjust the interior commands.
 
 ### 2.0.0 @ 12/08/2020
 

@@ -7,6 +7,8 @@
 % % Version 2.1.0 (12/11/20)
 %     - Enable the title and author(s) in pdf macros to be configured
 %       automatically.
+%     - Provide a new coding style "formal".
+%     - Adjust the interior commands.
 % % Version 2.0.0 (12/8/20)
 %     - Upgrade the NRSM template to the 2022 version.
 % % Version 1.10 (3/19/20)
@@ -38,8 +40,9 @@
 %                     this document.
 %                       - Noted that if ownerPass is not defined, this password 
 %                         will not be effective!
-%  codeStyle        : [default], the style of the code box, we have two modes:
-%                       - box,  - default,  
+%  codeStyle        : [default], the style of the code box, we have the
+%                     following modes:
+%                       - formal,  - box,  - default,
 %  refNum           : [bool], let the title of bibtex is marked with the section
 %                     number
 %  nohyper          : [bool][true], disable all links and bookmarks ("hyper" is 
@@ -153,7 +156,7 @@
 \DeclareBoolOption[true]{nohyper}
 \DeclareComplementaryOption{hyper}{nohyper}
 
-\DeclareStringOption[Bare Demo of IEEERev.cls]{stitle}[Bare Demo of IEEERev.cls]
+\DeclareStringOption[]{stitle}[]
 \DeclareStringOption[]{sauthor}[]
 \DeclareStringOption[USNC-URSI National Radio Science Meeting]{subject}[USNC-URSI National Radio Science Meeting]
 
@@ -164,75 +167,9 @@
 
 \newcommand{\NRSMsetup}[1]{
   \kvsetkeys{NRSM}{#1}
-  \hypersetup{
-    pdfsubject={\NRSM@opt@subject},%
-    %pdfkeywords={}%
-  }
-  \ifNRSM@opt@nohyper
-    \hypersetup{
-      nolinks=true
-    }
-    \renewcommand{\email}[1]{\texttt{##1}}
-  \else
-    \ifNRSM@opt@draft
-      \hypersetup{
-        nolinks=true
-      }
-    \else
-      \hypersetup{
-        nolinks=false
-      }
-    \fi
-    \renewcommand{\email}[1]{\href{mailto:##1}{\texttt{##1}}}
-  \fi
-  \ifthenelse{\equal{\NRSM@opt@ownerPass}{}}{}{
-    \ifthenelse{\equal{\NRSM@opt@userPass}{}}{
-      \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) length 128 perm 2052}
-    }{
-      \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) userpw (\NRSM@opt@userPass) length 128 perm 2052}
-    }
-  }
-  \ifdefstring{\NRSM@opt@codeStyle}{box}{
-    \lstset{
-      numbers=left,
-      frame=single,
-      backgroundcolor=\color[RGB]{244,244,244},
-      basicstyle={\footnotesize\ttfamily},
-      keywordstyle=\bf\color[RGB]{0,0,176},
-      identifierstyle=,
-      commentstyle=\color[RGB]{0,176,0},
-      stringstyle=\color[RGB]{176,0,0},
-      tabsize=4,
-      showstringspaces=false,
-      breaklines=true, % automatically break the line
-      xleftmargin=2em,
-      literate=
-        {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-        {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-        {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-        {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-        {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-        {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-        {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-        {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-        {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-        {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-        {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-        {€}{{\EUR}}1 {£}{{\pounds}}1
-    }
-  }{
-    \ifdefstring{\NRSM@opt@codeStyle}{default}{
-      \lstset{numbers=left,
-        numberstyle= \tiny,
-        basicstyle={\footnotesize\ttfamily},
-        keywordstyle= \color{ blue!70},commentstyle=\color{red!50!green!50!blue!50},
-        frame=shadowbox,
-        xleftmargin=2em,
-        rulesepcolor= \color{ red!20!green!20!blue!20},
-        breaklines=true % automatically break the line
-      }
-    }
-  }
+  \NRSM@cmd@setHyper
+  \NRSM@cmd@setPasswords
+  \NRSM@cmd@setLangStyle
 
   \ifthenelse{\equal{\NRSM@opt@stitle}{}}{}{
     \title{
@@ -513,30 +450,40 @@
 \newcommand{\tRe}[1]{\mathrm{Re}\left\{ #1 \right\}}
 \newcommand{\arccosh}{\cosh^{-1}}
 \newcommand{\qED}{\rightline{$\square$}}
-\ifNRSM@opt@nohyper
+
+\providecommand{\email}[1]{\texttt{#1}}
+\providecommand\NRSM@cmd@setHyper{
   \hypersetup{
-    nolinks=true
+    pdfsubject={\NRSM@opt@subject},%
+    %pdfkeywords={}%
   }
-  \providecommand{\email}[1]{\texttt{#1}}
-\else
-  \ifNRSM@opt@draft
+  \ifNRSM@opt@nohyper
     \hypersetup{
       nolinks=true
     }
+    \renewcommand{\email}[1]{\texttt{##1}}
   \else
-    \hypersetup{
-      nolinks=false
-    }
+    \ifNRSM@opt@draft
+      \hypersetup{
+        nolinks=true
+      }
+    \else
+      \hypersetup{
+        nolinks=false
+      }
+    \fi
+    \renewcommand{\email}[1]{\href{mailto:##1}{\texttt{##1}}}
   \fi
-  \providecommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
-\fi
+}
 
-%% =========== Define passowords protection =========== 
-\ifthenelse{\equal{\NRSM@opt@ownerPass}{}}{}{
-  \ifthenelse{\equal{\NRSM@opt@userPass}{}}{
-    \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) length 128 perm 2052}
-  }{
-    \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) userpw (\NRSM@opt@userPass) length 128 perm 2052}
+%% =========== Define passowords protection ===========
+\providecommand\NRSM@cmd@setPasswords{
+  \ifthenelse{\equal{\NRSM@opt@ownerPass}{}}{}{
+    \ifthenelse{\equal{\NRSM@opt@userPass}{}}{
+      \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) length 128 perm 2052}
+    }{
+      \special{pdf:encrypt ownerpw (\NRSM@opt@ownerPass) userpw (\NRSM@opt@userPass) length 128 perm 2052}
+    }
   }
 }
 
@@ -567,45 +514,70 @@
 }
 
 %% =========== Define default listings options =========== 
-\ifdefstring{\NRSM@opt@codeStyle}{box}{
-  \lstset{
-    numbers=left,
-    frame=single,
-    backgroundcolor=\color[RGB]{244,244,244},
-    basicstyle={\footnotesize\ttfamily},
-    keywordstyle=\bf\color[RGB]{0,0,176},
-    identifierstyle=,
-    commentstyle=\color[RGB]{0,176,0},
-    stringstyle=\color[RGB]{176,0,0},
-    tabsize=4,
-    showstringspaces=false,
-    breaklines=true, % automatically break the line
-    xleftmargin=2em,
-    literate=
-      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-      {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-      {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-      {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-      {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-      {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-      {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-      {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-      {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-      {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-      {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-      {€}{{\EUR}}1 {£}{{\pounds}}1
-  }
+\lstset{
+  literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
 }
-{
-  \ifdefstring{\NRSM@opt@codeStyle}{default}{
-    \lstset{numbers=left,
-      numberstyle= \tiny,
-      basicstyle={\footnotesize\ttfamily},
-      keywordstyle= \color{ blue!70},commentstyle=\color{red!50!green!50!blue!50},
-      frame=shadowbox,
-      xleftmargin=2em,
-      rulesepcolor=\color{red!20!green!20!blue!20},
-      breaklines=true % automatically break the line
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\NRSM@font@ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\NRSM@font@ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+\providecommand\NRSM@cmd@setLangStyle{
+  \ifdefstring{\NRSM@opt@codeStyle}{formal}{
+    \lstset{
+      numbers=left,
+      basicstyle={\footnotesize\NRSM@font@ttm},
+      keywordstyle={\NRSM@font@ttb\color{blue!50!black}},
+      emphstyle={\NRSM@font@ttb\color{red!40!black}},  % Custom highlighting style
+      stringstyle=\color{green!50!black},
+      commentstyle=\color{gray},
+      frame=tb,  % Any extra options here
+      showstringspaces=false,
+      breaklines=true, % automatically break the line
+      tabsize=4,
+      identifierstyle=,
+      xleftmargin=2em
+    }
+  }{
+    \ifdefstring{\NRSM@opt@codeStyle}{box}{
+      \lstset{
+        numbers=left,
+        frame=single,
+        backgroundcolor=\color[RGB]{244,244,244},
+        basicstyle={\footnotesize\ttfamily},
+        keywordstyle=\bf\color[RGB]{0,0,176},
+        identifierstyle=,
+        commentstyle=\color[RGB]{0,176,0},
+        stringstyle=\color[RGB]{176,0,0},
+        tabsize=4,
+        showstringspaces=false,
+        breaklines=true, % automatically break the line
+        xleftmargin=2em
+      }
+    }{
+      \ifdefstring{\NRSM@opt@codeStyle}{default}{
+        \lstset{numbers=left,
+          numberstyle=\tiny,
+          basicstyle={\footnotesize\ttfamily},
+          keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},
+          frame=shadowbox,
+          xleftmargin=2em,
+          rulesepcolor=\color{red!20!green!20!blue!20},
+          breaklines=true % automatically break the line
+        }
+      }
     }
   }
 }
