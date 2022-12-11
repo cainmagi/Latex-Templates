@@ -97,7 +97,7 @@ The following options could be assigned in both the class options and the follow
 | `\monthyeardate\today` | Print out the date like "November 2022" |
 | `\usdate\today`        | Print out the date like "November 23, 2022" |
 | `\usvardate\today`     | Print out the date like "November 23th, 2022" |
-| Other commands...      | The title that would be shown in the cover page and the macros of this file. |
+| Other commands...      | Provided by `uhproposal.sty`, see the comments of the style file. |
 
 ## Extended math operators
 
