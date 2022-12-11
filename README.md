@@ -55,7 +55,7 @@ The following options could be assigned in both the class options and the follow
 ### 2.1.0 @ 12/11/2020
 
 1. Enable the title and author(s) in pdf macros to be configured automatically.
-2. Provide a new coding style "formal".
+2. Provide a new coding style `formal`.
 3. Adjust the interior commands.
 
 ### 2.0.0 @ 12/08/2020
