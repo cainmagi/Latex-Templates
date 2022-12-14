@@ -4,6 +4,9 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.2.2 (12/13/22)
+%   - Enable the binary units for the "siunitx" package.
+%   - Provide an option "titlebold" for making the title font bold.
 % Version 1.2.1 (12/10/22)
 %   - Fix the package loading order for the hyperref pacakge. This
 %     may avoid some unexpected bugs especially for AMS pacakges.
@@ -92,6 +95,8 @@
 %  refdoublespace : [true], make the references double-spaced. If not
 %                   configured, will use the single space.
 %                   - Complementary option is "refsinglespace".
+%  titlebold      : [false], make the title font bold.
+%                   - Complementary option is "titlenormal".
 % 
 % Boolean configurations for pages
 % (Adjust these options according to the situation of the finished manuscript.)
@@ -189,7 +194,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/12/10 v1.2.1 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/12/13 v1.2.2 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -210,6 +215,8 @@
 \DeclareComplementaryOption{nocaptionhang}{captionhang}
 \DeclareBoolOption[true]{refdoublespace}
 \DeclareComplementaryOption{refsinglespace}{refdoublespace}
+\DeclareBoolOption[false]{titlebold}
+\DeclareComplementaryOption{titlenormal}{titlebold}
 \DeclareBoolOption[true]{lstoftable}
 \DeclareBoolOption[true]{lstoffigure}
 \DeclareComplementaryOption{nolstoftable}{lstoftable}
@@ -257,6 +264,11 @@
     \kvsetkeys{UHThesis}{lstoftablefirst}
   \else
     \kvsetkeys{UHThesis}{lstoffigurefirst}
+  \fi
+  \ifUHRevThesis@opt@titlebold
+    \kvsetkeys{UHThesis}{titlebold}
+  \else
+    \kvsetkeys{UHThesis}{titlenormal}
   \fi
   \UHThesisSetup{
     refname=\UHRevThesis@opt@refname,
@@ -356,6 +368,9 @@
 \fi
 \ifUHRevThesis@opt@lstoftablefirst
   \PassOptionsToPackage{lstoftablefirst}{uhthesis2019}
+\fi
+\ifUHRevThesis@opt@titlebold
+  \PassOptionsToPackage{titlebold}{uhthesis2019}
 \fi
 \PassOptionsToPackage{
   refname=\UHRevThesis@opt@refname,
@@ -534,7 +549,7 @@
 % enable users to use Système International d'Unités (SI).
 \RequirePackage{colortbl}
 \RequirePackage{datetime}
-\RequirePackage{siunitx}
+\RequirePackage[binary-units]{siunitx}
 
 %%***************************************
 %% Make further settings ...

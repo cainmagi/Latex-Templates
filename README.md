@@ -74,6 +74,7 @@ The following options could be assigned in both the class options and the follow
 | `hypercolor`      | A flag. When configured, make all links with colors (require to specify the option "hyper" first). (Counter option: `nohypercolor`) | true |
 | `captionhang`     | A flag. When configured, make all captions with hanging indents. Otherwise, use the plain caption indents. (Counter option: `nocaptionhang`) | true |
 | `refdoublespace`  | A flag. When configured, make the references double-spaced. Otherwise, use the single space. (Counter option: `refsinglespace`) | true |
+| `titlebold`       | A flag. When configured, make the title font bold. (Counter option: `titlenormal`) | false |
 | `lstoftable`      | A flag. When configured, print the list of tables page. (Counter option: `nolstoftable`) | true |
 | `lstoffigure`     | A flag. When configured, print the list of figures page. (Counter option: `nolstoffigure`) | true |
 | `lstoftablefirst` | A flag. When configured, make the list of tables before the list of figures. (Counter option: `lstoffigurefirst`) | true |
@@ -111,6 +112,11 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.2 @ 12/13/2022
+
+1. Enable the binary units for the `siunitx` package.
+2. Provide an option `titlebold` for making the title font bold.
 
 ### 1.2.1 @ 12/10/2022
 

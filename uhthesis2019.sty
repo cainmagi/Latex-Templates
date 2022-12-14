@@ -28,6 +28,8 @@
 %% refdoublespace:  [false], make the references double-spaced. If
 %%                  not configured, will use the single space.
 %%                  - Complementary option is "refsinglespace".
+%% titlebold:       [false], make the title font bold.
+%%                  - Complementary option is "titlenormal".
 %% lstoftablefirst: [false], make the list of tables before the list
 %%                  of figures.
 %%                  - Complementary option is "lstoffigurefirst".
@@ -42,6 +44,8 @@
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver H @ Dec. 13, 2022 By Yuche Jin
+%% 1. Provide an option "titlebold" for making the title font bold.
 %% ver G @ Dec. 10, 2022 By Yuche Jin
 %% 1. Fix the package loading order for hyperref (if used).
 %% ver F @ Dec. 7, 2022 By Yuche Jin
@@ -95,6 +99,8 @@
 \DeclareComplementaryOption{nocaptionhang}{captionhang}
 \DeclareBoolOption[false]{refdoublespace}
 \DeclareComplementaryOption{refsinglespace}{refdoublespace}
+\DeclareBoolOption[false]{titlebold}
+\DeclareComplementaryOption{titlenormal}{titlebold}
 \DeclareBoolOption[false]{lstoftablefirst}
 \DeclareComplementaryOption{lstoffigurefirst}{lstoftablefirst}
 
@@ -439,8 +445,10 @@ Documentation:
   \cleardoublepage
   \thispagestyle{empty}%
   \setcounter{page}{1}
+  % ver G Hotfix: Provide an option for making the title font bold.
   \begin{center}
-    \Large\expandafter{\@title}
+    \Large\ifUHThesis@opt@titlebold\bfseries\fi%
+    \expandafter{\@title}
   \end{center}
   \vskip.2in
 
