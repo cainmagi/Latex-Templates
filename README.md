@@ -16,6 +16,7 @@ In this package, we mainly make the following two modifications:
    | `setspace`                                           | Control the line spacing with `\setstrecth` or `\renewcommand{\baselinestretch}` |
    | `geometry`                                           | Configure the page size.                                       |
    | `indentfirst`                                        | Provide features for letting the first paragraphs with indent. |
+   | `mfirstuc`                                           | Provide title case features. | 
    | `amsmath`                                            | Provide mathematical environments.                             |
    | `amssymb`, `amsbsy`, `dsfont`, `bm`                  | Provide mathematical symbols and fonts.                        |
    | `graphicx`, `epstopdf`, `bmpsize`                    | Provide functionalities to use images.                         |
@@ -61,6 +62,7 @@ The following options could be assigned in both the class options and the follow
 | `college`         | The name of the college. **Need** to include `"College of ..."`. | `Cullen College of Engineering` |
 | `submitdate`      | The date of the submission. If needing to use commands for this option, recommend to use `\submitdate{}` to configure this option. When being blank, will use `\today`. | ` ` |
 | `refname`         | The title of the references. It can also get configured by `\renewcommand{\refname}{...}`. | `References` |
+| `sectitlestyle`   | The style of the section titles. It can be `title` (title case), `upper` (upper case), or `normal` (not changed). More details can be seen in note 1. | `title` |
 | `copyrightyear`   | The year shown in the copyright page. When being blank, will use the current year. | ` ` |
 | `ownerPass`       | This option is only compatible with `XeLaTeX`. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`        | This option is only compatible with `XeLaTeX`. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
@@ -80,6 +82,10 @@ The following options could be assigned in both the class options and the follow
 | `lstoftablefirst` | A flag. When configured, make the list of tables before the list of figures. (Counter option: `lstoffigurefirst`) | true |
 | `copyright`       | A flag. When configured, print the copyright page. (Counter option: `nocopyright`) | true |
 | `thesis`          | A flag. Treat the manuscript as a thesis. Otherwise, will treat it as a dissertation. (Counter option: `dissertation`) | false |
+
+Notes:
+
+1. The title case means that the first character of all words are capitalized, except for these words: "a", " an", " the", " and", " as", " but", " for", " if", " nor", " or", " so", " yet", " at", " by", " in", " of", " off", " on", " per", " to", " up", " via", " with".
 
 ## All commands
 
@@ -112,6 +118,12 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.3 @ 12/14/2022
+
+1. Add text option: `sectitlestyle`.
+2. Adjust the space of table of contents, list of tables and list of figures.
+3. Enable users to make all section titles in the title case.
 
 ### 1.2.2 @ 12/13/2022
 

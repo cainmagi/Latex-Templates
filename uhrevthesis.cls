@@ -4,6 +4,11 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.2.3 (12/14/22)
+%   - Add text option: "sectitlestyle".
+%   - Adjust the space of table of contents, list of tables and list
+%     of figures.
+%   - Enable users to make all section titles in the title case.
 % Version 1.2.2 (12/13/22)
 %   - Enable the binary units for the "siunitx" package.
 %   - Provide an option "titlebold" for making the title font bold.
@@ -74,6 +79,9 @@
 %                   \submitdate{} to configure this option. When being blank,
 %                   will use \today.
 %  refname        : [string], the title of the references.
+%  sectitlestyle  : [string], the style of the section titles, can be
+%                   "title" (title case), "upper" (upper case), or "normal"
+%                   (not changed).
 %  copyrightyear  : [string], the year shown in the copyright page. If left
 %                   blank, will use the current year.
 %  ownerPass      : [string], password, if not provided, users could not edit
@@ -194,7 +202,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/12/13 v1.2.2 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2022/12/14 v1.2.3 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -234,6 +242,7 @@
 \DeclareStringOption[]{submitdate}[] % if not set, will use today
 \DeclareStringOption[]{copyrightyear}[] % if not set, will use today
 \DeclareStringOption[References]{refname}[References] % Name of the reference
+\DeclareStringOption[title]{sectitlestyle}[title] % Style of section titles
 
 % List of Professors (Committee members)
 \DeclareStringOption[Name of Chair Professor]{chair}[Name of Chair Professor]
@@ -284,10 +293,8 @@
     }
     \UHRevThesis@cmd@setHyperrefColors
     \renewcommand{\email}[1]{\href{mailto:##1}{\texttt{##1}}}
-    \renewcommand{\sectionalt}[1]{\section[\texorpdfstring{\bf \uppercase{##1}}{##1}]{##1}}
   \else
     \renewcommand{\email}[1]{\texttt{##1}}
-    \renewcommand{\sectionalt}[1]{\section[\bf \uppercase{##1}]{##1}}
   \fi
   \UHRevThesis@cmd@setupCoverPages
   \UHRevThesis@cmd@setupPassword
@@ -542,6 +549,7 @@
 \fi
 
 % *** Use other ENHANCING PACKAGES ***
+\RequirePackage{mfirstuc}
 \RequirePackage{enumitem} 
 \setlist[enumerate]{label=(\arabic*)}
 % enumitem is used to customize lists %\RequirePackage{enumerate}
@@ -712,11 +720,27 @@
 }
 
 %% =========== Define custom commands here ===========
-\ifUHRevThesis@opt@hyper
-  \providecommand{\sectionalt}[1]{\section[\texorpdfstring{\bf \uppercase{#1}}{#1}]{#1}}
-\else
-  \providecommand{\sectionalt}[1]{\section[\bf \uppercase{#1}]{#1}}
-\fi
+\providecommand{\sectionalt}[1]{
+  \ifthenelse{\equal{\UHRevThesis@opt@sectitlestyle}{title}}{
+    \edef\UHRevThesis@tmp@title{\capitalisewords{#1}}
+  }{
+    \ifthenelse{\equal{\UHRevThesis@opt@sectitlestyle}{upper}}{
+      \edef\UHRevThesis@tmp@title{\uppercase{#1}}
+    }{
+      \edef\UHRevThesis@tmp@title{#1}
+    }
+  }
+  \ifUHRevThesis@opt@hyper
+    \section[\texorpdfstring{\bf \uppercase{#1}}{#1}]{\UHRevThesis@tmp@title}
+  \else
+    \section[\bf \uppercase{#1}]{\UHRevThesis@tmp@title}
+  \fi
+}
+\MFUnocap{a}\MFUnocap{an}\MFUnocap{the}%
+\MFUnocap{and}\MFUnocap{as}\MFUnocap{but}\MFUnocap{for}\MFUnocap{if}\MFUnocap{nor}\MFUnocap{or}%
+\MFUnocap{so}\MFUnocap{yet}%
+\MFUnocap{at}\MFUnocap{by}\MFUnocap{in}\MFUnocap{of}\MFUnocap{off}\MFUnocap{on}\MFUnocap{per}%
+\MFUnocap{to}\MFUnocap{up}\MFUnocap{via}\MFUnocap{with}
 
 %% =========== Correct bad hyphenation here ===========
 \hyphenation{op-tical net-works semi-conduc-tor}

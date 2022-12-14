@@ -44,6 +44,9 @@
 %% =================================================================
 %% Modifications
 %% =================================================================
+%% ver I @ Dec. 14, 2022 By Yuche Jin
+%% 1. Adjust the item spaces in table of contents, list of tables,
+%%    and list of figures.
 %% ver H @ Dec. 13, 2022 By Yuche Jin
 %% 1. Provide an option "titlebold" for making the title font bold.
 %% ver G @ Dec. 10, 2022 By Yuche Jin
@@ -83,7 +86,7 @@
 %% 3. Add compatibility option with hyperref.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{uhthesis2019}[2022/12/10 vG Document Style Option `UH Thesis Template'.]
+\ProvidesPackage{uhthesis2019}[2022/12/14 vI Document Style Option `UH Thesis Template'.]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -302,6 +305,14 @@ Documentation:
 
 % Roman page numbers in cover pages - Should be arabic in thesis text pages starting after TOC/TOF/TOT
 \pagenumbering{roman}
+
+% ver I Hotfix: Add little spaces after each item in ToF and ToT.
+\renewcommand\cftfigafterpnum{\vskip1.0ex}
+\renewcommand\cfttabafterpnum{\vskip1.0ex}
+\renewcommand\cftpartafterpnum{\vskip0.8ex}
+\renewcommand\cftsecafterpnum{\vskip0.8ex}
+\renewcommand\cftsubsecafterpnum{\vskip0.8ex}
+\renewcommand\cftsubsubsecafterpnum{\vskip0.8ex}
 
 % Redefine the macro used for floats (including figures and tables)
 % so that single spacing is used.

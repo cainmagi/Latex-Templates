@@ -15,6 +15,7 @@
   lstoftable, lstoffigure, copyright,
   % lstoffigurefirst,  % Will make Lst of Figures before Lst of Tables.
   % titlebold,  % Will make the title font bold.
+  % sectitlestyle={title},  % Style of section titles, can be "title", "upper" or "normal".
   % Professor (Committee member) List:
   chair={Name of Chair Professor},  % Required
   cochair={},  % Optional, can be blank
@@ -52,18 +53,18 @@
 \input{docs/03-conclusion}
 \cleardoublepage
 
-\begin{thebibliography}{10}
-\bibitem{gridftp}W. Allcock, J. Bester, J. Bresnahan, A. Chervenak, I. Foster, C. Kesselman, S. Meder, V. Nefedova, D. Quesnel, and S. Tuecke, "Data Management and Transfer in High-Performance Computational Grid Environments," Proceedings of the 9th International Conference on Grid Computing, 2010, Chicago, IL, USA, June 2010.
+%\begin{thebibliography}{10}
+%\bibitem{gridftp}W. Allcock, J. Bester, J. Bresnahan, A. Chervenak, I. Foster, C. Kesselman, S. Meder, V. Nefedova, D. Quesnel, and S. Tuecke, "Data Management and Transfer in High-Performance Computational Grid Environments," Proceedings of the 9th International Conference on Grid Computing, 2010, Chicago, IL, USA, June 2010.
+%
+%\bibitem{gass}J. Bester, I. Foster, C. Kesselman, J. Tedesco, S. Tuecke, "GASS: A Data Movement and Access Service for Wide Area Computing Systems," Sixth Workshop on I/O in Parallel and Distributed Systems, May 5, 1999.
+%
+%\bibitem{apples1}F. Berman, R. Wolski, S. Figueira, J. Schopf, G. Shao, "Application-Level Scheduling on Distributed Heterogeneous Networks," Proceedings of Supercomputing, 1996.
+%
+%\bibitem{apples2}F. Berman and R. Wolski, "The AppLeS Project: A Status Report ", Proceedings of the 8th NEC Research Symposium, Berlin, Germany, May 1997.
+%\end{thebibliography}
 
-\bibitem{gass}J. Bester, I. Foster, C. Kesselman, J. Tedesco, S. Tuecke, "GASS: A Data Movement and Access Service for Wide Area Computing Systems," Sixth Workshop on I/O in Parallel and Distributed Systems, May 5, 1999.
-
-\bibitem{apples1}F. Berman, R. Wolski, S. Figueira, J. Schopf, G. Shao, "Application-Level Scheduling on Distributed Heterogeneous Networks," Proceedings of Supercomputing, 1996.
-
-\bibitem{apples2}F. Berman and R. Wolski, "The AppLeS Project: A Status Report ", Proceedings of the 8th NEC Research Symposium, Berlin, Germany, May 1997.
-\end{thebibliography}
-
-%\bibliographystyle{acm}
-%\bibliography{bib/ref}
+% \bibliographystyle{acm}  % ACM style is not recommended by ECE
+\bibliographystyle{IEEETrans}  % IEEE style is recommended by ECE
+\bibliography{bib/ref}
 
 \end{document}
-
