@@ -4,7 +4,7 @@
 
 This template is adapted from the UH Thesis Style File. It is both compatible with `pdfLaTeX` and `XeLaTeX`. UH Department of Computer Science has provided a template for writing the master thesis or the Ph.D dissertation (see [here :link:][uhthesis]). According to the official example, we design this template for providing more supports.
 
-In this package, we mainly make the following two modifications:
+In this package, we mainly make the following three modifications:
 
 1. **Fix the compatibility issues**: Fix an important compatibility issue of the original `uhthesis2019.sty`. The official style file is not compatible with the `xcolor` package since TeXLive 2020. The modified `uhthesis2019.sty` in this package has fixed this problem. We also add an option to improve the compatibility with the `hyperref` package.
 
