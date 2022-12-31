@@ -8,7 +8,7 @@ In this package, we mainly make the following three modifications:
 
 1. **Fix the compatibility issues**: Fix a small compatibility issue between the original `llncs.cls` and the `amsmath` package. The `amsmath`needs to be loaded before the definition of `\vec`.
 
-2. **Support more packages**: Provide a `uhrevthesis.cls` for incorporating some quite widely used packages, including:
+2. **Support more packages**: Provide a `llncsrev.cls` for incorporating some quite widely used packages, including:
 
    | Package                                              | Usage                                                        |
    | :--------------------------------------------------- | :----------------------------------------------------------- |
@@ -79,7 +79,7 @@ Notes:
 |  `\monthyeardate\today`   | Print out the date like "November 2022"                      |
 |      `\usdate\today`      | Print out the date like "November 23, 2022"                  |
 |    `\usvardate\today`     | Print out the date like "November 23th, 2022"                |
-|     Other commands...     | Provided by `uhthesis2019.sty`, see the comments of the style file. |
+|     Other commands...     | Provided by `llncs.cls`, see the [original documentation :notebook:][llncs-doc]. |
 
 ## Extended math operators
 
