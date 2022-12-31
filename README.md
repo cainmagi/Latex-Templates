@@ -6,7 +6,7 @@
 
 This template is adapted from the an old version of the UH Thesis Style File. It is both compatible with `pdfLaTeX` and `XeLaTeX`. Now it has been modified for writing dissertation (thesis) proposal. According to the official example, we design this template for providing more supports.
 
-In this package, we mainly make the following two modifications:
+In this package, we mainly make the following three modifications:
 
 1. **Fix the hyperref issues**: Fix a bug causing the links of abstract, acknowledgement, and reference to be in wrong positions.
 
