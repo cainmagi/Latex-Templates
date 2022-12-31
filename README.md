@@ -56,7 +56,7 @@ The following options could be assigned in both the class options and the follow
 | `title`           | The title of the chapter. It only appears in the PDF meta data. | `Draft for Springer Book， LLNCS Template` |
 | `author`          | The name of the authors. It only appears in the PDF meta data. | `Yuchen Jin` |
 | `institute`       | The name of the institutes. It only appears in the PDF meta data. | `University of Houston` |
-| `keywords`        | The keywords of the article. It will appears in the PDF meta data and the abstract. It can be configured by `\keywords` automatically. | `` |
+| `keywords`        | The keywords of the article. It will appears in the PDF meta data and the abstract. It can be configured by `\keywords` automatically. | ` ` |
 | `ownerPass`       | This option is only compatible with `XeLaTeX`. It is the owner password. It would be required if anyone wants to edit the produced pdf file. | ` ` |
 | `userPass`        | This option is only compatible with `XeLaTeX`. It is the user password. It would be required if anyone wants to open the produced pdf file. | ` ` |
 | `hypercolor`      | A flag. When configured, make all links with colors (require to specify the option "hyper" first). (Counter option: `nohypercolor`) | true |
