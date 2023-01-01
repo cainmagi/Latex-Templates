@@ -70,7 +70,7 @@
 % Cain King (cainmagi@gmail.com / cain.king@foxmail.com)
 %
 % License:
-% MIT License
+% GPLv3 License
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
