@@ -62,7 +62,7 @@
 % Cain King (cainmagi@gmail.com / cain.king@foxmail.com)
 %
 % License:
-% MIT License
+% GPLv3 License
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Note that the following parts are 
