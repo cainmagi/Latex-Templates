@@ -6,7 +6,7 @@
 \newcommand{\rs}[1]{\mathstrut\mbox{\scriptsize\rm #1}}
 \newcommand{\rr}[1]{\mbox{\rm #1}}
 
-\begin{document}
+\renewcommand{\figdir}{Fig}  % figure directory
 
 \title{An example SEG expanded nonostract}
 
@@ -19,6 +19,8 @@
 \footer{Example}
 \lefthead{Dellinger \& Fomel}
 \righthead{SEG abstract example}
+
+\begin{document}
 
 \maketitle
 
@@ -75,7 +77,6 @@ Let's check the \texttt{$\backslash$mathcal} command:
 \end{eqnarray}
 
 \subsection*{Figures}
-\renewcommand{\figdir}{Fig} % figure directory
 
 \autoref{fig:net_whole} shows what it is about.
 
@@ -84,7 +85,7 @@ Let's check the \texttt{$\backslash$mathcal} command:
     $\backslash$plot\{net\_whole\}\{width=$\backslash$columnwidth\}\{This caption.\}}.
 }
 
-\subsubsection{Multiplot} 
+\subsubsection{Multiplot}
 
 Sometimes it is convenient to put two or
 more figures from different files in an array (see
@@ -133,7 +134,7 @@ The discussion is summarized in \autoref{tbl:example}.
   \end{center}
 }
 
-\section{Algorithms}
+\subsection{Algorithms}
 
 We show an example of algorithm in \autoref{alg:relu}. Users could use some commands like \texttt{$\backslash$STATE}, \texttt{$\backslash$FOR}, \texttt{$\backslash$FORALL}, \texttt{$\backslash$IF} and \texttt{$\backslash$WHILE} to write algorithms.
 
@@ -150,11 +151,6 @@ We show an example of algorithm in \autoref{alg:relu}. Users could use some comm
 
 \section{ACKNOWLEDGMENTS}
 
-\plot*[!b]{ops_seq2patch}{width=0.8\textwidth} 
-{This figure is specified in the
-  document by \texttt{
-    $\backslash$plot*\{ops\_seq2patch\}\{width=0.8$\backslash$textwidth\}\{This caption.\}}.  }
-
 I wish to thank Ivan P\v{s}en\v{c}\'{\i}k and Fr\'ed\'eric Billette
 for having names with non-English letters in them.  I wish to thank
 \cite{Cerveny} for providing an example of how to make a bib file that
@@ -165,7 +161,6 @@ thesis and yet more non-English characters.
 \append{Appendix example}
 
 According to the new SEG standard, appendices come before references.
-
 \begin{equation}
 \frac{\partial U}{\partial z} = 
 \left\{
@@ -189,6 +184,11 @@ It is important to get equation~\ref{eqn:partial} right.
 \label{eqn:partial2}
 \end{equation}
 Too lazy to type a different equation but note the numeration.
+
+\plot*[!tb]{ops_seq2patch}{width=0.8\textwidth} 
+{This figure is specified in the
+  document by \texttt{
+    $\backslash$plot*\{ops\_seq2patch\}\{width=0.8$\backslash$textwidth\}\{This caption.\}}.  }
 
 The error comparison is provided in \autoref{fig:ops_seq2patch}.
   

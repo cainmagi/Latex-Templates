@@ -18,8 +18,17 @@
 %%     and version 1.3 or later is part of all distributions of LaTeX
 %%     version 2003/12/01 or later.
 %% 
+%% ---------------------------------------------------
+%% ver 1.1.0 @ 1/1/2023
+%% 1. Fix the importing order of required packages.
+%% 2. Add xcolor and appendix to the basic dependencies.
+%% 3. Add hypcap to extra dependencies.
+%% 4. Provide an extra option: colorlinks.
+%% 5. Fix a fatal bug: the label identifiers in the appendices are not corrected
+%%    without configuring the appendix counter correctly.
+%%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{segabs}[2020/04/06 RevSEG v1.05 based on v1.0 SEG expanded abstract]
+\ProvidesClass{segabs}[2023/01/01 RevSEG v1.1.0 based on v1.0 SEG expanded abstract]
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -44,6 +53,8 @@
 \setboolean{@rev@wordlite}{false}
 \newboolean{@rev@hyref}
 \setboolean{@rev@hyref}{true}
+\newboolean{@rev@colorlinks}
+\setboolean{@rev@colorlinks}{false}
 \newboolean{@rev@extra}
 \setboolean{@rev@extra}{true}
 \newboolean{@rev@texlive}
@@ -58,6 +69,8 @@
 \DeclareOption{nowordlite}{\setboolean{@rev@wordlite}{false}}
 \DeclareOption{hyref}{\setboolean{@rev@hyref}{true}}
 \DeclareOption{nohyref}{\setboolean{@rev@hyref}{false}}
+\DeclareOption{colorlinks}{\setboolean{@rev@colorlinks}{true}}
+\DeclareOption{nocolorlinks}{\setboolean{@rev@colorlinks}{false}}
 \DeclareOption{extra}{\setboolean{@rev@extra}{true}}
 \DeclareOption{noextra}{\setboolean{@rev@extra}{false}}
 \DeclareOption{texlive}{\setboolean{@rev@texlive}{true}}
@@ -65,24 +78,13 @@
 \DeclareOption{final}{\setboolean{@rev@final}{true}}
 \DeclareOption{nofinal}{\setboolean{@rev@final}{false}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ExecuteOptions{times,hyref,extra}
+\ExecuteOptions{times,hyref,extra,nocolorlinks}
 \ProcessOptions*
 \LoadClass[11pt, letterpaper]{article}
-\ifthenelse{\boolean{@times}}{\RequirePackage{mathptmx}}{}
-\DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
-\RequirePackage{seg}
-\ifthenelse{\boolean{@rev@calfont}}{
-  \DeclareSymbolFont{cmsymbols}{OMS}{cmsy}{m}{n}
-  \SetSymbolFont{cmsymbols}{bold}{OMS}{cmsy}{b}{n}
-  \DeclareSymbolFontAlphabet{\mathcal}{cmsymbols}
-}{}
 \RequirePackage{ifxetex}
-% Hyperref settings
-\ifthenelse{\boolean{@rev@hyref}}{
-  \RequirePackage[hidelinks]{hyperref}
-}{
-  \providecommand{\autoref}{\ref}
-}
+\RequirePackage{seg}
+
+% Configure fonts
 \RequirePackage[T1]{fontenc}
 \ifxetex
   \RequirePackage{fontspec}
@@ -92,28 +94,109 @@
     \setmainfont{TeX Gyre Termes}
   }
 \fi
+\ifthenelse{\boolean{@times}}{\RequirePackage{mathptmx}}{}
+\DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
+\ifthenelse{\boolean{@rev@calfont}}{
+  \DeclareSymbolFont{cmsymbols}{OMS}{cmsy}{m}{n}
+  \SetSymbolFont{cmsymbols}{bold}{OMS}{cmsy}{b}{n}
+  \DeclareSymbolFontAlphabet{\mathcal}{cmsymbols}
+}{}
+
+% Configure references. This step needs to be before hyperref.
+\RequirePackage{natbib}
+\RequirePackage{bibentry}
+\let\seg@biblography\bibliography
+\let\seg@nobiblography\nobibliography
+\ifthenelse{\boolean{@rev@final}}{
+  \providecommand\autobibliography\seg@nobiblography
+}{
+  \providecommand\autobibliography\seg@biblography
+}
+\ifthenelse{\boolean{@rev@hyref}}{
+  \ifthenelse{\boolean{@rev@final}}{
+    \let\seg@cite\cite
+    \renewcommand{\cite}[2][none]{%
+      \ifthenelse{\equal{#1}{none}}{\begin{NoHyper}\seg@cite{#2}\end{NoHyper}}{\begin{NoHyper}\seg@cite[#1]{#2}\end{NoHyper}}%
+    }
+  }{}
+}{}
+\bibpunct[,]{(}{)}{;}{a}{,}{,}
+\DeclareRobustCommand{\refname}{REFERENCES}
+\renewcommand\bibsection{\clearpage\section{\refname}}
+\newcommand{\shortcite}[1]{\citeyearpar{#1}}
+
+% Configure floats and ams* pacakges.
+\ifthenelse{\boolean{@rev@extra}}{
+  \RequirePackage{float,stfloats}
+  \RequirePackage{amsmath,amssymb,amsthm,amsbsy}
+}{}
+
+% Color package, a dependency of hyperref.
+\ifthenelse{\boolean{@rev@hyref}}{
+  \RequirePackage[svgnames,hyperref]{xcolor}
+}{
+  \RequirePackage[svgnames]{xcolor}
+}
+
+% Hyperref settings, needs to be after ams*, xcolor, and float.
+% packages.
+\ifthenelse{\boolean{@rev@hyref}}{
+  \RequirePackage[colorlinks]{hyperref}
+  \RequirePackage[all]{hypcap}
+  % Whether to consider the extra pacakges.
+  \ifthenelse{\boolean{@rev@extra}}{
+    \renewcommand{\eqref}[1]{\hyperref[#1]{(\ref*{#1})}}
+  }{}
+  % Whether to configure the link colors.
+  \ifthenelse{\boolean{@rev@colorlinks}}{
+    \hypersetup{
+      citecolor={DarkGreen}, linkcolor={red}, filecolor={DeepSkyBlue},
+      menucolor={red}, urlcolor={magenta}
+    }
+  }{
+    \hypersetup{
+      citecolor={black}, linkcolor={black}, filecolor={black},
+      menucolor={black}, urlcolor={black}
+    }
+  }
+}{
+  \ifthenelse{\boolean{@rev@extra}}{
+    % Use cleveref when extra is given but hyperref is not used.
+    \RequirePackage{cleveref}
+    \providecommand{\autoref}{\Cref}
+  }{
+    \providecommand{\autoref}{\ref}
+  }
+}
+
+% This package should be after hyperref.
+% It is required for fixing the wrong numbering of the sections after
+% entering the appendices.
+\RequirePackage{appendix}
+
+% Configure other extra pacakges.
 \ifthenelse{\boolean{@rev@extra}}{
   \RequirePackage{enumerate}
-  \RequirePackage{stfloats}
-  \RequirePackage{amsmath,amssymb,amsthm,amsbsy}
+  % algorithm needs to be after hyperref.
   \RequirePackage{algorithm}
   \RequirePackage{algorithmic}
   \renewcommand{\algorithmicrequire}{\textbf{Input:}}
   \renewcommand{\algorithmicensure}{\textbf{Output:}}
   \providecommand{\algorithmautorefname}{Algorithm}
-  \ifthenelse{\boolean{@rev@hyref}}{
-    \renewcommand{\eqref}[1]{\hyperref[#1]{(\ref*{#1})}}
-  }{
-    \RequirePackage{cleveref}
-    \renewcommand{\autoref}{\Cref}
-  }
+  % The following packkages have been requried by seg.sty.
+  \RequirePackage{verbatim}
+  \RequirePackage{moreverb}
 }{}
+
+% Configure texlive-limited packages.
 \ifthenelse{\boolean{@rev@texlive}}{
-  \RequirePackage{siunitx}
+  \RequirePackage[binary-units]{siunitx}
   %\newcommand{\si}[1]{#1}
   %\newcommand{\hertz}{\textrm{Hz}}
 }{}
 %
+
+% Configure float-related envs.
 \providecommand{\figdir}{.}
 \providecommand{\setfigdir}[1]{\renewcommand{\figdir}{#1}}
 \providecommand{\fig@file}[1]{\@path/\figdir/#1}
@@ -165,6 +248,9 @@
   \end{figure}}
 }
 \def\plot{\@ifstar{\fullplot}{\sideplot}}
+
+% subfigure requires to be later than hyperref. This is subfig, but
+% we still configure it according to this rule.
 \RequirePackage{subfig}
 \def\next@item#1,#2?{#1}
 \def\rest@item#1,#2?{#2}
@@ -282,27 +368,8 @@
   \end{table*}
 }
 \def\tabl{\@ifstar{\seg@fulltabl}{\seg@sidetabl}}
-\RequirePackage{natbib}
-\RequirePackage{bibentry}
-\let\seg@biblography\bibliography
-\let\seg@nobiblography\nobibliography
-\ifthenelse{\boolean{@rev@final}}{
-  \providecommand\autobibliography\seg@nobiblography
-}{
-  \providecommand\autobibliography\seg@biblography
-}
-\ifthenelse{\boolean{@rev@hyref}}{
-  \ifthenelse{\boolean{@rev@final}}{
-    \let\seg@cite\cite
-    \renewcommand{\cite}[2][none]{%
-      \ifthenelse{\equal{#1}{none}}{\begin{NoHyper}\seg@cite{#2}\end{NoHyper}}{\begin{NoHyper}\seg@cite[#1]{#2}\end{NoHyper}}%
-    }
-  }{}
-}{}
-\bibpunct[,]{(}{)}{;}{a}{,}{,}
-\DeclareRobustCommand{\refname}{REFERENCES}
-\renewcommand\bibsection{\clearpage\section{\refname}}
-\newcommand{\shortcite}[1]{\citeyearpar{#1}}
+
+% Configure margins
 \setlength{\oddsidemargin}{0in}
 \setlength{\evensidemargin}{0in}
 \setlength{\textwidth}{6.5in}
@@ -349,6 +416,7 @@
 \newcommand{\seg@subsubsubsection}[2][]{%
   \underline{#2}.--}
 
+% Fix the starred version of titles when using hyperref.
 \ifthenelse{\boolean{@rev@hyref}}{
   \def\ifempty#1{\def\temp{#1} \ifx\temp\empty }
   \def\section{\@ifstar{\seg@section*}{\@@section}}
@@ -388,24 +456,33 @@
 \renewcommand{\@evenfoot}{}}
 \thispagestyle{empty}
 \pagestyle{seg}
+
+% Define the appendencies
 \newcounter{@append}
 \providecommand{\append@name}{A}
 \providecommand{\appendname}[1]{\renewcommand{\append@name}{#1}}
-\renewcommand{\appendix}{%
+\let\seg@oldappendix\appendix
+\providecommand{\seg@appendix}{%
   \ifthenelse{\equal{\append@name}{A}}{%
-    \renewcommand{\append@name}{\Alph{@append}}}{}
+    \renewcommand{\append@name}{\Alph{@append}}
+  }{}
+  % Firstly entering the appendicies
+  % Note that \seg@oldappendix only need to be called once.
+  \ifthenelse{\value{@append}=0}{%
+    \seg@oldappendix
+  }{}
   \setcounter{equation}{0}%
   \renewcommand{\theequation}{\mbox{\append@name-\arabic{equation}}}%
-    \setcounter{figure}{0}%
-    \renewcommand{\thefigure}{\append@name-\arabic{figure}}%
+  \setcounter{figure}{0}%
+  \renewcommand{\thefigure}{\append@name-\arabic{figure}}%
   \stepcounter{@append}
 }
+\let\appendix\seg@appendix
 \providecommand{\append}[1]{%
   %\appendix\section{Appendix \append@name}\section{#1}%
-  \appendix\section*{Appendix \append@name}\section{#1}%
+  \appendix\stepcounter{section}\section*{Appendix \append@name}\section{#1}%
 }
-\RequirePackage{verbatim}
-\RequirePackage{moreverb}
+
 \endinput
 %%
 %% End of file `segabs.cls'.

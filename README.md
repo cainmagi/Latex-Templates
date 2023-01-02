@@ -23,6 +23,7 @@ We list all avaliable options here. The deault state means whether a option is e
 | `calfont` | The default settings of `segabs.cls` would override the `\mathcal` font by *Ralph Smith's Formal Script Font (rsfs)*. We provide an this option for switching back to the original calligraphy font.  | `nocalfont` | Disabled |
 | `wordlite` | Make the template like the word version. It will add a bounding box to all figures. | `nowordlite` | Disabled |
 | `hyref` | Use the hyperref package. It would add hyper links to all referring tags and support `\autoref`. If you switch from `nohyref` to `hyref`, you may need to compile the file for two times to ensure there are no errors. | `nohyref` | Enabled |
+| `colorlinks` | Make all links with colors. This option only works when `hyref` is specified (i.e. the `hyperref` package is used) | `nocolorlinks` | Disabled |
 | `extra` | Use extra packages, including AMS math packages, `stfloat`, `algorithm`, and `enumerate`. If `hyref` is disabled, `cleveref` would be used for supporting `\autoref`. | `noextra` | Enabled |
 | `texlive` | Use TeXLive exclusive packages. Now these packages include `siunitx`. | `notexlive` | Disabled |
 | `final` | Final version flag. If enabled, the reference part would not show, but the cited tags still exist. | `nofinal` | Disabled |
@@ -34,6 +35,14 @@ We list all avaliable options here. The deault state means whether a option is e
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.1.0 @ 01/01/2023
+
+1. Fix the importing order of required packages.
+2. Add `xcolor` and `appendix` to the basic dependencies.
+3. Add `hypcap` to extra dependencies.
+4. Provide an extra option: `colorlinks`.
+5. Fix a fatal bug: the label identifiers in the appendices are not corrected without configuring the appendix counter correctly.
 
 ### 1.05 @ 04/06/2020
 
