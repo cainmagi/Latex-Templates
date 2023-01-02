@@ -85,7 +85,7 @@ The following options could be assigned in both the class options and the follow
 
 Notes:
 
-1. The title case means that the first character of all words are capitalized, except for these words: "a", " an", " the", " and", " as", " but", " for", " if", " nor", " or", " so", " yet", " at", " by", " in", " of", " off", " on", " per", " to", " up", " via", " with".
+1. The title case means that the first character of all words are capitalized, except for these words: "a", "an", "the", "and", "as", "but", "for", "if", "nor", "or", "so", "yet", "at", "by", "in", "of", "off", "on", "per", "to", "up", "via", "with".
 
 ## All commands
 
