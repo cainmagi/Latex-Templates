@@ -89,20 +89,6 @@
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
 %
-%% -----------------------------
-% Note that the following parts are 
-% heritaged from UH Thesis Template!
-%% -----------------------------
-% University of Houston PhD/MS thesis Latex style file -- modifications to the report style
-% 
-% Designed to comply with UH's formatting guidelines, per recommendations in Fall 2019
-%
-% For latest recommendations, please refer to http://www.uh.edu/nsm/computer-science/graduate/defense-guidelines
-%
-% Author: Dr. Babu Sundaram (babusun@central.uh.edu)
-%
-% Last Updated : October 7, 2019
-
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{llncsrev}[2022/12/31 v1.0.0 Revised Springer Class for Lecture Notes in Computer Science - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
@@ -151,7 +137,7 @@
 }
 \ProcessKeyvalOptions*\relax
 
-% Load the class and the UH thesis package.
+% Load the class and the LLNCS.
 %
 \ifLLNCSRev@opt@draft
   \PassOptionsToClass{draft}{llncs}
