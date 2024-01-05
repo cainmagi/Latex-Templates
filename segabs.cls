@@ -28,7 +28,7 @@
 %%    without configuring the appendix counter correctly.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{segabs}[2024/01/04 RevSEG v1.2.0 based on v1.0 SEG expanded abstract]
+\ProvidesClass{segabs}[2024/01/05 RevSEG v1.2.1 based on v1.0 SEG expanded abstract]
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -59,6 +59,8 @@
 \setboolean{@rev@extra}{true}
 \newboolean{@rev@texlive}
 \setboolean{@rev@texlive}{false}
+\newboolean{@rev@refnewpage}
+\setboolean{@rev@refnewpage}{true}
 \newboolean{@rev@final}
 \setboolean{@rev@final}{false}
 \DeclareOption{times}{\setboolean{@times}{true}}
@@ -75,10 +77,20 @@
 \DeclareOption{noextra}{\setboolean{@rev@extra}{false}}
 \DeclareOption{texlive}{\setboolean{@rev@texlive}{true}}
 \DeclareOption{notexlive}{\setboolean{@rev@texlive}{false}}
-\DeclareOption{final}{\setboolean{@rev@final}{true}}
-\DeclareOption{nofinal}{\setboolean{@rev@final}{false}}
+\DeclareOption{final}{
+  \setboolean{@rev@final}{true}
+  \setboolean{@rev@refnewpage}{true}
+}
+\DeclareOption{nofinal}{
+  \setboolean{@rev@final}{false}
+  \setboolean{@rev@refnewpage}{true}
+}
+\DeclareOption{first}{
+  \setboolean{@rev@final}{false}
+  \setboolean{@rev@refnewpage}{false}
+}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ExecuteOptions{times,hyref,extra,nocolorlinks}
+\ExecuteOptions{times,hyref,extra,nocolorlinks,first}
 \ProcessOptions*
 \LoadClass[11pt, letterpaper]{article}
 \RequirePackage{ifxetex}
@@ -122,7 +134,9 @@
 }{}
 \bibpunct[,]{(}{)}{;}{a}{,}{,}
 \DeclareRobustCommand{\refname}{REFERENCES}
-\renewcommand\bibsection{\clearpage\section{\refname}}
+\ifthenelse{\boolean{@rev@refnewpage}}{
+  \renewcommand\bibsection{\clearpage\section{\refname}}
+}{}
 \newcommand{\shortcite}[1]{\citeyearpar{#1}}
 
 % Configure floats and ams* pacakges.

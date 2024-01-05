@@ -1,0 +1,50 @@
+\documentclass[wordlite,texlive,calfont,first]{segabs}
+
+\renewcommand{\figdir}{Fig}  % figure directory
+
+\title{Example of the shortened abstract}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+
+\author{Joe Dellinger\footnotemark[1], BP 
+  and Sergey Fomel, University of Texas at Austin\footnotemark[2] and Joe DellingerII\footnotemark[1], BP 
+  and Sergey Fomel, University of Texas at Austin}
+
+\footer{}
+\lefthead{}
+\righthead{}
+\header{Joint inversion with deep learning}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\st}{s.t.\ }
+
+\begin{document}
+
+\maketitle
+
+% While not mandatory or required, you have the opportunity to submit max two
+% figures. 
+
+\section*{Objectives and Scope}
+
+Objectives/Scope: Please list the objectives and scope of the proposed paper. (maximum 100 words/600 characters)
+
+Test citation~\cite[]{lamport}.
+
+\section*{Methods}
+
+Please briefly explain your overall approach, including your methods, procedures, and process. (maximum 250 words/1500 characters).
+
+\section*{Results and Conclusions}
+
+Please describe the results, observations, and conclusions of the proposed paper. (maximum 250 words/1500 characters)
+
+\section*{Significance and Novelty}
+
+Significance/Novelty: Please explain how this presentation will present new or additive information that can be of benefit to a practicing geoscientist. (maximum 100 words/600 characters)
+
+\bibliographystyle{seg}  % style file is seg.bst
+\autobibliography{bib/example}
+
+\end{document}
