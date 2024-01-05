@@ -28,7 +28,7 @@
 %%    without configuring the appendix counter correctly.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{segabs}[2023/01/01 RevSEG v1.1.0 based on v1.0 SEG expanded abstract]
+\ProvidesClass{segabs}[2024/01/04 RevSEG v1.2.0 based on v1.0 SEG expanded abstract]
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -449,11 +449,31 @@
 \begin{minipage}[t]{\columnwidth}
 \textbf{SUMMARY\\}\\*}{%
 \end{minipage}\vspace{2ex}}
+
+% Define the head/foot styles.
+\newcommand{\ps@segfoot}{%
+  \renewcommand{\@oddfoot}{}%
+  \renewcommand{\@evenfoot}{}%
+}
 \newcommand{\ps@seg}{%
-\renewcommand{\@oddhead}{\hfill\seg@small\textbf{\seg@rhead}\seg@size\hfill}
-\renewcommand{\@evenhead}{\@oddhead}
-\renewcommand{\@oddfoot}{}
-\renewcommand{\@evenfoot}{}}
+  \renewcommand{\@oddhead}{%
+    \ifthenelse{\equal{\seg@head}{}}{%
+      \seg@small\textbf{\seg@lhead}\hfill\textbf{\seg@rhead}\seg@size%
+    }{%
+      \hfill\seg@small\textbf{\seg@head}\seg@size\hfill%
+    }
+  }
+  \renewcommand{\@evenhead}{%
+    \ifthenelse{\equal{\seg@lhead}{}\and\equal{\seg@rhead}{}}{%
+      \hfill\seg@small\textbf{\seg@head}\seg@size\hfill%
+    }{%
+      \seg@small\textbf{\seg@lhead}\hfill\textbf{\seg@rhead}\seg@size%
+    }
+  }
+  \renewcommand{\@oddfoot}{\footnotesize\seg@foot}
+  \renewcommand{\@evenfoot}{\footnotesize\@oddfoot}%
+}
+
 \thispagestyle{empty}
 \pagestyle{seg}
 

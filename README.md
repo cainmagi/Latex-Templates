@@ -15,10 +15,11 @@ By the way, this template is totally compatible with the official LaTeX file. Bu
 
 ## All options
 
-We list all avaliable options here. The deault state means whether a option is enabled in default.
+We list all available options here. The default state means whether a option is enabled in default.
 
 | Option | Description | Counter option | Default state |
 | -----  |   -----     |      -----     |  -----  |
+| `twoside` | Will influence the behaviors of head/foot configurations. If this option is enabled, odd and even pages will use different headers. On odd pages, `\header` will be preferred; on even pages, `\lefthead` and `\righthead` will be preferred. If this option is disabled, for all pages, `\header` will be preferred. If `\header`is empty, `\lefthead` and `\righthead` will be used. | `oneside` | Disabled |
 | `times` | Use `Times` font. If not set, pdfLaTeX would use `Computer Modern` while XeLaTeX would use `TeX Gyre Termes`.  | `notimes` | Enabled |
 | `calfont` | The default settings of `segabs.cls` would override the `\mathcal` font by *Ralph Smith's Formal Script Font (rsfs)*. We provide an this option for switching back to the original calligraphy font.  | `nocalfont` | Disabled |
 | `wordlite` | Make the template like the word version. It will add a bounding box to all figures. | `nowordlite` | Disabled |
@@ -35,6 +36,11 @@ We list all avaliable options here. The deault state means whether a option is e
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.0 @ 01/04/2024
+
+1. Fix an error that the header/footer are not displayed even if they are defined.
+2. Make header configurations have counter preference for the even pages when `twoside` is enabled.
 
 ### 1.1.0 @ 01/01/2023
 

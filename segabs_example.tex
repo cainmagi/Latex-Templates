@@ -1,4 +1,4 @@
-\documentclass[wordlite,texlive,final,calfont]{segabs}
+\documentclass[wordlite,twoside,texlive,final,calfont]{segabs}
 \usepackage{lipsum}
 %\hypersetup{
 %}
@@ -17,8 +17,15 @@
   and Sergey Fomel, University of Texas at Austin}
 
 \footer{Example}
+
+% WHEN "twoside" is not passed to options, all pages will be configured as odd pages.
+% left/right heads will be preferred shown on the even pages WHEN "twoside" appears in options.
+% left/right heaqds will appear on odd pages WHEN \header is empty.
 \lefthead{Dellinger \& Fomel}
-\righthead{SEG abstract example}
+\righthead{University of Texas at Austin}
+% central head (\header) will be preferred shown on the odd pages WHEN "twoside" appears in options.
+% central head will appear on even pages WHEN both \lefthead and \righthead are empty.
+\header{SEG abstract example}
 
 \begin{document}
 
