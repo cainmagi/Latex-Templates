@@ -28,7 +28,7 @@
 %%    without configuring the appendix counter correctly.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{segabs}[2024/01/05 RevSEG v1.2.1 based on v1.0 SEG expanded abstract]
+\ProvidesClass{segabs}[2024/03/25 RevSEG v1.2.2 based on v1.0 SEG expanded abstract]
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -90,7 +90,7 @@
   \setboolean{@rev@refnewpage}{false}
 }
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ExecuteOptions{times,hyref,extra,nocolorlinks,first}
+\ExecuteOptions{times,hyref,extra,nocolorlinks,nofinal}
 \ProcessOptions*
 \LoadClass[11pt, letterpaper]{article}
 \RequirePackage{ifxetex}

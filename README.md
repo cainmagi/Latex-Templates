@@ -28,7 +28,7 @@ We list all available options here. The default state means whether a option is 
 | `extra` | Use extra packages, including AMS math packages, `stfloat`, `algorithm`, and `enumerate`. If `hyref` is disabled, `cleveref` would be used for supporting `\autoref`. | `noextra` | Enabled |
 | `texlive` | Use TeXLive exclusive packages. Now these packages include `siunitx`. | `notexlive` | Disabled |
 | `final` | Final version flag. If enabled, the reference part would not show, but the cited tags still exist. | `nofinal`, `first` | Disabled |
-| `first` | First version flag. If enabled, the reference part would be shown and instantly appended at the end, there will not be a new page signal before the reference section. This flag should be set when drafting paper used for submitting the shortened abstract. | `nofinal`, `final` | Enabled |
+| `first` | First version flag. If enabled, the reference part would be shown and instantly appended at the end, there will not be a new page signal before the reference section. ~~This flag should be set when drafting paper used for submitting the shortened abstract.~~ Since 2024, the short abstract should not include the reference section, so please use `final` instead of `first` to draft the paper. | `nofinal`, `final` | Disabled |
 
 ## Example
 
@@ -37,6 +37,11 @@ We list all available options here. The default state means whether a option is 
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.2 @ 03/25/2024
+
+1. Change the template `segabs_short.tex` by modifying the option by `final`. This change is for matching the new standard since 2024. The submission for the short abstract should not include the reference section, while the reference list is submitted separately, like submitting the extended abstract.
+2. Now, make `nofinal` as the default option (replacing `first`).
 
 ### 1.2.1 @ 01/05/2024
 
