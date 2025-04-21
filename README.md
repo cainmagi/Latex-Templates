@@ -49,6 +49,7 @@ The following options should only be enabled when using the class, like
 | `vecarrow` | A flag. When configured, use the arrow style to specify the `\vec` symbols. | - | Disabled |
 | `fleqn` | A flag. When configured, make equations left aligned. | - | Disabled |
 | `graybox` | A flag. When configured, provide the special environment `svgraybox`. | - | Disabled |
+| `usesibinary` | A flag. When configured, provide the features of the binary units of the `siunitx` package. Note that this option is not available since TeXLive 2023, where the binary units will be enabled by default. | - | Disabled |
 
 
 The following options could be assigned in both the class options and the following command:
@@ -95,7 +96,7 @@ Notes:
 | `\tRe`, `\tIm`         | "Re" and "Im". |
 | `\arcsinh`, `\arccosh` | "sinh" and "cosh". |
 | `\qED`                 | Right-aligned QED command. |
-| `\argmax`, `argmin   ` | Math symbols for defining an optimization: "argmax" and "argmin" |
+| `\argmax`, `\argmin` | Math symbols for defining an optimization: "argmax" and "argmin" |
 | `\mean`, `\std`        | "mean" and "std". |
 | `\intd`                | "d" appearing as the differential operator in integration. |
 | `\expect`              | "E" with a `\mathbb` style. |
@@ -107,6 +108,10 @@ Notes:
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.0.1 @ 04/21/2025
+
+1. Fix the issue caused by the deprecated option `binary-units` of `siunitx`.
 
 ### 1.0.0 @ 1/5/2023
 
