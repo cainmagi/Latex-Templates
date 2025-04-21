@@ -43,6 +43,7 @@ The following options should only be enabled when using the class, like
 | `hyper`  | Add colors to all links. It would not influence the figures. | `nohyper` | Disabled |
 | `draft`  | Use the draft mode of `article`, all figures would be replaced by placeholders, and the `hyperref` package (if used) will also work in draft mode. | `final` | Disabled |
 | `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Enabled |
+| `usesibinary` | A flag. When configured, provide the features of the binary units of the `siunitx` package. Note that this option is not available since TeXLive 2023, where the binary units will be enabled by default. | - | Disabled |
 
 The following options could be assigned in both the class options and the following command:
 
@@ -106,7 +107,7 @@ Notes:
 | `\tRe`, `\tIm`         | "Re" and "Im". |
 | `\arcsinh`, `\arccosh` | "sinh" and "cosh". |
 | `\qED`                 | Right-aligned QED command. |
-| `\argmax`, `argmin   ` | Math symbols for defining an optimization: "argmax" and "argmin" |
+| `\argmax`, `\argmin` | Math symbols for defining an optimization: "argmax" and "argmin" |
 | `\mean`, `\std`        | "mean" and "std". |
 | `\intd`                | "d" appearing as the differential operator in integration. |
 | `\expect`              | "E" with a `\mathbb` style. |
@@ -118,6 +119,10 @@ Notes:
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.4 @ 04/21/2025
+
+1. Fix the issue caused by the deprecated option `binary-units` of `siunitx`.
 
 ### 1.2.3 @ 12/14/2022
 

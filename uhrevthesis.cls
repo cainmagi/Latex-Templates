@@ -4,6 +4,9 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.2.4 (04/21/25)
+%   - Fix the issue caused by the deprecated option `binary-units` of
+%     `siunitx`.
 % Version 1.2.3 (12/14/22)
 %   - Add text option: "sectitlestyle".
 %   - Adjust the space of table of contents, list of tables and list
@@ -152,6 +155,10 @@
 %  indentfirst : [true], make the first paragraphs of each (sub) sections
 %                with indents.
 %                - Complementary option is "noindentfirst".
+%  usesibinary : [false, provide the features of the binary units of the
+%                `siunitx` package. Note that this option is not available
+%                since TeXLive 2023, where the binary units will be enabled
+%                by default.
 %
 %% -----------------------------------
 % Other Configuration
@@ -202,7 +209,7 @@
 % Last Updated : October 7, 2019
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevthesis}[2022/12/14 v1.2.3 Revised UH Thesis Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevthesis}[2025/04/21 v1.2.4 Revised UH Thesis Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -219,6 +226,8 @@
 \DeclareComplementaryOption{dissertation}{thesis}
 \DeclareBoolOption[true]{indentfirst}
 \DeclareComplementaryOption{noindentfirst}{indentfirst}
+\DeclareBoolOption[false]{usesibinary}
+
 \DeclareBoolOption[true]{captionhang}
 \DeclareComplementaryOption{nocaptionhang}{captionhang}
 \DeclareBoolOption[true]{refdoublespace}
@@ -557,7 +566,15 @@
 % enable users to use Système International d'Unités (SI).
 \RequirePackage{colortbl}
 \RequirePackage{datetime}
-\RequirePackage[binary-units]{siunitx}
+\IfFileExists{siunitx.sty}{%
+  \ifUHRevThesis@opt@usesibinary
+  % If using TeXLive >=2023, the option binary-units will be removed.
+  % Therefore, there is no need to use this option. 
+    \RequirePackage[binary-units]{siunitx}
+  \else
+    \RequirePackage{siunitx}
+  \fi
+}{}
 
 %%***************************************
 %% Make further settings ...
