@@ -2,7 +2,8 @@
 
 ## Introduction
 
-> :warning: Actually, there are no format demands for a dissertation/thesis proposal. Therefore, the best choice is to prefer the [thesis template :link:][git-uhrevthesis] directly rather than this template. If you insist on using this template, you may have to switch to a different template when writing your thesis.
+> [!WARNING]
+> Actually, there are no format demands for a dissertation/thesis proposal. Therefore, the best choice is to prefer the [thesis template :link:][git-uhrevthesis] directly rather than this template. If you insist on using this template, you may have to switch to a different template when writing your thesis.
 
 This template is adapted from the an old version of the UH Thesis Style File. It is both compatible with `pdfLaTeX` and `XeLaTeX`. Now it has been modified for writing dissertation (thesis) proposal. According to the official example, we design this template for providing more supports.
 
@@ -48,6 +49,7 @@ The following options should only be enabled when using the class, like
 | `draft`  | Use the draft mode of `article`, all figures would be replaced by placeholders, and the `hyperref` package (if used) will also work in draft mode. | `final` | Disabled |
 | `oldmathcal`     | A flag. When configured, make `\mathcal` and related symbols fall back to the old caligraphy style. | `newmathcal` | Enabled |
 | `indentfirst`    | A flag. When configured, make the first paragraphs of each (sub) sections with indents. | `noindentfirst` | Enabled |
+| `usesibinary` | A flag. When configured, provide the features of the binary units of the `siunitx` package. Note that this option is not available since TeXLive 2023, where the binary units will be enabled by default. | - | Disabled |
 
 The following options could be assigned in both the class options and the following command:
 
@@ -128,6 +130,10 @@ The following options could be assigned in both the class options and the follow
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+ ### 1.0.2 @ 04/21/2025
+
+ 1. Fix the issue caused by the deprecated option `binary-units` of `siunitx`.
 
 ### 1.0.1 @ 12/9/2022
 

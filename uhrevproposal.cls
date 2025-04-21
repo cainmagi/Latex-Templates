@@ -4,6 +4,9 @@
 %% --------------------------------------
 %  Update statements:
 %% --------------------------------------
+% Version 1.0.2 (04/21/25)
+%   - Fix the issue caused by the deprecated option `binary-units` of
+%     `siunitx`.
 % Version 1.0.1 (12/9/2022)
 %   - Fix a hidden bug. The ams packges are required to be loaded before
 %     hyperref.
@@ -150,7 +153,7 @@
 % Stanfford University thesis style.
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{uhrevproposal}[2022/12/09 v1.0.1 Revised UH Proposal Class - Author: Yuchen Jin]
+\ProvidesClass{uhrevproposal}[2025/04/21 v1.0.2 Revised UH Proposal Class - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -179,6 +182,7 @@
 \DeclareComplementaryOption{nocopyright}{copyright}
 \DeclareBoolOption[true]{signature}
 \DeclareComplementaryOption{nosignature}{signature}
+\DeclareBoolOption[false]{usesibinary}
 
 \DeclareStringOption[Sample Thesis Title - Long, Wide, and Words Capitalized]{title}[Sample Thesis Title - Long, Wide, and Words Capitalized]
 \DeclareStringOption[Maya K. Student]{author}[Maya K. Student]
@@ -380,7 +384,15 @@
 % Others
 \RequirePackage{colortbl}
 \RequirePackage{datetime}
-\RequirePackage{siunitx}
+\IfFileExists{siunitx.sty}{%
+  \ifUHRevProposal@opt@usesibinary
+    % If using TeXLive >=2023, the option binary-units will be removed.
+    % Therefore, there is no need to use this option. 
+    \RequirePackage[binary-units]{siunitx}
+  \else
+    \RequirePackage{siunitx}
+  \fi
+}{}
 
 %%***************************************
 %% Configurations ...
