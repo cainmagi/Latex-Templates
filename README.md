@@ -26,7 +26,7 @@ We list all available options here. The default state means whether a option is 
 | `hyref` | Use the hyperref package. It would add hyper links to all referring tags and support `\autoref`. If you switch from `nohyref` to `hyref`, you may need to compile the file for two times to ensure there are no errors. | `nohyref` | Enabled |
 | `colorlinks` | Make all links with colors. This option only works when `hyref` is specified (i.e. the `hyperref` package is used) | `nocolorlinks` | Disabled |
 | `extra` | Use extra packages, including AMS math packages, `stfloat`, `algorithm`, and `enumerate`. If `hyref` is disabled, `cleveref` would be used for supporting `\autoref`. | `noextra` | Enabled |
-| `texlive` | Use TeXLive exclusive packages. Now these packages include `siunitx`. | `notexlive` | Disabled |
+| `sibinary` | A flag. When configured, provide the features of the binary units of the `siunitx` package. Note that this option is not available since TeXLive 2023, where the binary units will be enabled by default. | `nosibinary` | Disabled |
 | `final` | Final version flag. If enabled, the reference part would not show, but the cited tags still exist. | `nofinal`, `first` | Disabled |
 | `first` | First version flag. If enabled, the reference part would be shown and instantly appended at the end, there will not be a new page signal before the reference section. ~~This flag should be set when drafting paper used for submitting the shortened abstract.~~ Since 2024, the short abstract should not include the reference section, so please use `final` instead of `first` to draft the paper. | `nofinal`, `final` | Disabled |
 
@@ -37,6 +37,10 @@ We list all available options here. The default state means whether a option is 
 | ![][ex-fig-1] | ![][ex-fig-2] |
 
 ## Update report
+
+### 1.2.3 @ 04/21/2025
+
+1. Fix the issue caused by the deprecated option `binary-units` of `siunitx`. Drop the option `texlive` and replace it by `sibinary`.
 
 ### 1.2.2 @ 03/25/2024
 

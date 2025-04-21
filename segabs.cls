@@ -19,16 +19,13 @@
 %%     version 2003/12/01 or later.
 %% 
 %% ---------------------------------------------------
-%% ver 1.1.0 @ 1/1/2023
-%% 1. Fix the importing order of required packages.
-%% 2. Add xcolor and appendix to the basic dependencies.
-%% 3. Add hypcap to extra dependencies.
-%% 4. Provide an extra option: colorlinks.
-%% 5. Fix a fatal bug: the label identifiers in the appendices are not corrected
-%%    without configuring the appendix counter correctly.
+%% License
+%%
+%% The LaTeX Project Public License
+%% LPPL Version 1.3c  2008-05-04
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{segabs}[2024/03/25 RevSEG v1.2.2 based on v1.0 SEG expanded abstract]
+\ProvidesClass{segabs}[2024/04/21 RevSEG v1.2.3 based on v1.0 SEG expanded abstract]
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -57,8 +54,8 @@
 \setboolean{@rev@colorlinks}{false}
 \newboolean{@rev@extra}
 \setboolean{@rev@extra}{true}
-\newboolean{@rev@texlive}
-\setboolean{@rev@texlive}{false}
+\newboolean{@rev@usesibinary}
+\setboolean{@rev@usesibinary}{false}
 \newboolean{@rev@refnewpage}
 \setboolean{@rev@refnewpage}{true}
 \newboolean{@rev@final}
@@ -75,8 +72,8 @@
 \DeclareOption{nocolorlinks}{\setboolean{@rev@colorlinks}{false}}
 \DeclareOption{extra}{\setboolean{@rev@extra}{true}}
 \DeclareOption{noextra}{\setboolean{@rev@extra}{false}}
-\DeclareOption{texlive}{\setboolean{@rev@texlive}{true}}
-\DeclareOption{notexlive}{\setboolean{@rev@texlive}{false}}
+\DeclareOption{sibinary}{\setboolean{@rev@usesibinary}{true}}
+\DeclareOption{nosibinary}{\setboolean{@rev@usesibinary}{false}}
 \DeclareOption{final}{
   \setboolean{@rev@final}{true}
   \setboolean{@rev@refnewpage}{true}
@@ -203,10 +200,12 @@
 }{}
 
 % Configure texlive-limited packages.
-\ifthenelse{\boolean{@rev@texlive}}{
-  \RequirePackage[binary-units]{siunitx}
-  %\newcommand{\si}[1]{#1}
-  %\newcommand{\hertz}{\textrm{Hz}}
+\IfFileExists{siunitx.sty}{%
+  % If using TeXLive >=2023, the option binary-units will be removed.
+  % Therefore, there is no need to use this option. 
+  \ifthenelse{\boolean{@rev@usesibinary}}%
+  {\RequirePackage[binary-units]{siunitx}}%
+  {\RequirePackage{siunitx}}%
 }{}
 %
 
