@@ -21,20 +21,28 @@ Some of templates are style files (`.sty`), they could be used as a package by a
 
 Currently this collection includes the following templates. If any template is left blank here, it means I am arranging it. That template would be uploaded in the future:
 
-| Beamer title | Type | Screenshot|
-| ----- | ----- | ----- |
-| [SEG-abstract][ex-seg-abstract]                   | Paper   | [![][fig-seg-abstract]][ex-seg-abstract] |
-| [NRSM-URSI abstract][ex-ursi]                     | Paper   | [![][fig-ursi]][ex-ursi]                 |
-| [NRSM-URSI abstract (2022 ver.)][ex-ursi2022]     | Paper   | [![][fig-ursi2022]][ex-ursi2022]         |
-| [UH-ECE-Homework][ex-ecehw]                       | Article | [![][fig-ecehw]][ex-ecehw]               |
-| [Revised IEEE Transaction][ex-ieeerev]            | Article | [![][fig-ieeerev]][ex-ieeerev]           |
-| [UH Revised Thesis][ex-uhthesis]                  | Article | [![][fig-uhthesis]][ex-uhthesis]                   |
-| [UH Revised Proposal][ex-uhproposal]              | Report  | [![][fig-uhproposal]][ex-uhproposal]                   |
-| [Assignment][ex-cka]                              | Article | [![][fig-cka]][ex-cka]                   |
-| [Elegant Report][ex-ckegr]                        | Article | [![][fig-ckegr]][ex-ckegr]               |
-| [Source Han Chinese support for XeLaTeX][ex-shan] | Style   | [![][fig-shan]][ex-shan]                 |
+| Beamer title                                            | Type    | Screenshot                                     |
+| ------------------------------------------------------- | ------- | ---------------------------------------------- |
+| [SEG-abstract][ex-seg-abstract]                         | Paper   | [![][fig-seg-abstract]][ex-seg-abstract]       |
+| [NRSM-URSI abstract][ex-ursi]                           | Paper   | [![][fig-ursi]][ex-ursi]                       |
+| [NRSM-URSI abstract (2022 ver.)][ex-ursi2022]           | Paper   | [![][fig-ursi2022]][ex-ursi2022]               |
+| [UH-ECE-Homework][ex-ecehw]                             | Article | [![][fig-ecehw]][ex-ecehw]                     |
+| [Revised IEEE Transaction][ex-ieeerev]                  | Article | [![][fig-ieeerev]][ex-ieeerev]                 |
+| [Revised Springer Class for Lecture Notes][ex-llncsrev] | Article | [![][fig-llncsrev]][ex-llncsrev]               |
+| [Revised Springer Multi-authored Books][ex-svmultrev]   | Article | [![][fig-svmultrev]][ex-svmultrev]             |
+| [Revised Elsevier Book][ex-elsevierbookrev]             | Book    | [![][fig-elsevierbookrev]][ex-elsevierbookrev] |
+| [UH Revised Thesis][ex-uhthesis]                        | Article | [![][fig-uhthesis]][ex-uhthesis]               |
+| [UH Revised Proposal][ex-uhproposal]                    | Report  | [![][fig-uhproposal]][ex-uhproposal]           |
+| [Assignment][ex-cka]                                    | Article | [![][fig-cka]][ex-cka]                         |
+| [Elegant Report][ex-ckegr]                              | Article | [![][fig-ckegr]][ex-ckegr]                     |
+| [Source Han Chinese support for XeLaTeX][ex-shan]       | Style   | [![][fig-shan]][ex-shan]                       |
 
 ## Update report
+
+### 1.2 @ 04/22/2025
+
+1. Add the template: [Revised Elsevier Book][ex-elsevierbookrev].
+2. The templates have been added before but not got recorded. Here, we only update the information in the showcase: [Revised Springer Class for Lecture Notes][ex-llncsrev], [Revised Springer Multi-authored Books][ex-svmultrev].
 
 ### 1.1 @ 12/8/2020
 
@@ -73,6 +81,9 @@ Currently this collection includes the following templates. If any template is l
 [ex-ursi2022]:../../tree/URSI2022
 [ex-ecehw]:../../tree/ECE-homework
 [ex-ieeerev]:../../tree/ieeerev
+[ex-llncsrev]:../../tree/llncsrev
+[ex-svmultrev]:../../tree/svmultrev
+[ex-elsevierbookrev]:../../tree/elsevierbookrev
 [ex-uhthesis]:../../tree/uhrevthesis
 [ex-uhproposal]:../../tree/uhrevproposal
 [ex-cka]:../../tree/assignment
@@ -83,6 +94,9 @@ Currently this collection includes the following templates. If any template is l
 [fig-ursi2022]:./display/ursi2022.png
 [fig-ecehw]:./display/ecehw.png
 [fig-ieeerev]:./display/ieeerev.png
+[fig-llncsrev]:./display/llncsrev.png
+[fig-svmultrev]:./display/svmultrev.png
+[fig-elsevierbookrev]:./display/elsevierbookrev.png
 [fig-uhthesis]:./display/uhthesis.png
 [fig-uhproposal]:./display/uhproposal.png
 [fig-cka]:./display/cka.png
