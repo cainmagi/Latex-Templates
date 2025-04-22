@@ -1,0 +1,76 @@
+\cleardoublepage
+
+\begin{frontmatter}
+\chapter[Chapter Title]{Chapter Title\footnotemark}
+\footnotetext{This is chapter footnote}
+\label{chap2}
+\subchapter{Chapter Subtitle}
+
+\begin{aug}
+\author[addressrefs={ad1,ad2}]%
+  {\fnm{Firstname}   \snm{Surname}}%
+  %{\fnm{Firstname}   \snm{Surname}\footnote{This is author footnote}}%
+\author[addressrefs={ad2}]%
+ {\fnm{Firstname} \snm{Surname}}%
+\address[id=ad1]%
+  {Short Address}%
+\address[id=ad2]%
+  {Long Address}%
+\end{aug}
+
+
+% \dominitoc
+
+%
+\begin{chapterpoints}%[Chapter Points]
+\item The ends of words and sentences are marked by spaces. It doesn't
+  matter how many spaces you type; one is as good as 100.  The end of
+  a line counts as a space.
+
+\item The ends of words and sentences are marked by spaces. It doesn't
+  matter how many spaces you type; one is as good as 100.  The end of
+  a line counts as a space.
+\end{chapterpoints}
+
+\begin{dispquote}
+
+  The ends of words and sentences are marked by spaces. It doesn't
+  matter how many spaces you type; one is as good as 100.  The end of
+  a line counts as a space.
+
+  The ends of words and sentences are marked by spaces. It doesn't
+  matter how many spaces you type; one is as good as 100.  The end of
+  a line counts as a space.
+  
+  \source{Name}
+
+\end{dispquote}
+
+\end{frontmatter}
+
+
+\section{Section title}\label{sec2.1}
+
+Use the standard \verb|equation| environment to typeset your equations, e.g.
+%
+\begin{equation}
+  a \times b = c\;,
+\end{equation}
+%
+however, for multiline equations we recommend to use the \verb|eqnarray| environment\footnote{In physics texts please activate the class option \texttt{vecphys} to depict your vectors in \textbf{\itshape boldface-italic} type - as is customary for a wide range of physical subjects}.
+\begin{equation} \label{eq:01}
+  \begin{aligned}
+    \left|\nabla U_{\alpha}^{\mu}(y)\right| &\le&\frac1{d-\alpha}\int
+    \left|\nabla\frac1{|\xi-y|^{d-\alpha}}\right|\,\intd\mu(\xi) =
+    \int \frac1{|\xi-y|^{d-\alpha+1}} \,\intd\mu(\xi)  \\
+    &=&(d-\alpha+1) \int\limits_{d(y)}^\infty
+    \frac{\mu(B(y,r))}{r^{d-\alpha+2}}\,\intd r \le (d-\alpha+1)
+    \int\limits_{d(y)}^\infty \frac{r^{d-\alpha}}{r^{d-\alpha+2}}\,\intd r
+  \end{aligned}
+\end{equation}
+
+
+\subsection*{Test reference}
+
+Test the references: \citep{broy2022,gangolli1999,geddes1992,hamburger1995,slifka2000clinical}.
+

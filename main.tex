@@ -1,0 +1,54 @@
+%% Book layout models: a02, a08a, p04
+%% choose one of three models
+% \documentclass[authoryear]{elsevierbookrev}
+\documentclass[hyper]{elsevierbookrev}
+%\documentclass[a02]{elsevierbookrev}
+%\documentclass[a08a]{elsevierbookrev}
+%\documentclass[p04]{elsevierbookrev}
+% models = a02,a08a,p04
+%\documentclass[<model>,<options>]{elsevierbookrev}% 
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+% Main Setup
+\ElsBookRevSetup{
+  % Configurations
+  nohypercolor,  % hypercolor or nohypercolor
+  ownerPass={}, userPass={},  % Only used in XeLaTeX
+  % Short information mainly used in PDF strings.
+  title={Book title},
+  author={First Author, and Second Author},
+  institute={University of Houston}
+}
+
+% Configure the folders used for storing figures.
+\graphicspath{{pics}}
+
+\begin{document}
+
+\Frontmatter%
+
+\include{titlepage}
+\include{dedication}
+\include{tableofcontents}
+\include{listoffigures}
+\include{listoftables}
+\include{preface}
+\include{aboutauthors}
+
+\Mainmatter%
+
+\include{chapter1}
+\include{chapter2}
+
+\appendix
+\include{appendix01}
+\include{appendix02}
+
+\Backmatter%
+
+\include{contributors}
+\include{references}
+
+\end{document}
