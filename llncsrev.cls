@@ -9,6 +9,9 @@
 %% -----------------------------------
 %  Update statements:
 %% -----------------------------------
+% Version 1.0.1 (04/21/25)
+%   - Fix the issue caused by the deprecated option `binary-units` of
+%     `siunitx`.
 % Version 1.0.0 (12/31/22)
 %   - Create the template.
 %   - Bump the base class llncs to ver 2.22.
@@ -51,6 +54,10 @@
 %                - Complementary option is "final".
 %  authoryear  : [false], use the author-year citation format.
 %                - Complementary option is "numcit".
+%  usesibinary : [false, provide the features of the binary units of the
+%                `siunitx` package. Note that this option is not available
+%                since TeXLive 2023, where the binary units will be enabled
+%                by default.
 %  more options can be found in the original "llncs" template.
 %
 %% -----------------------------------
@@ -90,7 +97,7 @@
 % GNU General Public License for more details.
 %
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{llncsrev}[2022/12/31 v1.0.0 Revised Springer Class for Lecture Notes in Computer Science - Author: Yuchen Jin]
+\ProvidesClass{llncsrev}[2025/04/21 v1.0.1 Revised Springer Class for Lecture Notes in Computer Science - Author: Yuchen Jin]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen, calc}
@@ -105,6 +112,7 @@
 \DeclareComplementaryOption{nohypercolor}{hypercolor}
 \DeclareBoolOption[false]{authoryear}
 \DeclareComplementaryOption{numcit}{authoryear}
+\DeclareBoolOption[false]{usesibinary}
 
 \DeclareStringOption[Draft for Springer Book， LLNCS Template]{title}[Draft for Springer Book， LLNCS Template]
 \DeclareStringOption[Yuchen Jin]{author}[Yuchen Jin]
@@ -373,7 +381,15 @@
 % enable users to use Système International d'Unités (SI).
 \RequirePackage{colortbl}
 \RequirePackage{datetime}
-\RequirePackage[binary-units]{siunitx}
+\IfFileExists{siunitx.sty}{%
+  \ifLLNCSRev@opt@usesibinary
+    % If using TeXLive >=2023, the option binary-units will be removed.
+    % Therefore, there is no need to use this option. 
+    \RequirePackage[binary-units]{siunitx}
+  \else
+    \RequirePackage{siunitx}
+  \fi
+}{}
 \RequirePackage{url}
 
 %%***************************************
